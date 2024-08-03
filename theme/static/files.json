@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "title": "Introduction",
+    "excerpt": "Lite yet powerful static side generator, using the power of go and templ",
+    "content": "Goals\n\nWrite your templates in go templ\nWrite your content in markdown\nGenerate static HTML\nServe HTML with go\n\nDependencies\n\ngo 1.22.5\nair\ntempl\nmake\n\nCommands\nDeveloment mode\n\nmake templ: start templ file generation in watch mode\nmake dev: start dev server with hot reload\nhttp://localhost:7331\n\nSSR (Server Side Rendering) mode\n\nmake build: build go binary\nmake ssr: start server\n\nSSG (Static Site Generation) mode\n\nmake gen: generate static files\n\nYou can put these static files to any server. You can serve them with go as\nwell:\n\nmake ssg: start static file server\nhttp://localhost:8080\n\nThemes\nYou can put you custom theme under /theme.\ntheme\n├── static\n└── templates\n\nPut static files like css, js, images etc. under theme/static.\nPut templ components under theme/templates.\nEvery theme should have the following templ components exported from the root\ndirectory of the theme, as you can see in the pages/page.go:\ntype (\n\tNotFoundPage func() templ.Component\n\tIndexPage    func(files []*pkg.FileData) templ.Component\n\tPostPage     func(post *pkg.FileData) templ.Component\n\tTagPage      func(tag string, files []*pkg.FileData) templ.Component\n\tCategoryPage func(category string, files []*pkg.FileData) templ.Component\n)\n\n\nYou need to implement a catch-all logic in you files server, if you want to\nuse the custom 404 (not found) page. If you serve static files via the\nbuilt-in make ssg command, this logic is already implemented\n\nSwitching themes\nYou should backup you old theme folder, before cloning or writing a new theme.\nTheme switching is a manual process for now, mabye should be improved in the\nfuture.\n",
+    "route": "welcome"
+  },
+  {
+    "id": 1,
+    "title": "TODO",
+    "excerpt": "Way to prod",
+    "content": "P1\n\n category page\n upgrade tag page\n add github link somewhere\n add contact info and some about info\n documentations an tutorials\n custom routes and components\n\nP2\n\n multilanguage\n search: json or google?\n seo things on frontmatter\n error handling\n accessibility\n rewrite search.js to typesript\n organize packages\n\nP3\n\n rss ??\n xml site map???\n\n",
+    "route": "todo"
+  },
+  {
+    "id": 2,
+    "title": "About me",
+    "excerpt": "",
+    "content": "Hi there\nMy name is Péter Szarvas, I work as a freelancer, as a fullstack developer in\nHungray. First I stared out wirh JavaScript/TypeScript and frontend frameworks\nlike React, Astro, I have built some projects with this stack. But over time my\ninterest is shifted to Go, and server driven, traditional server-client\napplications. This interest led me to build Lytepage, as an alternative to\nclient-side frameworks, to have a simple tool to build static sites.\nContact\n\nphone\nemail\nwebsite\ngithub\nlinkedin\n\n",
+    "route": "author"
+  }
+]

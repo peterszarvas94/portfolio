@@ -1,0 +1,6 @@
+.DS_Store
+bin/
+public/
+theme/**/*.go
+theme/**/*.txt
+**/node_modules/

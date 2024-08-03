@@ -1,0 +1,20 @@
+package templates
+
+import (
+	"peterszarvas94/blog/theme/templates/components"
+)
+
+templ NotFoundPage() {
+	@components.Head()
+	@notFoundBody()
+}
+
+templ notFoundBody() {
+	<body>
+		@components.Header()
+		<main class="page notfound-page">
+			<h1>404</h1>
+			<div>Page not found.</div>
+		</main>
+	</body>
+}

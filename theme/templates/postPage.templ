@@ -1,0 +1,39 @@
+package templates
+
+import (
+	"fmt"
+	"peterszarvas94/blog/pkg"
+	"peterszarvas94/blog/pkg/config"
+	"peterszarvas94/blog/theme/templates/components"
+)
+
+templ PostPage(post *pkg.FileData) {
+	@components.Head()
+	@postBody(post)
+}
+
+templ postBody(post *pkg.FileData) {
+	<body>
+		@components.Header()
+		<main class="page post-page">
+			<h1>{ post.Matter.Title }</h1>
+			<time>{ post.DateTime.Format(fmt.Sprintf("%s %s", config.DateLayout, config.TimeLayout)) }</time>
+			@components.Category(post.Matter.Category)
+			<div class="tags">
+				<ul>
+					for _, tag := range post.Matter.Tags {
+						<li>
+							<a href={ templ.SafeURL(fmt.Sprintf("/tag/%s", tag)) }>
+								{ fmt.Sprintf("# %s", tag) }
+							</a>
+						</li>
+					}
+				</ul>
+			</div>
+			<article class="markdown-body">
+				@pkg.HtmlString(post.Html)
+			</article>
+		</main>
+		@components.Footer()
+	</body>
+}

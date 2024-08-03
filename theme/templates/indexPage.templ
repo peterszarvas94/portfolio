@@ -1,0 +1,26 @@
+package templates
+
+import (
+	"peterszarvas94/blog/pkg"
+	"peterszarvas94/blog/pkg/config"
+	"peterszarvas94/blog/theme/templates/components"
+)
+
+templ IndexPage(files []*pkg.FileData) {
+	@components.Head() {
+		<script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
+		<script src="/static/search.js" type="module" defer></script>
+	}
+	@indexBody(files)
+}
+
+templ indexBody(files []*pkg.FileData) {
+	<body>
+		@components.Header()
+		<main class="page index-page">
+			<h1>{ config.IndexTitle }</h1>
+			@components.ArticleList(files)
+		</main>
+		@components.Footer()
+	</body>
+}

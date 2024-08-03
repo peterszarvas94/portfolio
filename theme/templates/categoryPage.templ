@@ -1,0 +1,25 @@
+package templates
+
+import (
+	"peterszarvas94/blog/pkg"
+	"peterszarvas94/blog/theme/templates/components"
+)
+
+templ CategoryPage(category string, files []*pkg.FileData) {
+	@components.Head()
+	@categoryBody(category, files)
+}
+
+templ categoryBody(category string, files []*pkg.FileData) {
+	<body>
+		@components.Header()
+		<main class="page category-page">
+			<h1>
+				@components.CategoryIcon()
+				<div>{ category }</div>
+			</h1>
+			@components.ArticleList(files)
+		</main>
+		@components.Footer()
+	</body>
+}
