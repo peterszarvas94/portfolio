@@ -2,24 +2,16 @@ package templates
 
 import (
 	"peterszarvas94/blog/pkg"
-	"peterszarvas94/blog/theme/templates/components"
+	"peterszarvas94/blog/theme/templates/components/common"
 )
 
-templ CategoryPage(category string, files []*pkg.FileData) {
-	@components.Head()
-	@categoryBody(category, files)
+templ CategoryPage(_ string, _ []*pkg.FileData) {
+	@common.Head("", "")
+	@categoryBody()
 }
 
-templ categoryBody(category string, files []*pkg.FileData) {
+templ categoryBody() {
 	<body>
-		@components.Header()
-		<main class="page category-page">
-			<h1>
-				@components.CategoryIcon()
-				<div>{ category }</div>
-			</h1>
-			@components.ArticleList(files)
-		</main>
-		@components.Footer()
+		hello category
 	</body>
 }

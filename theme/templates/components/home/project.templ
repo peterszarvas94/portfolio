@@ -1,0 +1,35 @@
+package home
+
+import "strings"
+import "fmt"
+
+type ProjectProps struct {
+	Href       string
+	GithubHref string
+	Title      string
+	Image      string
+	IsTop      bool
+}
+
+templ Project(props *ProjectProps) {
+	<figure>
+		<div class="grayscale-60 w-full aspect-video">
+			<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">
+				<img
+					src={ props.Image }
+					alt={ props.Title }
+					class={ "w-full h-full object-cover mb-2 border-2 border-gray-700",
+						templ.KV("object-center", !props.IsTop),
+						templ.KV("object-top", props.IsTop) }
+				/>
+			</a>
+		</div>
+		<figcaption class="text-lg font-firasans text-white">
+			<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">
+				{ props.Title }
+			</a>
+		</figcaption>
+		@Link(props.Href, strings.Split(props.Href, "https://")[1], false)
+		@Link(props.GithubHref, fmt.Sprintf("gh/%s", strings.Split(props.GithubHref, "https://github.com/peterszarvas94/")[1]), true)
+	</figure>
+}

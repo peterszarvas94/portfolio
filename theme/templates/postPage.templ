@@ -1,39 +1,26 @@
 package templates
 
 import (
-	"fmt"
 	"peterszarvas94/blog/pkg"
-	"peterszarvas94/blog/pkg/config"
-	"peterszarvas94/blog/theme/templates/components"
+	"peterszarvas94/blog/theme/templates/components/common"
 )
 
-templ PostPage(post *pkg.FileData) {
-	@components.Head()
-	@postBody(post)
+templ PostPage(_ *pkg.FileData) {
+	@common.Head("Szarvas Péter - Resume", "Szarvas Péter fullstack developer's CV") {
+		<link rel="preconnect" href="https://fonts.googleapis.com"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100;200;300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+	}
+	@postBody()
 }
 
-templ postBody(post *pkg.FileData) {
+// TODO: here goes the resume page
+// TODO future improvement: ability to create custom routes with custom page (e.g. /resume -> resumePage.templ)
+templ postBody() {
 	<body>
-		@components.Header()
-		<main class="page post-page">
-			<h1>{ post.Matter.Title }</h1>
-			<time>{ post.DateTime.Format(fmt.Sprintf("%s %s", config.DateLayout, config.TimeLayout)) }</time>
-			@components.Category(post.Matter.Category)
-			<div class="tags">
-				<ul>
-					for _, tag := range post.Matter.Tags {
-						<li>
-							<a href={ templ.SafeURL(fmt.Sprintf("/tag/%s", tag)) }>
-								{ fmt.Sprintf("# %s", tag) }
-							</a>
-						</li>
-					}
-				</ul>
-			</div>
-			<article class="markdown-body">
-				@pkg.HtmlString(post.Html)
-			</article>
-		</main>
-		@components.Footer()
+		hello post
 	</body>
 }

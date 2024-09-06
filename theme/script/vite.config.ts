@@ -7,24 +7,24 @@ export default defineConfig({
     outDir: resolve(__dirname, "../static"),
     emptyOutDir: false, // Prevent clearing out the outDir
     lib: {
-      entry: resolve(__dirname, "search.ts"),
-      fileName: () => "search.js",
+      entry: resolve(__dirname, "home.ts"),
+      fileName: () => "home.js",
       formats: ["es"], // Output format
     },
     rollupOptions: {
       output: {
-        entryFileNames: "search.js",
-        chunkFileNames: "search.js",
+        entryFileNames: "home.js",
+        chunkFileNames: "home.js",
       },
       plugins: [
         {
           name: "preserve-existing-files",
           generateBundle(_, bundle) {
-            const outputPath = resolve(__dirname, "../static/search.js");
+            const outputPath = resolve(__dirname, "../static/home.js");
 
             // Handle OutputChunk specifically
             for (const [key, value] of Object.entries(bundle)) {
-              if (value.type === "chunk" && key === "search.js") {
+              if (value.type === "chunk" && key === "home.js") {
                 // Ensure the directory exists
                 mkdirSync(dirname(outputPath), { recursive: true });
                 // Write the code to the output file

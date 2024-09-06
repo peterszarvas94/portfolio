@@ -1,0 +1,13 @@
+package resume
+
+templ Chip(text string, filled bool) {
+	<div class="pr-2 inline">
+		if filled {
+			<strong class="font-normal text-white bg-gray-700 px-1 rounded-sm">
+				{ text }
+			</strong>
+		} else {
+			<span>{ text }</span>
+		}
+	</div>
+}

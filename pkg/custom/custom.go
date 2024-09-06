@@ -9,5 +9,5 @@ import (
 type routeMap map[string]templ.Component
 
 var Routes = &routeMap{
-	"/custom": templates.CustomPage(),
+	"/resume": templates.ResumePage(),
 }

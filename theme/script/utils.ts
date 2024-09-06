@@ -1,73 +1,66 @@
-import MiniSearch, { SearchResult } from "minisearch";
-
-type File = {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  route: string;
+type Props = {
+  navElementId: string;
+  elementId: string;
+  withScroll: boolean;
+  hide: boolean;
 };
 
-export async function getFiles(): Promise<File[]> {
-  const response = await fetch("/static/files.json");
-  if (!response.ok) {
-    throw new Error(`Failed to load JSON: ${response.status}`);
-  }
-  return await response.json();
-}
+export function setupLink(props: Props) {
+  const { navElementId, elementId, withScroll, hide } = props;
 
-export function getMiniSearch(files: File[]) {
-  const miniSearch = new MiniSearch({
-    fields: ["title", "excerpt", "content", "route"], // fields to index for full-text search
-    storeFields: ["title", "excerpt", "content", "route"], // fields to return with search results
+  const navElement = document.getElementById(navElementId);
+  const element = document.getElementById(elementId);
+
+  if (!element || !navElement) {
+    return;
+  }
+
+  navElement.addEventListener("click", (event) => {
+    event.preventDefault();
+    scrollToElement(element);
   });
 
-  miniSearch.addAll(files);
-  return miniSearch;
+  if (!withScroll) {
+    return;
+  }
+
+  const scrollListener = makeScrollListener(element);
+
+  window.addEventListener("scroll", scrollListener);
+  window.addEventListener("load", scrollListener);
+
+  if (!hide) {
+    return;
+  }
+
+  element.setAttribute("href", "");
+  element.classList.add("opacity-0");
 }
 
-export function search(query: string, miniSearch: MiniSearch): SearchResult[] {
-  const result = miniSearch.search(query);
-  return result;
+function makeScrollListener(element: HTMLElement) {
+  const listener = function () {
+    if (getElementTop(element) <= window.innerHeight / 2) {
+      element.classList.add("animate-slide-5");
+      window.removeEventListener("scroll", listener);
+    }
+  };
+  return listener;
 }
 
-export function getQuery() {
-  const url = new URL(window.location.href);
-  const searchParams = new URLSearchParams(url.search);
-  const query = searchParams.get("search");
-  return query;
+function getElementTop(el: HTMLElement) {
+  const rect = el.getBoundingClientRect();
+  return rect.top;
 }
 
-export function getInput(): HTMLInputElement | null {
-  const form = document.querySelector("#search-form");
-  const input = form?.querySelector("input[name=search]");
-  return (input as HTMLInputElement) ?? null;
+function scrollToElement(el: HTMLElement) {
+  window.scrollTo({
+    top: getElementTop(el) + window.scrollY,
+    behavior: "smooth",
+  });
+  return;
 }
 
-export function getRoutes(results: SearchResult[]) {
-  const routes = results.map((result) => result.route);
-  return routes;
-}
-
-export function getArticles(): HTMLElement[] {
-  const articles = document.querySelectorAll(".article-list li");
-  const arr = Array.from(articles);
-  return arr as HTMLElement[];
-}
-
-export function filterArticles(articles: HTMLElement[], routes: any[]) {
-  articles
-    .filter((atricle) => {
-      const href = atricle.querySelector("a")?.href || "";
-      const url = new URL(href);
-      const pathname = url.pathname.slice(1);
-      if (routes.includes(pathname)) {
-        return false;
-      } else {
-        return true;
-      }
-    })
-    .forEach((atricle) => {
-      atricle.style.display = "none";
-    });
+export function hide(elementId: string) {
+  const element = document.getElementById(elementId);
+  element?.classList.add("opacity-0");
 }

@@ -1,0 +1,227 @@
+package templates
+
+import (
+	"peterszarvas94/blog/theme/templates/components/common"
+	"peterszarvas94/blog/theme/templates/components/resume"
+	"peterszarvas94/blog/theme/templates/components/icons"
+)
+
+templ ResumePage() {
+	@common.Head("Szarvas Péter - resume", "Szarvas Péter fullstack developer's resume") {
+		<link rel="preconnect" href="https://fonts.googleapis.com"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
+	}
+	@resumeBody()
+}
+
+script printPage() {
+	window.print()
+}
+
+templ resumeBody() {
+	<header class="flex justify-center py-10 print:hidden">
+		<button
+			class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+			onclick={ printPage() }
+		>
+			Print
+		</button>
+	</header>
+	<main
+		class="min-h-[1120px] max-w-[794px] mx-auto outline outline-current outline-0 p-10 font-anuphan"
+	>
+		<div class="flex flex-wrap w-full">
+			<div class="grow">
+				<h1 class="text-3xl text-gray-700 uppercase font-bold">
+					Péter Szarvas
+				</h1>
+				<p class="text-2xl pb-2">full-stack developer</p>
+			</div>
+			<ul class="grow">
+				@resume.ContactLink("+36 20 2746444", "tel:+36202746444") {
+					@resume.Icon(true) {
+						@icons.Phone()
+					}
+				}
+				@resume.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
+					@resume.Icon(false) {
+						@icons.Mail()
+					}
+				}
+				@resume.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/") {
+					@resume.Icon(false) {
+						@icons.LinkedIn()
+					}
+				}
+				@resume.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94") {
+					@resume.Icon(false) {
+						@icons.Github(false)
+					}
+				}
+				@resume.ContactLink("peterszarvas.hu", "https://peterszarvas.hu") {
+					@resume.Icon(false) {
+						@icons.Globe()
+					}
+				}
+				@resume.ContactItem("Martonvásár, Hungary") {
+					@resume.Icon(false) {
+						@icons.House()
+					}
+				}
+			</ul>
+		</div>
+		@resume.Article(false) {
+			@resume.Heading2("Skills")
+			<ul class="flex flex-wrap gap-2 justify-between">
+				<li>React</li>
+				<li>Next.js</li>
+				<li>TypeScript</li>
+				<li>JavaScript</li>
+				<li>Go</li>
+				<li>Node.js</li>
+				<li>Astro.js</li>
+				<li>HTML</li>
+				<li>CSS</li>
+				<li>Git</li>
+			</ul>
+		}
+		@resume.Article(true) {
+			@resume.Heading2("Experience")
+			@resume.Section() {
+				@resume.Heading3("Full-stack Developer @ Eviden (contractor)")
+				<p>2024 february - present</p>
+			}
+			@resume.List() {
+				<li>
+					Creating a greenfield application for millions of users for a
+					goverment project
+				</li>
+				<li>
+					<div class="flex flex-wrap">
+						@resume.Chip("React", true)
+						@resume.Chip("TypeScript", true)
+						@resume.Chip("Node.js", true)
+						@resume.Chip("HTML", false)
+						@resume.Chip("CSS", false)
+						@resume.Chip("Material UI", true)
+						@resume.Chip("Git", true)
+					</div>
+				</li>
+			}
+			@resume.Section() {
+				@resume.Heading3("Developer @ Kyndryl")
+				<p>2022 - 2024</p>
+				@resume.List() {
+					<li>
+						Developing an internal application (a ticketing system) for new
+						business opportunities
+					</li>
+					<li>
+						<div class="flex flex-wrap">
+							@resume.Chip("React", false)
+							@resume.Chip("JavaScript", false)
+							@resume.Chip("Node.js", false)
+							@resume.Chip("HTML", false)
+							@resume.Chip("CSS", false)
+							@resume.Chip("Git", false)
+						</div>
+					</li>
+				}
+			}
+			@resume.Section() {
+				@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl")
+				<p>2020 - 2022</p>
+				@resume.List() {
+					<li>
+						Managing a hybrid could environment, with Windows servers and
+						Microsoft Azure
+					</li>
+					<li>
+						{ "PowerShell and " }
+						@resume.Chip("Bash", true)
+						{ "scripting for automation" }
+					</li>
+				}
+			}
+		}
+		@resume.Article(true) {
+			@resume.Heading2("Some personal project")
+			@resume.List() {
+				<li>
+					@resume.Link("https://lytepage.peterszarvas.hu") {
+						{ "lytepage.peterszarvas.hu" }
+					}
+					{ " - static site generator " }
+					@resume.Chip("Go", true)
+					@resume.Chip("Templ", true)
+				</li>
+				<li>
+					@resume.Link("https://peterszarvas.hu") {
+						{ "peterszarvas.hu" }
+					}
+					{ " - my personal portfolio, " }
+					@resume.Chip("Go", true)
+					@resume.Chip("Templ", true)
+					@resume.Chip("Tailwind CSS", true)
+					@resume.Chip("TypeScript", true)
+				</li>
+				<li>
+					@resume.Link("https://szeremletanc.hu") {
+						{ "szeremletanc.hu" }
+					}
+					{ " - dancegroup's website," }
+					@resume.Chip("Wordpress CMS", false)
+					@resume.Chip("Astro.js", true)
+				</li>
+				<li>
+					@resume.Link("https://pantlikazenekar.hu/") {
+						{ "pantlikazekar.hu" }
+					}
+					{ " - webpage for my music band, Astro.js" }
+				</li>
+				<li>
+					@resume.Link("https://nextjs-fake-webshop.vercel.app/") {
+						{ "nextjs-fake-webshop.vercel.app" }
+					}
+					{ " - fake webshop, " }@resume.Chip("Next.js", true)
+				</li>
+				<li>
+					@resume.Link("https://weddingsite-xi.vercel.app/") {
+						{ "weddingsite-xi.vercel.app" }
+					}
+					{ "- online wedding invitation, React" }
+				</li>
+				<li>
+					@resume.Link("https://react-calculator-seven-theta.vercel.app/") {
+						{ "react-calculator-seven-theta.vercel.app" }
+					}
+					{ "- simple calculator, React" }
+				</li>
+				<li>
+					@resume.Link("https://big-tac-toe.vercel.app/") {
+						{ "big-tac-toe.vercel.app" }
+					}
+					{ "- tic-tac-toe with multiple options, React" }
+				</li>
+			}
+		}
+		@resume.Article(true) {
+			@resume.Heading2("Education")
+			@resume.Section() {
+				@resume.Heading3("Computer Science @ University of Szeged")
+				<p>3 semesters</p>
+			}
+		}
+		@resume.Article(true) {
+			@resume.Heading2("Other skills and certifications")
+			@resume.List() {
+				<li>Azure AZ-104 certifications</li>
+				<li>Upper-intermediate English knowledge</li>
+			}
+		}
+	</main>
+}

@@ -2,25 +2,286 @@ package templates
 
 import (
 	"peterszarvas94/blog/pkg"
-	"peterszarvas94/blog/pkg/config"
-	"peterszarvas94/blog/theme/templates/components"
+	"peterszarvas94/blog/theme/templates/components/common"
+	"peterszarvas94/blog/theme/templates/components/icons"
+	"peterszarvas94/blog/theme/templates/components/home"
+	"path"
 )
 
-templ IndexPage(files []*pkg.FileData) {
-	@components.Head() {
-		<script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
-		<script src="/static/search.js" type="module" defer></script>
+templ IndexPage(_ []*pkg.FileData) {
+	@common.Head("Szarvas Péter", "Szarvas Péter fullstack developer's portfolio") {
+		<script src="/static/home.js" defer></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com"/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet"
+		/>
 	}
-	@indexBody(files)
+	@indexBody()
 }
 
-templ indexBody(files []*pkg.FileData) {
-	<body>
-		@components.Header()
-		<main class="page index-page">
-			<h1>{ config.IndexTitle }</h1>
-			@components.ArticleList(files)
+templ indexBody() {
+	<body class="bg-zinc-900 overflow-x-hidden">
+		<header class="h-[100dvh] flex items-center" id="header">
+			<div
+				class="w-fit mx-auto text-white flex flex-col justify-between h-full max-h-96"
+			>
+				<div class="">
+					<p class="text-3xl sm:text-4xl mb-5 animate-slide-1 opacity-0">
+						Welcome, I am
+					</p>
+					<h1
+						data-text="Péter Szarvas"
+						class="text-6xl sm:text-7xl mb-5 font-light font-firasans w-fit ocean relative stroke-2-transparent after:content-[attr(data-text)] after:text-zinc-900 after:absolute after:left-0 after:top-0 after:animate-fill hover:after:animation-stop after:clip-path-full animate-slide-2 opacity-0"
+					>
+						Péter
+						<br/>
+						Szarvas
+					</h1>
+					<p class="text-3xl sm:text-4xl animate-slide-3 opacity-0">
+						full-stack developer
+					</p>
+				</div>
+				<div class="flex flex-col items-center animate-slide-4 opacity-1">
+					<a
+						href="#about"
+						id="nav-about"
+						class="flex flex-col items-center justify-center gap-1 font-firamono text-gray-700 w-fit"
+					>
+						<div>
+							(&nbsp;<span class="text-white">about</span>&nbsp;)
+						</div>
+						@icons.Chevron()
+					</a>
+				</div>
+			</div>
+		</header>
+		<main>
+			<section class="h-[100dvh] flex items-center opacity-1" id="about">
+				<div
+					class="flex flex-col gap-10 justify-between h-full max-h-96 w-full max-w-5xl mx-auto sm:px-10"
+				>
+					<div class="flex flex-row pr-3 sm:pr-0 sm:gap-10">
+						<h2
+							class="text-3xl font-firamono text-gray-700 writing-v rotate-180 h-fit"
+						>
+							#<span class="fire">about</span>
+						</h2>
+						<div class="flex flex-col gap-10">
+							<p
+								class="text-md sm:text-lg text-white text-justify w-full font-firasans"
+							>
+								I'm a self-taught web developer based in Hungary. My skills cover both front-
+								and backend developement. I have a diverse skillset and I am constantly
+								learning new technologies to ensure the best possible user experience.
+							</p>
+							<a
+								href="/resume"
+								target="_blank"
+								rel="noreferrer noopener"
+								class="text-white font-firamono text-md sm:font-lg flex gap-2"
+							>
+								<span class="border-b border-gray-500">my resume</span>
+								@icons.External()
+							</a>
+							<ul
+								class="text-md sm:text-lg flex flex-row flex-wrap gap-2 font-firamono text-gray-500"
+							>
+								<li>/<span class="fire">react</span></li>
+								<li>/<span class="fire">next.js</span></li>
+								<li>/<span class="text-gray-500">javascript</span></li>
+								<li>/<span class="fire">typescript</span></li>
+								<li>/<span class="text-gray-500">astro.js</span></li>
+								<li>/<span class="fire">node.js</span></li>
+								<li>/<span class="ocean">go</span></li>
+								<li>/<span class="text-gray-500">html</span></li>
+								<li>/<span class="text-gray-500">css</span></li>
+								<li>/<span class="text-gray-500">git</span></li>
+							</ul>
+						</div>
+					</div>
+					<div class="flex flex-col items-center">
+						<a
+							href="#projects"
+							id="nav-projects"
+							class="flex flex-col gap-1 items-center font-firamono text-gray-700 w-fit"
+						>
+							<div>
+								&#123;&nbsp;<span class="text-white">projects</span>&nbsp;&#125;
+							</div>
+							@icons.Chevron()
+						</a>
+					</div>
+				</div>
+			</section>
+			<section
+				class="min-h-[100dvh] flex items-center opacity-1 pt-2"
+				id="projects"
+			>
+				<div
+					class="flex flex-col gap-10 justify-between h-full w-full max-w-5xl mx-auto sm:px-10"
+				>
+					<div class="flex flex-row sm:gap-x-10">
+						<h2
+							class="text-3xl font-firamono text-gray-700 writing-v rotate-180 h-fit"
+							id="projects"
+						>
+							#<span class="fire">projects</span>
+						</h2>
+						<div
+							class="mx-auto grid gap-5 grid-cols-1 pr-3 sm:pr-0 sm:grid-cols-2"
+						>
+							@home.Project(&home.ProjectProps{
+								Href:       "https://szeremletanc.hu",
+								GithubHref: "https://github.com/peterszarvas94/szeremletanc-astro",
+								Image:      path.Join("static", "images", "szeremletanc.png"),
+								Title:      "Dancegroup's site",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://weddingsite-xi.vercel.app",
+								GithubHref: "https://github.com/peterszarvas94/weddingsite",
+								Image:      path.Join("static", "images", "wedding.png"),
+								Title:      "Wedding invitation",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://pengoe.hu",
+								GithubHref: "https://github.com/peterszarvas94/pengoe",
+								Image:      path.Join("static", "images", "pengoe.png"),
+								Title:      "Shared wallet tracker app (in progress)",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://pantlikazenekar.hu",
+								GithubHref: "https://github.com/peterszarvas94/pantlikazenekar",
+								Image:      path.Join("static", "images", "pantlika.png"),
+								Title:      "Music band's site",
+								IsTop:      false,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://react-calculator-seven-theta.vercel.app",
+								GithubHref: "https://github.com/peterszarvas94/react-calculator",
+								Image:      path.Join("static", "images", "calculator.png"),
+								Title:      "Calculator",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://nextjs-fake-webshop.vercel.app",
+								GithubHref: "https://github.com/peterszarvas94/nextjs-fake-webshop",
+								Image:      path.Join("static", "images", "webshop.png"),
+								Title:      "Webshop (fake)",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://vite-movie-gallery.vercel.app",
+								GithubHref: "https://github.com/peterszarvas94/vite-react-movie-gallery",
+								Image:      path.Join("static", "images", "movies.png"),
+								Title:      "Movie database",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://big-tac-toe.vercel.app",
+								GithubHref: "https://github.com/peterszarvas94/big-tac-toe",
+								Image:      path.Join("static", "images", "tictactoe.png"),
+								Title:      "Tig Tac Toe (but bigger)",
+								IsTop:      true,
+							})
+						</div>
+					</div>
+					<div class="col-span-2 flex flex-col items-center">
+						<a
+							href="#contact"
+							id="nav-contact"
+							class="flex flex-col items-center font-firamono text-gray-700 w-fit"
+						>
+							<div>
+								&#91;&nbsp;<span class="text-white">contact</span>&nbsp;&#93;
+							</div>
+							@icons.Chevron()
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="min-h-[100dvh] flex items-center opacity-1" id="contact">
+				<div
+					class="flex flex-col gap-12 justify-between h-full w-full max-w-5xl mx-auto sm:px-10"
+				>
+					<div
+						class="flex flex-row h-full max-h-96 w-full max-w-5xl mx-auto sm:gap-10"
+					>
+						<h2
+							class="text-3xl font-firamono text-gray-700 writing-v rotate-180 h-fit"
+						>
+							#<span class="fire">contact</span>
+						</h2>
+						<ul
+							class="text-white flex flex-col gap-2 w-full pr-3 font-firasans sm:pr-0"
+						>
+							<li class="flex flex-row items-center justify-end gap-1">
+								<a
+									href="mailto:contact@peterszarvas.hu"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									contact@peterszarvas.hu
+								</a>
+								/*
+              <Icon name="ic:round-mail" class="h-6 w-6 text-gray-700" />
+							*/
+							</li>
+							<li class="flex flex-row items-center justify-end gap-1">
+								<a
+									href="https://github.com/peterszarvas94"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									github.com/peterszarvas94
+								</a>
+								/*
+              <Icon name="mdi:github" class="h-6 w-6 text-gray-700" />
+							*/
+							</li>
+							<li class="flex flex-row items-center justify-end gap-1">
+								<a
+									href="https://www.linkedin.com/in/peterszarvas94/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									linkedin.com/in/peterszarvas94
+								</a>
+								/*
+              <Icon name="mdi:linkedin" class="h-6 w-6 text-gray-700" />
+							*/
+							</li>
+							<li class="flex flex-row items-center justify-end gap-1">
+								<a
+									href="tel:+36202746444"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									+36 20 274 6444
+								</a>
+								/*
+              <Icon name="mdi:telephone" class="h-6 w-6 text-gray-700" />
+							*/
+							</li>
+						</ul>
+					</div>
+					<div class="flex flex-col items-center">
+						<a
+							href="#header"
+							id="nav-header"
+							class="flex flex-col items-center font-firamono text-gray-700 w-fit"
+						>
+							<div>
+								&lt;&nbsp;<span class="text-white">jump to top</span>&nbsp;/&gt;
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
 		</main>
-		@components.Footer()
 	</body>
 }
