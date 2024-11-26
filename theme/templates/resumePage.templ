@@ -79,6 +79,7 @@ templ resumeBody() {
 			<ul class="flex flex-wrap gap-2 justify-between">
 				<li>React</li>
 				<li>Next.js</li>
+				<li>Nest.js</li>
 				<li>TypeScript</li>
 				<li>JavaScript</li>
 				<li>Go</li>
@@ -105,6 +106,7 @@ templ resumeBody() {
 						@resume.Chip("React", true)
 						@resume.Chip("TypeScript", true)
 						@resume.Chip("Node.js", true)
+						@resume.Chip("Nest.js", true)
 						@resume.Chip("HTML", false)
 						@resume.Chip("CSS", false)
 						@resume.Chip("Material UI", true)
@@ -155,7 +157,7 @@ templ resumeBody() {
 					@resume.Link("https://lytepage.peterszarvas.hu") {
 						{ "lytepage.peterszarvas.hu" }
 					}
-					{ " - static site generator " }
+					{ " - static site generator, " }
 					@resume.Chip("Go", true)
 					@resume.Chip("Templ", true)
 				</li>
@@ -219,7 +221,7 @@ templ resumeBody() {
 		@resume.Article(true) {
 			@resume.Heading2("Other skills and certifications")
 			@resume.List() {
-				<li>Azure AZ-104 certifications</li>
+				<li>Azure AZ-104 certification</li>
 				<li>Upper-intermediate English knowledge</li>
 			}
 		}

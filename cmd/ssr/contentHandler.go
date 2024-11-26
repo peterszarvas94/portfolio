@@ -24,7 +24,7 @@ func (h *contentHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path
 
 	for route, component := range *custom.Routes {
-		if url == route {
+		if url == route || url == fmt.Sprintf("%s/", route) {
 			templ.Handler(component).ServeHTTP(w, r)
 			return
 		}

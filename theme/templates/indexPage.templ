@@ -43,7 +43,7 @@ templ indexBody() {
 						full-stack developer
 					</p>
 				</div>
-				<div class="flex flex-col items-center animate-slide-4 opacity-1">
+				<div class="flex flex-col items-center animate-slide-4 opacity-0">
 					<a
 						href="#about"
 						id="nav-about"
@@ -58,7 +58,7 @@ templ indexBody() {
 			</div>
 		</header>
 		<main>
-			<section class="h-[100dvh] flex items-center opacity-1" id="about">
+			<section class="h-[100dvh] flex items-center opacity-0" id="about">
 				<div
 					class="flex flex-col gap-10 justify-between h-full max-h-96 w-full max-w-5xl mx-auto sm:px-10"
 				>
@@ -116,7 +116,7 @@ templ indexBody() {
 				</div>
 			</section>
 			<section
-				class="min-h-[100dvh] flex items-center opacity-1 pt-2"
+				class="min-h-[100dvh] flex items-center opacity-0 pt-2"
 				id="projects"
 			>
 				<div
@@ -133,6 +133,13 @@ templ indexBody() {
 							class="mx-auto grid gap-5 grid-cols-1 pr-3 sm:pr-0 sm:grid-cols-2"
 						>
 							@home.Project(&home.ProjectProps{
+								Href:       "https://lytepage.peterszarvas.hu",
+								GithubHref: "https://github.com/peterszarvas94/lytepage",
+								Image:      path.Join("static", "images", "lytepage.png"),
+								Title:      "Static site generator",
+								IsTop:      true,
+							})
+							@home.Project(&home.ProjectProps{
 								Href:       "https://szeremletanc.hu",
 								GithubHref: "https://github.com/peterszarvas94/szeremletanc-astro",
 								Image:      path.Join("static", "images", "szeremletanc.png"),
@@ -144,13 +151,6 @@ templ indexBody() {
 								GithubHref: "https://github.com/peterszarvas94/weddingsite",
 								Image:      path.Join("static", "images", "wedding.png"),
 								Title:      "Wedding invitation",
-								IsTop:      true,
-							})
-							@home.Project(&home.ProjectProps{
-								Href:       "https://pengoe.hu",
-								GithubHref: "https://github.com/peterszarvas94/pengoe",
-								Image:      path.Join("static", "images", "pengoe.png"),
-								Title:      "Shared wallet tracker app (in progress)",
 								IsTop:      true,
 							})
 							@home.Project(&home.ProjectProps{
@@ -204,7 +204,7 @@ templ indexBody() {
 					</div>
 				</div>
 			</section>
-			<section class="min-h-[100dvh] flex items-center opacity-1" id="contact">
+			<section class="min-h-[100dvh] flex items-center opacity-0" id="contact">
 				<div
 					class="flex flex-col gap-12 justify-between h-full w-full max-w-5xl mx-auto sm:px-10"
 				>
