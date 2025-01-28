@@ -32,9 +32,9 @@ func main() {
 		fs.ServeHTTP(w, r)
 	})
 
-	fmt.Println("Server is starting on http://localhost:8080")
+	fmt.Println("Server is starting on http://localhost:9999")
 
-	err := http.ListenAndServe("localhost:8080", nil)
+	err := http.ListenAndServe("localhost:9999", nil)
 	if err != nil {
 		panic(err)
 	}

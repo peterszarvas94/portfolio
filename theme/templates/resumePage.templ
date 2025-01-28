@@ -7,7 +7,7 @@ import (
 )
 
 templ ResumePage() {
-	@common.Head("Szarvas Péter - resume", "Szarvas Péter fullstack developer's resume") {
+	@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
 		<link rel="preconnect" href="https://fonts.googleapis.com"/>
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 		<link
@@ -39,7 +39,8 @@ templ resumeBody() {
 				<h1 class="text-3xl text-gray-700 uppercase font-bold">
 					Péter Szarvas
 				</h1>
-				<p class="text-2xl pb-2">full-stack developer</p>
+				<p class="text-2xl">full-stack developer</p>
+				<p class="text-xl pb-2">3+ years of experience</p>
 			</div>
 			<ul class="grow">
 				@resume.ContactLink("+36 20 2746444", "tel:+36202746444") {
@@ -107,10 +108,10 @@ templ resumeBody() {
 						@resume.Chip("TypeScript", true)
 						@resume.Chip("Node.js", true)
 						@resume.Chip("Nest.js", true)
-						@resume.Chip("HTML", false)
-						@resume.Chip("CSS", false)
 						@resume.Chip("Material UI", true)
 						@resume.Chip("Git", true)
+						@resume.Chip("HTML,", false)
+						@resume.Chip("CSS", false)
 					</div>
 				</li>
 			}
@@ -124,12 +125,7 @@ templ resumeBody() {
 					</li>
 					<li>
 						<div class="flex flex-wrap">
-							@resume.Chip("React", false)
-							@resume.Chip("JavaScript", false)
-							@resume.Chip("Node.js", false)
-							@resume.Chip("HTML", false)
-							@resume.Chip("CSS", false)
-							@resume.Chip("Git", false)
+							React, JavaScript, Node.js, HTML, CSS, Git
 						</div>
 					</li>
 				}
@@ -154,18 +150,24 @@ templ resumeBody() {
 			@resume.Heading2("Some personal project")
 			@resume.List() {
 				<li>
+					@resume.Link("https://github.com/peterszarvas94/goat") {
+						{ "github.com/peterszarvas94/goat" }
+					}
+					{ " - working on a " }
+					@resume.Chip("Go", true)
+					{ "full-stack framework" }
+				</li>
+				<li>
 					@resume.Link("https://lytepage.peterszarvas.hu") {
 						{ "lytepage.peterszarvas.hu" }
 					}
-					{ " - static site generator, " }
-					@resume.Chip("Go", true)
-					@resume.Chip("Templ", true)
+					{ " - static site generator: Go, Templ" }
 				</li>
 				<li>
 					@resume.Link("https://peterszarvas.hu") {
 						{ "peterszarvas.hu" }
 					}
-					{ " - my personal portfolio, " }
+					{ " - my personal portfolio: " }
 					@resume.Chip("Go", true)
 					@resume.Chip("Templ", true)
 					@resume.Chip("Tailwind CSS", true)
@@ -175,39 +177,32 @@ templ resumeBody() {
 					@resume.Link("https://szeremletanc.hu") {
 						{ "szeremletanc.hu" }
 					}
-					{ " - dancegroup's website," }
-					@resume.Chip("Wordpress CMS", false)
+					{ " - dancegroup's website: Wordpress CMS, " }
 					@resume.Chip("Astro.js", true)
 				</li>
 				<li>
 					@resume.Link("https://pantlikazenekar.hu/") {
 						{ "pantlikazekar.hu" }
 					}
-					{ " - webpage for my music band, Astro.js" }
-				</li>
-				<li>
-					@resume.Link("https://nextjs-fake-webshop.vercel.app/") {
-						{ "nextjs-fake-webshop.vercel.app" }
-					}
-					{ " - fake webshop, " }@resume.Chip("Next.js", true)
+					{ " - webpage for my music band: Astro.js" }
 				</li>
 				<li>
 					@resume.Link("https://weddingsite-xi.vercel.app/") {
 						{ "weddingsite-xi.vercel.app" }
 					}
-					{ "- online wedding invitation, React" }
+					{ " - online wedding invitation: React" }
 				</li>
 				<li>
 					@resume.Link("https://react-calculator-seven-theta.vercel.app/") {
 						{ "react-calculator-seven-theta.vercel.app" }
 					}
-					{ "- simple calculator, React" }
+					{ " - simple calculator: React" }
 				</li>
 				<li>
 					@resume.Link("https://big-tac-toe.vercel.app/") {
 						{ "big-tac-toe.vercel.app" }
 					}
-					{ "- tic-tac-toe with multiple options, React" }
+					{ " - tic-tac-toe with multiple options: React" }
 				</li>
 			}
 		}
@@ -215,7 +210,7 @@ templ resumeBody() {
 			@resume.Heading2("Education")
 			@resume.Section() {
 				@resume.Heading3("Computer Science @ University of Szeged")
-				<p>3 semesters</p>
+				<p>3 semesters, no degree</p>
 			}
 		}
 		@resume.Article(true) {

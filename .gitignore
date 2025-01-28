@@ -3,3 +3,4 @@ bin/
 theme/**/*.go
 theme/**/*.txt
 **/node_modules/
+tmp/

@@ -1,9 +1,11 @@
 module peterszarvas94/blog
 
-go 1.22.5
+go 1.23
+
+toolchain go1.23.4
 
 require (
-	github.com/a-h/templ v0.2.747
+	github.com/a-h/templ v0.3.819
 	github.com/adrg/frontmatter v0.2.0
 	github.com/yuin/goldmark v1.7.4
 	github.com/yuin/goldmark-emoji v1.0.3
