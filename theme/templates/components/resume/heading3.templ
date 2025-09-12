@@ -1,7 +1,8 @@
 package resume
 
-templ Heading3(text string) {
-	<h3 class="text-xl text-gray-700 font-bold">
-		{ text }
+templ Heading3(text, year string) {
+	<h3 class="flex gap-2 items-center">
+		<p class="text-xl text-gray-700 font-bold ">{ text }</p>
+		<p>{ year }</p>
 	</h3>
 }

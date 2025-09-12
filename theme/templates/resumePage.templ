@@ -40,7 +40,7 @@ templ resumeBody() {
 					Péter Szarvas
 				</h1>
 				<p class="text-2xl">full-stack developer</p>
-				<p class="text-xl pb-2">3+ years of experience</p>
+				<!-- 				<p class="text-xl pb-2">3+ years of experience</p> -->
 			</div>
 			<ul class="grow">
 				@resume.ContactLink("+36 20 2746444", "tel:+36202746444") {
@@ -94,97 +94,92 @@ templ resumeBody() {
 		@resume.Article(true) {
 			@resume.Heading2("Experience")
 			@resume.Section() {
-				@resume.Heading3("Full-stack Developer @ Eviden (contractor)")
-				<p>2024 february - present</p>
+				@resume.Heading3("Full-stack Developer @ Eviden", "(2024 - present)")
 			}
 			@resume.List() {
 				<li>
-					Creating a greenfield application for millions of users for a
-					goverment project
+					Creating a greenfield application for a government project (millions of users)
+				</li>
+				<li>Implementing reusable UI components</li>
+				<li>
+					{ "Developing standardized " }
+					@resume.FilledChip("REST API")
+					{ " endpoints" }
 				</li>
 				<li>
-					<div class="flex flex-wrap">
-						@resume.Chip("React", true)
-						@resume.Chip("TypeScript", true)
-						@resume.Chip("Node.js", true)
-						@resume.Chip("Nest.js", true)
-						@resume.Chip("Material UI", true)
-						@resume.Chip("Git", true)
-						@resume.Chip("HTML,", false)
-						@resume.Chip("CSS", false)
+					@resume.FilledChip("SCRUM")
+					{ " methodology, international team (10+ person)" }
+				</li>
+				<li>
+					<div class="flex flex-wrap gap-2">
+						@resume.Chip("Frontend:")
+						@resume.FilledChip("React")
+						@resume.FilledChip("TypeScript")
+						@resume.FilledChip("Material UI")
+						@resume.CssChip("CSS")
+						@resume.Chip("i18next,")
+						@resume.Chip("React Query,")
+						@resume.Chip("HTML")
+					</div>
+				</li>
+				<li>
+					<div class="flex flex-wrap gap-2">
+						@resume.Chip("Backend:")
+						@resume.FilledChip("Node.js")
+						@resume.FilledChip("Nest.js")
+					</div>
+				</li>
+				<li>
+					<div class="flex flex-wrap gap-2">
+						@resume.Chip("Tesing:")
+						@resume.FilledChip("Vitest")
+					</div>
+				</li>
+				<li>
+					<div class="flex flex-wrap gap-2">
+						@resume.Chip("Tools:")
+						@resume.FilledChip("Git")
+						@resume.Chip("Gitlab,")
+						@resume.Chip("Jira")
 					</div>
 				</li>
 			}
 			@resume.Section() {
-				@resume.Heading3("Developer @ Kyndryl")
-				<p>2022 - 2024</p>
+				@resume.Heading3("Developer @ Kyndryl", "(2022 - 2024)")
 				@resume.List() {
 					<li>
-						Developing an internal application (a ticketing system) for new
-						business opportunities
+						Developing an internal application (business lead tracker)
 					</li>
 					<li>
 						<div class="flex flex-wrap">
-							React, JavaScript, Node.js, HTML, CSS, Git
+							React, JavaScript, Java, HTML, CSS, Git
 						</div>
 					</li>
 				}
 			}
 			@resume.Section() {
-				@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl")
-				<p>2020 - 2022</p>
-				@resume.List() {
-					<li>
-						Managing a hybrid could environment, with Windows servers and
-						Microsoft Azure
-					</li>
-					<li>
-						{ "PowerShell and " }
-						@resume.Chip("Bash", true)
-						{ "scripting for automation" }
-					</li>
-				}
+				@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl", "(2020 - 2022)")
+				<p>
+					Managing a hybrid could environment, with Windows servers and
+					Microsoft Azure
+				</p>
 			}
 		}
 		@resume.Article(true) {
 			@resume.Heading2("Some personal project")
 			@resume.List() {
 				<li>
-					@resume.Link("https://github.com/peterszarvas94/goat") {
-						{ "github.com/peterszarvas94/goat" }
-					}
-					{ " - working on a " }
-					@resume.Chip("Go", true)
-					{ "full-stack framework" }
-				</li>
-				<li>
-					@resume.Link("https://lytepage.peterszarvas.hu") {
-						{ "lytepage.peterszarvas.hu" }
-					}
-					{ " - static site generator: Go, Templ" }
-				</li>
-				<li>
-					@resume.Link("https://peterszarvas.hu") {
-						{ "peterszarvas.hu" }
-					}
-					{ " - my personal portfolio: " }
-					@resume.Chip("Go", true)
-					@resume.Chip("Templ", true)
-					@resume.Chip("Tailwind CSS", true)
-					@resume.Chip("TypeScript", true)
-				</li>
-				<li>
 					@resume.Link("https://szeremletanc.hu") {
 						{ "szeremletanc.hu" }
 					}
-					{ " - dancegroup's website: Wordpress CMS, " }
-					@resume.Chip("Astro.js", true)
+					{ " - dancegroup's site: Wordpress CMS, " }
+					@resume.FilledChip("Astro.js")
 				</li>
 				<li>
 					@resume.Link("https://pantlikazenekar.hu/") {
 						{ "pantlikazekar.hu" }
 					}
-					{ " - webpage for my music band: Astro.js" }
+					{ " - music band's site: Astro.js" }
 				</li>
 				<li>
 					@resume.Link("https://weddingsite-xi.vercel.app/") {
@@ -193,31 +188,39 @@ templ resumeBody() {
 					{ " - online wedding invitation: React" }
 				</li>
 				<li>
+					@resume.Link("https://lytepage.peterszarvas.hu") {
+						{ "lytepage.peterszarvas.hu" }
+					}
+					{ " - static site generator: Go, Templ" }
+				</li>
+				<li>
+					@resume.Link("https://github.com/peterszarvas94/goat") {
+						{ "github.com/peterszarvas94/goat" }
+					}
+					{ " - working on a " }
+					@resume.FilledChip("Go")
+					{ " full-stack framework" }
+				</li>
+				<li>
 					@resume.Link("https://react-calculator-seven-theta.vercel.app/") {
 						{ "react-calculator-seven-theta.vercel.app" }
 					}
 					{ " - simple calculator: React" }
-				</li>
-				<li>
-					@resume.Link("https://big-tac-toe.vercel.app/") {
-						{ "big-tac-toe.vercel.app" }
-					}
-					{ " - tic-tac-toe with multiple options: React" }
 				</li>
 			}
 		}
 		@resume.Article(true) {
 			@resume.Heading2("Education")
 			@resume.Section() {
-				@resume.Heading3("Computer Science @ University of Szeged")
-				<p>3 semesters, no degree</p>
+				@resume.Heading3("Computer Science @ University of Szeged", "")
+				<p>3 semesters</p>
 			}
 		}
 		@resume.Article(true) {
-			@resume.Heading2("Other skills and certifications")
+			@resume.Heading2("Other")
 			@resume.List() {
 				<li>Azure AZ-104 certification</li>
-				<li>Upper-intermediate English knowledge</li>
+				<li>Upper-intermediate English knowledge (used daily)</li>
 			}
 		}
 	</main>
