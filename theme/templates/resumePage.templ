@@ -7,15 +7,17 @@ import (
 )
 
 templ ResumePage() {
-	@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
-		<link rel="preconnect" href="https://fonts.googleapis.com"/>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-			rel="stylesheet"
-		/>
-	}
-	@resumeBody()
+	<html class="bg-transparent">
+		@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+				rel="stylesheet"
+			/>
+		}
+		@resumeBody()
+	</html>
 }
 
 script printPage() {
@@ -23,205 +25,207 @@ script printPage() {
 }
 
 templ resumeBody() {
-	<header class="flex justify-center py-10 print:hidden">
-		<button
-			class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600"
-			onclick={ printPage() }
+	<body data-theme="light" class="bg-none">
+		<header class="flex justify-center py-10 print:hidden">
+			<button
+				class="cursor-pointer bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600"
+				onclick={ printPage() }
+			>
+				Print
+			</button>
+		</header>
+		<main
+			class="min-h-[1120px] max-w-[794px] mx-auto outline outline-current outline-0 p-10 font-anuphan"
 		>
-			Print
-		</button>
-	</header>
-	<main
-		class="min-h-[1120px] max-w-[794px] mx-auto outline outline-current outline-0 p-10 font-anuphan"
-	>
-		<div class="flex flex-wrap w-full">
-			<div class="grow">
-				<h1 class="text-3xl text-gray-700 uppercase font-bold">
-					Péter Szarvas
-				</h1>
-				<p class="text-2xl">full-stack developer</p>
-				<!-- 				<p class="text-xl pb-2">3+ years of experience</p> -->
+			<div class="flex flex-wrap w-full">
+				<div class="grow">
+					<h1 class="text-3xl text-gray-700 uppercase font-bold">
+						Péter Szarvas
+					</h1>
+					<p class="text-2xl">full-stack developer</p>
+					<!-- 				<p class="text-xl pb-2">3+ years of experience</p> -->
+				</div>
+				<ul class="grow">
+					@resume.ContactLink("+36 20 2746444", "tel:+36202746444") {
+						@resume.Icon(true) {
+							@icons.Phone()
+						}
+					}
+					@resume.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
+						@resume.Icon(false) {
+							@icons.Mail()
+						}
+					}
+					@resume.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/") {
+						@resume.Icon(false) {
+							@icons.LinkedIn()
+						}
+					}
+					@resume.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94") {
+						@resume.Icon(false) {
+							@icons.Github(false)
+						}
+					}
+					@resume.ContactLink("peterszarvas.hu", "https://peterszarvas.hu") {
+						@resume.Icon(false) {
+							@icons.Globe()
+						}
+					}
+					@resume.ContactItem("Martonvásár, Hungary") {
+						@resume.Icon(false) {
+							@icons.House()
+						}
+					}
+				</ul>
 			</div>
-			<ul class="grow">
-				@resume.ContactLink("+36 20 2746444", "tel:+36202746444") {
-					@resume.Icon(true) {
-						@icons.Phone()
-					}
-				}
-				@resume.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
-					@resume.Icon(false) {
-						@icons.Mail()
-					}
-				}
-				@resume.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/") {
-					@resume.Icon(false) {
-						@icons.LinkedIn()
-					}
-				}
-				@resume.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94") {
-					@resume.Icon(false) {
-						@icons.Github(false)
-					}
-				}
-				@resume.ContactLink("peterszarvas.hu", "https://peterszarvas.hu") {
-					@resume.Icon(false) {
-						@icons.Globe()
-					}
-				}
-				@resume.ContactItem("Martonvásár, Hungary") {
-					@resume.Icon(false) {
-						@icons.House()
-					}
-				}
-			</ul>
-		</div>
-		@resume.Article(false) {
-			@resume.Heading2("Skills")
-			<ul class="flex flex-wrap gap-2 justify-between">
-				<li>React</li>
-				<li>Next.js</li>
-				<li>Nest.js</li>
-				<li>TypeScript</li>
-				<li>JavaScript</li>
-				<li>Go</li>
-				<li>Node.js</li>
-				<li>Astro.js</li>
-				<li>HTML</li>
-				<li>CSS</li>
-				<li>Git</li>
-			</ul>
-		}
-		@resume.Article(true) {
-			@resume.Heading2("Experience")
-			@resume.Section() {
-				@resume.Heading3("Full-stack Developer @ Eviden", "(2024 - present)")
+			@resume.Article(false) {
+				@resume.Heading2("Skills")
+				<ul class="flex flex-wrap gap-2 justify-between">
+					<li>React</li>
+					<li>Next.js</li>
+					<li>Nest.js</li>
+					<li>TypeScript</li>
+					<li>JavaScript</li>
+					<li>Go</li>
+					<li>Node.js</li>
+					<li>Astro.js</li>
+					<li>HTML</li>
+					<li>CSS</li>
+					<li>Git</li>
+				</ul>
 			}
-			@resume.List() {
-				<li>
-					Creating a greenfield application for a government project (millions of users)
-				</li>
-				<li>Implementing reusable UI components</li>
-				<li>
-					{ "Developing standardized " }
-					@resume.FilledChip("REST API")
-					{ " endpoints" }
-				</li>
-				<li>
-					@resume.FilledChip("SCRUM")
-					{ " methodology, international team (10+ person)" }
-				</li>
-				<li>
-					<div class="flex flex-wrap gap-2">
-						@resume.Chip("Frontend:")
-						@resume.FilledChip("React")
-						@resume.FilledChip("TypeScript")
-						@resume.FilledChip("Material UI")
-						@resume.CssChip("CSS")
-						@resume.Chip("i18next,")
-						@resume.Chip("React Query,")
-						@resume.Chip("HTML")
-					</div>
-				</li>
-				<li>
-					<div class="flex flex-wrap gap-2">
-						@resume.Chip("Backend:")
-						@resume.FilledChip("Node.js")
-						@resume.FilledChip("Nest.js")
-					</div>
-				</li>
-				<li>
-					<div class="flex flex-wrap gap-2">
-						@resume.Chip("Tesing:")
-						@resume.FilledChip("Vitest")
-					</div>
-				</li>
-				<li>
-					<div class="flex flex-wrap gap-2">
-						@resume.Chip("Tools:")
-						@resume.FilledChip("Git")
-						@resume.Chip("Gitlab,")
-						@resume.Chip("Jira")
-					</div>
-				</li>
-			}
-			@resume.Section() {
-				@resume.Heading3("Developer @ Kyndryl", "(2022 - 2024)")
+			@resume.Article(true) {
+				@resume.Heading2("Experience")
+				@resume.Section() {
+					@resume.Heading3("Full-stack Developer @ Eviden", "(2024 - present)")
+				}
 				@resume.List() {
 					<li>
-						Developing an internal application (business lead tracker)
+						Creating a greenfield application for a government project (millions of users)
+					</li>
+					<li>Implementing reusable UI components</li>
+					<li>
+						{ "Developing standardized " }
+						@resume.FilledChip("REST API")
+						{ " endpoints" }
 					</li>
 					<li>
-						<div class="flex flex-wrap">
-							React, JavaScript, Java, HTML, CSS, Git
+						@resume.FilledChip("SCRUM")
+						{ " methodology, international team (10+ person)" }
+					</li>
+					<li>
+						<div class="flex flex-wrap gap-2">
+							@resume.Chip("Frontend:")
+							@resume.FilledChip("React")
+							@resume.FilledChip("TypeScript")
+							@resume.FilledChip("Material UI")
+							@resume.CssChip("CSS")
+							@resume.Chip("i18next,")
+							@resume.Chip("React Query,")
+							@resume.Chip("HTML")
+						</div>
+					</li>
+					<li>
+						<div class="flex flex-wrap gap-2">
+							@resume.Chip("Backend:")
+							@resume.FilledChip("Node.js")
+							@resume.FilledChip("Nest.js")
+						</div>
+					</li>
+					<li>
+						<div class="flex flex-wrap gap-2">
+							@resume.Chip("Tesing:")
+							@resume.FilledChip("Vitest")
+						</div>
+					</li>
+					<li>
+						<div class="flex flex-wrap gap-2">
+							@resume.Chip("Tools:")
+							@resume.FilledChip("Git")
+							@resume.Chip("Gitlab,")
+							@resume.Chip("Jira")
 						</div>
 					</li>
 				}
+				@resume.Section() {
+					@resume.Heading3("Developer @ Kyndryl", "(2022 - 2024)")
+					@resume.List() {
+						<li>
+							Developing an internal application (business lead tracker)
+						</li>
+						<li>
+							<div class="flex flex-wrap">
+								React, JavaScript, Java, HTML, CSS, Git
+							</div>
+						</li>
+					}
+				}
+				@resume.Section() {
+					@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl", "(2020 - 2022)")
+					<p>
+						Managing a hybrid could environment, with Windows servers and
+						Microsoft Azure
+					</p>
+				}
 			}
-			@resume.Section() {
-				@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl", "(2020 - 2022)")
-				<p>
-					Managing a hybrid could environment, with Windows servers and
-					Microsoft Azure
-				</p>
+			@resume.Article(true) {
+				@resume.Heading2("Some personal project")
+				@resume.List() {
+					<li>
+						@resume.Link("https://szeremletanc.hu") {
+							{ "szeremletanc.hu" }
+						}
+						{ " - dancegroup's site: Wordpress CMS, " }
+						@resume.FilledChip("Astro.js")
+					</li>
+					<li>
+						@resume.Link("https://pantlikazenekar.hu/") {
+							{ "pantlikazekar.hu" }
+						}
+						{ " - music band's site: Astro.js" }
+					</li>
+					<li>
+						@resume.Link("https://weddingsite-xi.vercel.app/") {
+							{ "weddingsite-xi.vercel.app" }
+						}
+						{ " - online wedding invitation: React" }
+					</li>
+					<li>
+						@resume.Link("https://lytepage.peterszarvas.hu") {
+							{ "lytepage.peterszarvas.hu" }
+						}
+						{ " - static site generator: Go, Templ" }
+					</li>
+					<li>
+						@resume.Link("https://github.com/peterszarvas94/goat") {
+							{ "github.com/peterszarvas94/goat" }
+						}
+						{ " - working on a " }
+						@resume.FilledChip("Go")
+						{ " full-stack framework" }
+					</li>
+					<li>
+						@resume.Link("https://react-calculator-seven-theta.vercel.app/") {
+							{ "react-calculator-seven-theta.vercel.app" }
+						}
+						{ " - simple calculator: React" }
+					</li>
+				}
 			}
-		}
-		@resume.Article(true) {
-			@resume.Heading2("Some personal project")
-			@resume.List() {
-				<li>
-					@resume.Link("https://szeremletanc.hu") {
-						{ "szeremletanc.hu" }
-					}
-					{ " - dancegroup's site: Wordpress CMS, " }
-					@resume.FilledChip("Astro.js")
-				</li>
-				<li>
-					@resume.Link("https://pantlikazenekar.hu/") {
-						{ "pantlikazekar.hu" }
-					}
-					{ " - music band's site: Astro.js" }
-				</li>
-				<li>
-					@resume.Link("https://weddingsite-xi.vercel.app/") {
-						{ "weddingsite-xi.vercel.app" }
-					}
-					{ " - online wedding invitation: React" }
-				</li>
-				<li>
-					@resume.Link("https://lytepage.peterszarvas.hu") {
-						{ "lytepage.peterszarvas.hu" }
-					}
-					{ " - static site generator: Go, Templ" }
-				</li>
-				<li>
-					@resume.Link("https://github.com/peterszarvas94/goat") {
-						{ "github.com/peterszarvas94/goat" }
-					}
-					{ " - working on a " }
-					@resume.FilledChip("Go")
-					{ " full-stack framework" }
-				</li>
-				<li>
-					@resume.Link("https://react-calculator-seven-theta.vercel.app/") {
-						{ "react-calculator-seven-theta.vercel.app" }
-					}
-					{ " - simple calculator: React" }
-				</li>
+			@resume.Article(true) {
+				@resume.Heading2("Education")
+				@resume.Section() {
+					@resume.Heading3("Computer Science @ University of Szeged", "")
+					<p>3 semesters</p>
+				}
 			}
-		}
-		@resume.Article(true) {
-			@resume.Heading2("Education")
-			@resume.Section() {
-				@resume.Heading3("Computer Science @ University of Szeged", "")
-				<p>3 semesters</p>
+			@resume.Article(true) {
+				@resume.Heading2("Other")
+				@resume.List() {
+					<li>Azure AZ-104 certification</li>
+					<li>Upper-intermediate English knowledge (used daily)</li>
+				}
 			}
-		}
-		@resume.Article(true) {
-			@resume.Heading2("Other")
-			@resume.List() {
-				<li>Azure AZ-104 certification</li>
-				<li>Upper-intermediate English knowledge (used daily)</li>
-			}
-		}
-	</main>
+		</main>
+	</body>
 }

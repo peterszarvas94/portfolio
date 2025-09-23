@@ -9,20 +9,22 @@ import (
 )
 
 templ IndexPage(_ []*pkg.FileData) {
-	@common.Head("Szarvas Péter", "Szarvas Péter full-stack developer's portfolio") {
-		<script src="/static/home.js" defer></script>
-		<link rel="preconnect" href="https://fonts.googleapis.com"/>
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-			rel="stylesheet"
-		/>
-	}
-	@indexBody()
+	<html class="bg-zinc-900">
+		@common.Head("Szarvas Péter", "Szarvas Péter full-stack developer's portfolio") {
+			<script src="/static/home.js" defer></script>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+				rel="stylesheet"
+			/>
+		}
+		@indexBody()
+	</html>
 }
 
 templ indexBody() {
-	<body class="bg-zinc-900 overflow-x-hidden">
+	<body class="bg-zinc-900 overflow-x-hidden" data-theme="dark">
 		<header class="h-[100dvh] flex items-center" id="header">
 			<div
 				class="w-fit mx-auto text-white flex flex-col justify-between h-full max-h-96"
@@ -72,9 +74,10 @@ templ indexBody() {
 							<p
 								class="text-md sm:text-lg text-white text-justify w-full font-firasans"
 							>
-								I'm a self-taught web developer based in Hungary. My skills cover both front-
-								and backend developement. I have a diverse skillset and I am constantly
-								learning new technologies to ensure the best possible user experience.
+								I'm a self-taught web developer from Hungary. I can use multiple programming languages and frameworks, built some developer tools I use myself, and delivered projects to clients. I work as a contactor, but I am always open to new opportunities.
+								<br/>
+								<br/>
+								My focus is on writing the simplest, most elegant code that gets the job done, without unnecessary complexity.
 							</p>
 							<a
 								href="/resume"
@@ -86,18 +89,17 @@ templ indexBody() {
 								@icons.External()
 							</a>
 							<ul
-								class="text-md sm:text-lg flex flex-row flex-wrap gap-2 font-firamono text-gray-500"
+								class="text-md sm:text-lg flex flex-row flex-wrap gap-4 font-firamono text-gray-400"
 							>
-								<li>/<span class="fire">react</span></li>
-								<li>/<span class="fire">next.js</span></li>
-								<li>/<span class="text-gray-500">javascript</span></li>
-								<li>/<span class="fire">typescript</span></li>
-								<li>/<span class="text-gray-500">astro.js</span></li>
-								<li>/<span class="fire">node.js</span></li>
-								<li>/<span class="ocean">go</span></li>
-								<li>/<span class="text-gray-500">html</span></li>
-								<li>/<span class="text-gray-500">css</span></li>
-								<li>/<span class="text-gray-500">git</span></li>
+								<li>/<span class="ocean">react</span></li>
+								<li>/<span class="">next.js</span></li>
+								<li>/<span class="">javascript</span></li>
+								<li>/<span class="ocean">typescript</span></li>
+								<li>/<span class="">node.js</span></li>
+								<li>/<span class="ocean ">go</span></li>
+								<li>/<span class="fire ">rails</span></li>
+								<li>/<span class="">git</span></li>
+								<li>/<span class="">linux</span></li>
 							</ul>
 						</div>
 					</div>
@@ -130,63 +132,91 @@ templ indexBody() {
 							#<span class="fire">projects</span>
 						</h2>
 						<div
-							class="mx-auto grid gap-5 grid-cols-1 pr-3 sm:pr-0 sm:grid-cols-2"
+							class="mx-auto grid gap-5 grid-cols-1 pr-3 sm:pr-0"
 						>
-							@home.Project(&home.ProjectProps{
-								Href:       "https://lytepage.peterszarvas.hu",
-								GithubHref: "https://github.com/peterszarvas94/lytepage",
-								Image:      path.Join("static", "images", "lytepage.png"),
-								Title:      "Static site generator",
-								IsTop:      true,
-							})
 							@home.Project(&home.ProjectProps{
 								Href:       "https://szeremletanc.hu",
 								GithubHref: "https://github.com/peterszarvas94/szeremletanc-astro",
-								Image:      path.Join("static", "images", "szeremletanc.png"),
-								Title:      "Dancegroup's site",
-								IsTop:      true,
+								Images: []string{
+									path.Join("static", "images", "szeremle_1.png"),
+									path.Join("static", "images", "szeremle_2.png"),
+									path.Join("static", "images", "szeremle_3.png"),
+								},
+								Title: "Dancegroup's site",
+								IsTop: true,
 							})
 							@home.Project(&home.ProjectProps{
 								Href:       "https://weddingsite-xi.vercel.app",
 								GithubHref: "https://github.com/peterszarvas94/weddingsite",
-								Image:      path.Join("static", "images", "wedding.png"),
-								Title:      "Wedding invitation",
-								IsTop:      true,
+								Images: []string{
+									path.Join("static", "images", "wedding_1.png"),
+									path.Join("static", "images", "wedding_2.png"),
+								},
+								Title: "Wedding invitation",
+								IsTop: true,
 							})
 							@home.Project(&home.ProjectProps{
 								Href:       "https://pantlikazenekar.hu",
 								GithubHref: "https://github.com/peterszarvas94/pantlikazenekar",
-								Image:      path.Join("static", "images", "pantlika.png"),
-								Title:      "Music band's site",
-								IsTop:      false,
+								Images: []string{
+									path.Join("static", "images", "music_1.png"),
+									path.Join("static", "images", "music_2.png"),
+								},
+								Title: "Music band's site",
+								IsTop: false,
 							})
 							@home.Project(&home.ProjectProps{
-								Href:       "https://react-calculator-seven-theta.vercel.app",
-								GithubHref: "https://github.com/peterszarvas94/react-calculator",
-								Image:      path.Join("static", "images", "calculator.png"),
-								Title:      "Calculator",
-								IsTop:      true,
-							})
-							@home.Project(&home.ProjectProps{
-								Href:       "https://nextjs-fake-webshop.vercel.app",
-								GithubHref: "https://github.com/peterszarvas94/nextjs-fake-webshop",
-								Image:      path.Join("static", "images", "webshop.png"),
-								Title:      "Webshop (fake)",
-								IsTop:      true,
+								Href:       "https://pengoe.hu",
+								GithubHref: "",
+								Images: []string{
+									path.Join("static", "images", "pengoe_1.png"),
+									path.Join("static", "images", "pengoe_2.png"),
+									path.Join("static", "images", "pengoe_3.png"),
+									path.Join("static", "images", "pengoe_4.png"),
+								},
+								Title: "Group management app (in progress)",
+								IsTop: false,
 							})
 							@home.Project(&home.ProjectProps{
 								Href:       "https://vite-movie-gallery.vercel.app",
 								GithubHref: "https://github.com/peterszarvas94/vite-react-movie-gallery",
-								Image:      path.Join("static", "images", "movies.png"),
-								Title:      "Movie database",
-								IsTop:      true,
+								Images: []string{
+									path.Join("static", "images", "movie_1.png"),
+									path.Join("static", "images", "movie_2.png"),
+									path.Join("static", "images", "movie_3.png"),
+								},
+								Title: "Movie database concept",
+								IsTop: true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://react-calculator-seven-theta.vercel.app",
+								GithubHref: "https://github.com/peterszarvas94/react-calculator",
+								Images: []string{
+									path.Join("static", "images", "calculator_1.png"),
+									path.Join("static", "images", "calculator_2.png"),
+								},
+								Title: "Calculator",
+								IsTop: true,
 							})
 							@home.Project(&home.ProjectProps{
 								Href:       "https://big-tac-toe.vercel.app",
 								GithubHref: "https://github.com/peterszarvas94/big-tac-toe",
-								Image:      path.Join("static", "images", "tictactoe.png"),
-								Title:      "Tig Tac Toe (but bigger)",
-								IsTop:      true,
+								Images: []string{
+									path.Join("static", "images", "tiktak_1.png"),
+									path.Join("static", "images", "tiktak_2.png"),
+								},
+								Title: "Tig Tac Toe game (but bigger)",
+								IsTop: true,
+							})
+							@home.Project(&home.ProjectProps{
+								Href:       "https://lytepage.peterszarvas.hu",
+								GithubHref: "https://github.com/peterszarvas94/lytepage",
+								Images: []string{
+									path.Join("static", "images", "lytepage_1.png"),
+									path.Join("static", "images", "lytepage_2.png"),
+								},
+								Title: "Static site generator (developer tool)",
+								IsTop: true,
 							})
 						</div>
 					</div>
@@ -228,7 +258,7 @@ templ indexBody() {
 									contact@peterszarvas.hu
 								</a>
 								/*
-              <Icon name="ic:round-mail" class="h-6 w-6 text-gray-700" />
+							<Icon name="ic:round-mail" class="h-6 w-6 text-gray-700" />
 							*/
 							</li>
 							<li class="flex flex-row items-center justify-end gap-1">
@@ -240,7 +270,7 @@ templ indexBody() {
 									github.com/peterszarvas94
 								</a>
 								/*
-              <Icon name="mdi:github" class="h-6 w-6 text-gray-700" />
+							<Icon name="mdi:github" class="h-6 w-6 text-gray-700" />
 							*/
 							</li>
 							<li class="flex flex-row items-center justify-end gap-1">
@@ -252,7 +282,7 @@ templ indexBody() {
 									linkedin.com/in/peterszarvas94
 								</a>
 								/*
-              <Icon name="mdi:linkedin" class="h-6 w-6 text-gray-700" />
+							<Icon name="mdi:linkedin" class="h-6 w-6 text-gray-700" />
 							*/
 							</li>
 							<li class="flex flex-row items-center justify-end gap-1">
@@ -264,7 +294,7 @@ templ indexBody() {
 									+36 20 274 6444
 								</a>
 								/*
-              <Icon name="mdi:telephone" class="h-6 w-6 text-gray-700" />
+							<Icon name="mdi:telephone" class="h-6 w-6 text-gray-700" />
 							*/
 							</li>
 						</ul>

@@ -7,22 +7,50 @@ type ProjectProps struct {
 	Href       string
 	GithubHref string
 	Title      string
-	Image      string
+	Images     []string
 	IsTop      bool
 }
 
 templ Project(props *ProjectProps) {
-	<figure>
-		<div class="grayscale-60 w-full aspect-video">
-			<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">
-				<img
-					src={ props.Image }
-					alt={ props.Title }
-					class={ "w-full h-full object-cover mb-2 border-2 border-gray-700",
-						templ.KV("object-center", !props.IsTop),
-						templ.KV("object-top", props.IsTop) }
-				/>
-			</a>
+	<script>
+		function scrollCarouselFromButton(button, direction) {
+			const carousel = button.closest('figure').querySelector('.carousel');
+			const items = carousel.querySelectorAll('.carousel-item');
+			const itemWidth = items[0].offsetWidth;
+			const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+			
+			if (direction > 0 && carousel.scrollLeft >= maxScroll - 10) {
+				carousel.scrollTo({ left: 0, behavior: 'smooth' });
+			} else if (direction < 0 && carousel.scrollLeft <= 10) {
+				carousel.scrollTo({ left: maxScroll, behavior: 'smooth' });
+			} else {
+				carousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
+			}
+		}
+	</script>
+	<figure class="mb-4">
+		<div class="relative">
+			<div class="carousel carousel-center space-x-4 w-full mb-2 overflow-x-auto scroll-smooth">
+				for _, image := range props.Images {
+					<div class="carousel-item mockup-window border border-gray-400/50 w-[calc(100%-2px)]">
+						<img
+							src={ image }
+							alt={ props.Title }
+							class="w-full h-full object-top object-cover aspect-video"
+						/>
+					</div>
+				}
+			</div>
+			<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+				<button
+					class="btn btn-circle"
+					onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), -1) }
+				>❮</button>
+				<button
+					class="btn btn-circle"
+					onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), 1) }
+				>❯</button>
+			</div>
 		</div>
 		<figcaption class="text-lg font-firasans text-white">
 			<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">
@@ -30,6 +58,8 @@ templ Project(props *ProjectProps) {
 			</a>
 		</figcaption>
 		@Link(props.Href, strings.Split(props.Href, "https://")[1], false)
-		@Link(props.GithubHref, fmt.Sprintf("gh/%s", strings.Split(props.GithubHref, "https://github.com/peterszarvas94/")[1]), true)
+		if props.GithubHref != "" {
+			@Link(props.GithubHref, fmt.Sprintf("gh/%s", strings.Split(props.GithubHref, "https://github.com/peterszarvas94/")[1]), true)
+		}
 	</figure>
 }
