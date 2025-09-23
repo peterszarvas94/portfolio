@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tailwind:watch": "npx tailwindcss -c tailwind.config.js -i ./input.css -o ../static/tailwind.css --watch"
+    "tailwind:watch": "npx @tailwindcss/cli -i ./input.css -o ../static/tailwind.css --watch"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "tailwindcss": "^3.4.17"
+    "@tailwindcss/cli": "^4.1.13",
+    "daisyui": "^5.1.14",
+    "tailwindcss": "^4.1.13"
   }
 }
