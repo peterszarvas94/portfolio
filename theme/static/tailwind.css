@@ -606,6 +606,20 @@
   .gap-10 {
     gap: calc(var(--spacing) * 10);
   }
+  .space-y-10 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 10) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 10) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
+  .space-y-20 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 20) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 20) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
   .space-x-4 {
     :where(& > :not(:last-child)) {
       --tw-space-x-reverse: 0;
@@ -690,9 +704,6 @@
   }
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
-  }
-  .py-32 {
-    padding-block: calc(var(--spacing) * 32);
   }
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
@@ -1232,6 +1243,11 @@
   syntax: "*";
   inherits: false;
 }
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
 @property --tw-space-x-reverse {
   syntax: "*";
   inherits: false;
@@ -1359,6 +1375,7 @@
       --tw-rotate-z: initial;
       --tw-skew-x: initial;
       --tw-skew-y: initial;
+      --tw-space-y-reverse: 0;
       --tw-space-x-reverse: 0;
       --tw-border-style: solid;
       --tw-font-weight: initial;
