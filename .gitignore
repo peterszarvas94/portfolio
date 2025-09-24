@@ -1,6 +1,0 @@
-.DS_Store
-bin/
-theme/**/*.go
-theme/**/*.txt
-**/node_modules/
-tmp/

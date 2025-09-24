@@ -1,7 +1,0 @@
-[build]
-bin = "tmp/bin/server"
-cmd = "go build -o tmp/bin/server ./cmd/ssr"
-include_ext = ["go"]
-exclude_dir = ["content", "theme/script", "theme/static", "theme/tailwind", "pkg", "public",]
-delay = 100
-send_interrupt = true
