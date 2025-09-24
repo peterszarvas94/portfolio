@@ -1,0 +1,16 @@
+package home
+
+import (
+	"fmt"
+)
+
+templ SectionLink(sectionId string) {
+	<div class="flex flex-col items-center">
+		<a
+			href={ fmt.Sprintf("#%s", sectionId) }
+			class="flex flex-col gap-1 items-center font-firamono text-gray-700 w-fit"
+		>
+			{ children... }
+		</a>
+	</div>
+}

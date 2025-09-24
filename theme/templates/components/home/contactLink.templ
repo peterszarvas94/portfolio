@@ -1,0 +1,13 @@
+package home
+
+templ ContactLink(text string, href string) {
+	<li class="flex justify-end">
+		<a
+			href={ templ.SafeURL(href) }
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			{ text }
+		</a>
+	</li>
+}

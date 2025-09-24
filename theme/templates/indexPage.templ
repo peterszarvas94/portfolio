@@ -43,17 +43,12 @@ templ indexBody() {
 						full-stack developer
 					</p>
 				</div>
-				<div class="flex flex-col items-center animate-slide-4 opacity-0">
-					<a
-						href="#about"
-						class="flex flex-col items-center justify-center gap-1 font-firamono text-gray-700 w-fit"
-					>
-						<div>
-							(&nbsp;<span class="text-white">about</span>&nbsp;)
-						</div>
-						@icons.Chevron()
-					</a>
-				</div>
+				@home.SectionLink("about") {
+					<div>
+						(&nbsp;<span class="text-white">about</span>&nbsp;)
+					</div>
+					@icons.Chevron()
+				}
 			</div>
 		</header>
 		<main>
@@ -93,24 +88,17 @@ templ indexBody() {
 						</ul>
 					</div>
 				}
-				<div class="flex flex-col items-center">
-					<a
-						href="#projects"
-						class="flex flex-col gap-1 items-center font-firamono text-gray-700 w-fit"
-					>
-						<div>
-							&#123;&nbsp;<span class="text-white">projects</span>&nbsp;&#125;
-						</div>
-						@icons.Chevron()
-					</a>
-				</div>
+				@home.SectionLink("projects") {
+					<div>
+						&#123;&nbsp;<span class="text-white">projects</span>&nbsp;&#125;
+					</div>
+					@icons.Chevron()
+				}
 			}
 			@home.Section("projects") {
 				@home.SectionMain() {
 					@home.H2("projects")
-					<div
-						class="mx-auto grid gap-5 grid-cols-1 pr-3 sm:pr-0"
-					>
+					<div class="flex flex-col gap-10">
 						@home.Project(&home.ProjectProps{
 							Href:       "https://szeremletanc.hu",
 							GithubHref: "https://github.com/peterszarvas94/szeremletanc-astro",
@@ -197,84 +185,30 @@ templ indexBody() {
 						})
 					</div>
 				}
-				<div class="col-span-2 flex flex-col items-center">
-					<a
-						href="#contact"
-						class="flex flex-col items-center font-firamono text-gray-700 w-fit"
-					>
-						<div>
-							&#91;&nbsp;<span class="text-white">contact</span>&nbsp;&#93;
-						</div>
-						@icons.Chevron()
-					</a>
-				</div>
+				@home.SectionLink("contact") {
+					<div>
+						&#91;&nbsp;<span class="text-white">contact</span>&nbsp;&#93;
+					</div>
+					@icons.Chevron()
+				}
 			}
 			@home.Section("contact") {
 				@home.SectionMain() {
 					@home.H2("contact")
 					<ul
-						class="text-white flex flex-col gap-2 w-full pr-3 font-firasans sm:pr-0"
+						class="text-white flex flex-col gap-2 w-full font-firasans"
 					>
-						<li class="flex flex-row items-center justify-end gap-1">
-							<a
-								href="mailto:contact@peterszarvas.hu"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								contact@peterszarvas.hu
-							</a>
-							/*
-							<Icon name="ic:round-mail" class="h-6 w-6 text-gray-700" />
-							*/
-						</li>
-						<li class="flex flex-row items-center justify-end gap-1">
-							<a
-								href="https://github.com/peterszarvas94"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								github.com/peterszarvas94
-							</a>
-							/*
-							<Icon name="mdi:github" class="h-6 w-6 text-gray-700" />
-							*/
-						</li>
-						<li class="flex flex-row items-center justify-end gap-1">
-							<a
-								href="https://www.linkedin.com/in/peterszarvas94/"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								linkedin.com/in/peterszarvas94
-							</a>
-							/*
-							<Icon name="mdi:linkedin" class="h-6 w-6 text-gray-700" />
-							*/
-						</li>
-						<li class="flex flex-row items-center justify-end gap-1">
-							<a
-								href="tel:+36202746444"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								+36 20 274 6444
-							</a>
-							/*
-							<Icon name="mdi:telephone" class="h-6 w-6 text-gray-700" />
-							*/
-						</li>
+						@home.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu")
+						@home.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94")
+						@home.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/")
+						@home.ContactLink("+36 20 274 6444", "tel:+36202746444")
 					</ul>
 				}
-				<div class="flex flex-col items-center">
-					<a
-						href="#header"
-						class="flex flex-col items-center font-firamono text-gray-700 w-fit"
-					>
-						<div>
-							&lt;&nbsp;<span class="text-white">jump to top</span>&nbsp;/&gt;
-						</div>
-					</a>
-				</div>
+				@home.SectionLink("header") {
+					<div>
+						&lt;&nbsp;<span class="text-white">jump to top</span>&nbsp;/&gt;
+					</div>
+				}
 			}
 		</main>
 	</body>
