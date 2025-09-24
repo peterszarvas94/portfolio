@@ -1,0 +1,42 @@
+# github.com/BurntSushi/toml v0.3.1
+## explicit
+github.com/BurntSushi/toml
+# github.com/a-h/templ v0.3.943
+## explicit; go 1.23.0
+github.com/a-h/templ
+github.com/a-h/templ/runtime
+github.com/a-h/templ/safehtml
+# github.com/adrg/frontmatter v0.2.0
+## explicit; go 1.14
+github.com/adrg/frontmatter
+# github.com/peterszarvas94/lytepage v0.2.11
+## explicit; go 1.24.1
+github.com/peterszarvas94/lytepage/pkg/check
+github.com/peterszarvas94/lytepage/pkg/config
+github.com/peterszarvas94/lytepage/pkg/custom
+github.com/peterszarvas94/lytepage/pkg/errors
+github.com/peterszarvas94/lytepage/pkg/fileutils
+github.com/peterszarvas94/lytepage/pkg/generate
+github.com/peterszarvas94/lytepage/pkg/pages
+github.com/peterszarvas94/lytepage/pkg/ssr
+github.com/peterszarvas94/lytepage/pkg/static
+github.com/peterszarvas94/lytepage/pkg/utils
+# github.com/yuin/goldmark v1.7.10
+## explicit; go 1.22
+github.com/yuin/goldmark
+github.com/yuin/goldmark/ast
+github.com/yuin/goldmark/extension
+github.com/yuin/goldmark/extension/ast
+github.com/yuin/goldmark/parser
+github.com/yuin/goldmark/renderer
+github.com/yuin/goldmark/renderer/html
+github.com/yuin/goldmark/text
+github.com/yuin/goldmark/util
+# github.com/yuin/goldmark-emoji v1.0.6
+## explicit; go 1.22
+github.com/yuin/goldmark-emoji
+github.com/yuin/goldmark-emoji/ast
+github.com/yuin/goldmark-emoji/definition
+# gopkg.in/yaml.v2 v2.3.0
+## explicit
+gopkg.in/yaml.v2

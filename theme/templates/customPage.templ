@@ -1,0 +1,22 @@
+package templates
+
+import (
+	"webpage/theme/templates/components"
+)
+
+templ CustomPage() {
+	@components.Head()
+	@customBody()
+}
+
+templ customBody() {
+	<body>
+		@components.Header()
+		<main class="page custom-page">
+			<h1>
+				custom page
+			</h1>
+		</main>
+		@components.Footer()
+	</body>
+}

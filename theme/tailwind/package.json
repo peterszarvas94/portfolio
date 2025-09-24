@@ -1,0 +1,17 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "home.ts",
+  "scripts": {
+    "tailwind:watch": "npx @tailwindcss/cli -i ./input.css -o ../static/tailwind.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "tailwindcss": "^4.1.13",
+    "daisyui": "^5.1.14"
+  }
+}

@@ -1,0 +1,12 @@
+package resume
+
+templ ContactItem(text string) {
+	<li>
+		<div class="flex gap2 items-center text-gray-700">
+			<div class="grow text-right">{ text }</div>
+			<div>
+				{ children... }
+			</div>
+		</div>
+	</li>
+}

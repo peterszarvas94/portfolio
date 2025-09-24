@@ -1,0 +1,12 @@
+package components 
+
+import (
+	"fmt"
+)
+
+templ Category(name string) {
+	<a href={ templ.SafeURL(fmt.Sprintf("/category/%s", name)) } class="category">
+		@CategoryIcon()
+		<div>{ name }</div>
+	</a>
+}

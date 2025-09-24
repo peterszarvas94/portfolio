@@ -1,0 +1,19 @@
+package common 
+
+templ Head(title, description string) {
+	<head>
+		<title>{ title }</title>
+		<!-- meta tags -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta
+			name="description"
+			content={ description }
+		/>
+		<meta name="keywords" content="szarvas, péter, full-stack, developer, portfolio, frontend, backend, typescript, go"/>
+		<meta name="author" content="Szarvas Péter"/>
+		<!-- styles -->
+		<link rel="stylesheet" href="/static/tailwind.css"/>
+		{ children... }
+	</head>
+}

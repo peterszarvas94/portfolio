@@ -1,0 +1,30 @@
+package resume
+
+templ ChipBase(text, variant string) {
+	<div class="inline">
+		switch (variant) {
+			case "filled":
+				<strong class="font-normal text-white bg-gray-700 px-1 rounded-sm">
+					{ text }
+				</strong>
+			case "css":
+				<strong class="font-normal text-white bg-gray-700 pl-1 rounded-sm pr-2">
+					{ text }
+				</strong>
+			default:
+				<span>{ text }</span>
+		}
+	</div>
+}
+
+templ Chip(text string) {
+	@ChipBase(text, "")
+}
+
+templ FilledChip(text string) {
+	@ChipBase(text, "filled")
+}
+
+templ CssChip(text string) {
+	@ChipBase(text, "css")
+}

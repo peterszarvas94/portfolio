@@ -1,0 +1,19 @@
+package components 
+
+import (
+	"webpage/config"
+)
+
+templ Header() {
+	<header>
+		<div>
+			<a href="/">{ config.Title }</a>
+			<form action="/" method="get" id="search-form">
+				<input type="text" name="search" placeholder="Search..."/>
+				<button type="submit">
+					@SearchIcon()
+				</button>
+			</form>
+		</div>
+	</header>
+}

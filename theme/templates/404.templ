@@ -1,0 +1,19 @@
+package templates
+
+import (
+	"webpage/theme/templates/components/common"
+)
+
+templ NotFoundPage() {
+	@common.Head("", "")
+	@notFoundBody()
+}
+
+templ notFoundBody() {
+	<body>
+		<main>
+			<h1>404</h1>
+			<p>Page not found.</p>
+		</main>
+	</body>
+}
