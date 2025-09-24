@@ -16,6 +16,65 @@ templ IndexPage() {
 				href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 				rel="stylesheet"
 			/>
+			<script>
+				document.addEventListener('DOMContentLoaded', () => {
+					let isScrolling = false;
+					const sections = Array.from(document.querySelectorAll('section[id], header[id]'));
+					
+					function updateCurrentSection() {
+						if (isScrolling) return;
+						
+						// Find the section that should be active
+						let activeSection = null;
+						
+						for (let i = sections.length - 1; i >= 0; i--) {
+							const section = sections[i];
+							const rect = section.getBoundingClientRect();
+							
+							// If section top is at or above the viewport top, this is our active section
+							if (rect.top <= 50) { // 50px threshold for better UX
+								activeSection = section.id;
+								break;
+							}
+						}
+						
+						// If no section is above the top, use the first section
+						if (!activeSection) {
+							activeSection = sections[0].id;
+						}
+						
+						history.replaceState(null, null, '#' + activeSection);
+					}
+					
+					// Update on scroll
+					let ticking = false;
+					window.addEventListener('scroll', () => {
+						if (!ticking) {
+							requestAnimationFrame(() => {
+								updateCurrentSection();
+								ticking = false;
+							});
+							ticking = true;
+						}
+					});
+					
+					// Initial update
+					updateCurrentSection();
+					
+					// Pause observer during smooth scroll navigation
+					document.querySelectorAll('a[href^="#"]').forEach(link => {
+						link.addEventListener('click', () => {
+							console.log('Link clicked, pausing updates');
+							isScrolling = true;
+							setTimeout(() => {
+								console.log('Resuming updates');
+								isScrolling = false;
+								updateCurrentSection();
+							}, 1000);
+						});
+					});
+				});
+			</script>
 		}
 		@indexBody()
 	</html>
