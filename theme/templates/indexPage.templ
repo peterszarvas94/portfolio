@@ -64,10 +64,8 @@ templ IndexPage() {
 					// Pause observer during smooth scroll navigation
 					document.querySelectorAll('a[href^="#"]').forEach(link => {
 						link.addEventListener('click', () => {
-							console.log('Link clicked, pausing updates');
 							isScrolling = true;
 							setTimeout(() => {
-								console.log('Resuming updates');
 								isScrolling = false;
 								updateCurrentSection();
 							}, 1000);
@@ -82,7 +80,7 @@ templ IndexPage() {
 
 templ indexBody() {
 	<body class="bg-zinc-900 text-error overflow-x-hidden" data-theme="dark">
-		<header class="h-[100dvh] flex items-center" id="header">
+		<header class="h-screen flex items-center" id="header">
 			<div
 				class="w-fit mx-auto text-white flex flex-col justify-between h-full max-h-96"
 			>
