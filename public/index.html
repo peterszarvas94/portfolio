@@ -46,10 +46,8 @@
 					// Pause observer during smooth scroll navigation
 					document.querySelectorAll('a[href^="#"]').forEach(link => {
 						link.addEventListener('click', () => {
-							console.log('Link clicked, pausing updates');
 							isScrolling = true;
 							setTimeout(() => {
-								console.log('Resuming updates');
 								isScrolling = false;
 								updateCurrentSection();
 							}, 1000);
