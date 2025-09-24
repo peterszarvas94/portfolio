@@ -2,7 +2,6 @@
 				document.addEventListener('DOMContentLoaded', () => {
 					let isScrolling = false;
 					const sections = Array.from(document.querySelectorAll('section[id], header[id]'));
-					console.log('Found sections:', sections.map(s => s.id));
 					
 					function updateCurrentSection() {
 						if (isScrolling) return;
@@ -13,8 +12,6 @@
 						for (let i = sections.length - 1; i >= 0; i--) {
 							const section = sections[i];
 							const rect = section.getBoundingClientRect();
-							
-							console.log('Section:', section.id, 'top:', rect.top);
 							
 							// If section top is at or above the viewport top, this is our active section
 							if (rect.top <= 50) { // 50px threshold for better UX
@@ -28,7 +25,6 @@
 							activeSection = sections[0].id;
 						}
 						
-						console.log('Active section:', activeSection);
 						history.replaceState(null, null, '#' + activeSection);
 					}
 					
