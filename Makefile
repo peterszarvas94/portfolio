@@ -1,4 +1,3 @@
-
 .PHONY: dev tailwind watch build gen ssr static
 
 # run dev server
