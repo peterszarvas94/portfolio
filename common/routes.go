@@ -1,7 +1,7 @@
 package common
 
 import (
-	"webpage/theme/templates"
+	"portfolio/theme/templates"
 
 	"github.com/a-h/templ"
 )

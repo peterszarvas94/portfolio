@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
-	"webpage/common"
+	"portfolio/common"
 
 	"github.com/peterszarvas94/lytepage/pkg/custom"
 	"github.com/peterszarvas94/lytepage/pkg/pages"

@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"webpage/config"
+	"portfolio/config"
 )
 
 func Header() templ.Component {

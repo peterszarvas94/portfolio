@@ -10,9 +10,9 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	"path"
-	"webpage/theme/templates/components/common"
-	"webpage/theme/templates/components/home"
-	"webpage/theme/templates/components/icons"
+	"portfolio/theme/templates/components/common"
+	"portfolio/theme/templates/components/home"
+	"portfolio/theme/templates/components/icons"
 )
 
 func IndexPage() templ.Component {

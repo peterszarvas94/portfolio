@@ -9,9 +9,9 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"webpage/theme/templates/components/common"
-	"webpage/theme/templates/components/icons"
-	"webpage/theme/templates/components/resume"
+	"portfolio/theme/templates/components/common"
+	"portfolio/theme/templates/components/icons"
+	"portfolio/theme/templates/components/resume"
 )
 
 func ResumePage() templ.Component {

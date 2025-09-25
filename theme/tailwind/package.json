@@ -5,6 +5,7 @@
   "type": "module",
   "main": "home.ts",
   "scripts": {
+    "tailwind:gen": "npx @tailwindcss/cli -i ./input.css -o ../static/tailwind.css",
     "tailwind:watch": "npx @tailwindcss/cli -i ./input.css -o ../static/tailwind.css --watch"
   },
   "author": "",

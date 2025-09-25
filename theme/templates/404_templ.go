@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"webpage/theme/templates/components/common"
+	"portfolio/theme/templates/components/common"
 )
 
 func NotFoundPage() templ.Component {

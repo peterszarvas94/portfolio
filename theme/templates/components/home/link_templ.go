@@ -9,7 +9,7 @@ import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
 import (
-	"webpage/theme/templates/components/icons"
+	"portfolio/theme/templates/components/icons"
 )
 
 func Link(href, text string, github bool) templ.Component {

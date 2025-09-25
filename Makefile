@@ -1,34 +1,42 @@
 
-.PHONY:  dev/tailwind dev/air gen/build gen/static serve/dev serve/ssr serve/static
+.PHONY: dev tailwind watch build gen ssr static
+
+# run dev server
+dev:
+	make -j2 tailwind watch
 
 # watch tailwind classes and generate css
-dev/tailwind:
+tailwind:
 	npm run tailwind:watch -C theme/tailwind
 
 # watch files, generate templates, and reload server
-dev/air:
+watch:
 	air -c .air.server.toml
 
 # generate templates and build binary
-gen/build:
+build:
+	npm run tailwind:gen -C theme/tailwind
 	templ generate
 	go build -o ./bin/main ./cmd/ssr
 
+# run binary
+run:
+	./bin/main
+
 # generate templates and static (public) folder
-gen/static:
+gen:
+	npm run tailwind:gen -C theme/tailwind
 	templ generate
 	go run cmd/static/main.go --no-serve
 
-# run dev server
-serve/dev:
-	make -j5 dev/tailwind dev/air
-
 # run in ssr mode (generate pages on request)
-serve/ssr:
+ssr:
+	npm run tailwind:gen -C theme/tailwind
 	templ generate
 	go run cmd/ssr/main.go
 	
 # run in static mode (serve public folder)
-serve/static:
+static:
+	npm run tailwind:gen -C theme/tailwind
 	templ generate
 	go run cmd/static/main.go

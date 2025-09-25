@@ -10,8 +10,8 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	"fmt"
+	"portfolio/theme/templates/components/icons"
 	"strings"
-	"webpage/theme/templates/components/icons"
 )
 
 type ProjectProps struct {
