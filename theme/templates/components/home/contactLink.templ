@@ -1,7 +1,7 @@
 package home
 
-templ ContactLink(text string, href string) {
-	<li class="flex justify-end">
+templ ContactLink(text string, href string, icon templ.Component) {
+	<li class="flex items-center gap-2 justify-end">
 		<a
 			href={ templ.SafeURL(href) }
 			target="_blank"
@@ -9,5 +9,6 @@ templ ContactLink(text string, href string) {
 		>
 			{ text }
 		</a>
+		@icon
 	</li>
 }

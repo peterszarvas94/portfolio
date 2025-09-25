@@ -33,17 +33,17 @@ func Link(href, text string, github bool) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"text-white flex flex-row items-top justify-start gap-1\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"text-white flex flex-row items-center justify-start gap-1\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if github {
-			templ_7745c5c3_Err = icons.Github(true).Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = icons.Github("size-5 text-gray-500").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			templ_7745c5c3_Err = icons.Link().Render(ctx, templ_7745c5c3_Buffer)
+			templ_7745c5c3_Err = icons.Link("size-5 text-gray-500").Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

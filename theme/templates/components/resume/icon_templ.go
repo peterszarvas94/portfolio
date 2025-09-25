@@ -29,7 +29,7 @@ func Icon(rotate bool) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		var templ_7745c5c3_Var2 = []any{"w-4 h-4 ml-1", templ.KV("-rotate-90", rotate)}
+		var templ_7745c5c3_Var2 = []any{"", templ.KV("-rotate-90", rotate)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var2...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

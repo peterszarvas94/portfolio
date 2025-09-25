@@ -1,0 +1,36 @@
+package home
+
+import (
+	"webpage/theme/templates/components/icons"
+)
+
+templ Header() {
+	<header class="h-screen flex items-center" id="header">
+		<div
+			class="w-fit mx-auto text-white flex flex-col justify-between h-full max-h-96"
+		>
+			<div class="">
+				<p class="text-3xl sm:text-4xl mb-5 animate-slide-1 opacity-0">
+					Welcome, I am
+				</p>
+				<h1
+					data-text="Péter Szarvas"
+					class="text-6xl sm:text-7xl mb-5 font-light font-firasans w-fit ocean relative stroke-2-transparent after:content-[attr(data-text)] after:text-zinc-900 after:absolute after:left-0 after:top-0 after:animate-fill hover:after:animation-stop after:clip-path-full animate-slide-2 opacity-0"
+				>
+					Péter
+					<br/>
+					Szarvas
+				</h1>
+				<p class="text-3xl sm:text-4xl animate-slide-3 opacity-0">
+					full-stack developer
+				</p>
+			</div>
+			@SectionLink("about") {
+				<div>
+					(&nbsp;<span class="text-white">about</span>&nbsp;)
+				</div>
+				@icons.Chevron("w-6 h-6 text-gray-400 animate-bounce")
+			}
+		</div>
+	</header>
+}

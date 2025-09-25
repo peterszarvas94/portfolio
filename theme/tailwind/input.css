@@ -89,6 +89,16 @@
 
   --font-firasans: "Fira Sans", sans;
   --font-firamono: "Fira Mono", monospace;
+
+  --spacing-a4l: 1120px;
+  --spacing-a4s: 794px;
+
+  --breakpoint-a4l: 1120px;
+  --breakpoint-a4s: 794px;
+}
+
+@utility which {
+  outline: 1px solid red;
 }
 
 @utility writing-v {

@@ -5,11 +5,11 @@ import (
 )
 
 templ Link(href, text string, github bool) {
-	<div class="text-white flex flex-row items-top justify-start gap-1">
+	<div class="text-white flex flex-row items-center justify-start gap-1">
 		if github {
-			@icons.Github(true)
+			@icons.Github("size-5 text-gray-500")
 		} else {
-			@icons.Link()
+			@icons.Link("size-5 text-gray-500")
 		}
 		<a
 			href={ templ.SafeURL(href) }

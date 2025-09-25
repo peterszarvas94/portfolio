@@ -1,7 +1,10 @@
 package home
 
-import "strings"
-import "fmt"
+import (
+	"strings"
+	"fmt"
+	"webpage/theme/templates/components/icons"
+)
 
 type ProjectProps struct {
 	Href       string
@@ -46,11 +49,15 @@ templ Project(props *ProjectProps) {
 					<button
 						class="btn btn-sm btn-circle"
 						onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), -1) }
-					>❮</button>
+					>
+						@icons.Chevron("rotate-90")
+					</button>
 					<button
 						class="btn btn-sm btn-circle"
 						onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), 1) }
-					>❯</button>
+					>
+						@icons.Chevron("-rotate-90")
+					</button>
 				</div>
 			</div>
 			<figcaption class="text-lg font-firasans text-white">
