@@ -140,7 +140,7 @@ templ ResumePage() {
 							</li>
 							<li>
 								<div class="flex flex-wrap">
-									React, JavaScript, Java, HTML, CSS, Git
+									React, JavaScript, Java, Git
 								</div>
 							</li>
 						}
@@ -154,7 +154,7 @@ templ ResumePage() {
 					}
 				}
 				@resume.Article(true) {
-					@resume.Heading2("Some personal project")
+					@resume.Heading2("Projects")
 					@resume.List() {
 						<li>
 							@resume.Link("https://szeremletanc.hu") {
@@ -164,36 +164,37 @@ templ ResumePage() {
 							@resume.Chip("Astro.js", "filled")
 						</li>
 						<li>
-							@resume.Link("https://pantlikazenekar.hu/") {
-								{ "pantlikazekar.hu" }
-							}
-							{ " - music band's site: Astro.js" }
-						</li>
-						<li>
 							@resume.Link("https://weddingsite-xi.vercel.app/") {
 								{ "weddingsite-xi.vercel.app" }
 							}
 							{ " - online wedding invitation: React" }
 						</li>
 						<li>
+							@resume.Link("https://pantlikazenekar.hu/") {
+								{ "pantlikazekar.hu" }
+							}
+							{ " - music band's site: Astro.js" }
+						</li>
+						<li>
+							@resume.Link("https://pengoe.hu") {
+								{ "pengoe.hu" }
+							}
+							{ " - group management app (in progress): " }
+							@resume.Chip("Ruby on Rails", "filled")
+						</li>
+						<li>
+							@resume.Link("https://vite-movie-gallery.vercel.app") {
+								{ "vite-movie-gallery.vercel.app" }
+							}
+							{ " - movie database concept: React" }
+						</li>
+						<li>
 							@resume.Link("https://lytepage.peterszarvas.hu") {
 								{ "lytepage.peterszarvas.hu" }
 							}
-							{ " - static site generator: Go, Templ" }
-						</li>
-						<li>
-							@resume.Link("https://github.com/peterszarvas94/goat") {
-								{ "github.com/peterszarvas94/goat" }
-							}
-							{ " - working on a " }
+							{ " - static site generator: " }
 							@resume.Chip("Go", "filled")
-							{ " full-stack framework" }
-						</li>
-						<li>
-							@resume.Link("https://react-calculator-seven-theta.vercel.app/") {
-								{ "react-calculator-seven-theta.vercel.app" }
-							}
-							{ " - simple calculator: React" }
+							{ " Templ" }
 						</li>
 					}
 				}
