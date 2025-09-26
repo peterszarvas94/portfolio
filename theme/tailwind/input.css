@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @plugin "daisyui";
 
 @source "../templates/**/*.templ";
@@ -87,8 +88,10 @@
   --animate-slide-4: 1s 0.75s ease slide-bt forwards;
   --animate-slide-5: 0.5s ease slide-bt forwards;
 
-  --font-firasans: "Fira Sans", sans;
+  --font-firacode: "Fira Code", monospace;
+  --font-firasans: "Fira Sans", sans-serif;
   --font-firamono: "Fira Mono", monospace;
+  --font-roboto: "Roboto", sans-serif;
 
   --spacing-a4l: 1120px;
   --spacing-a4s: 794px;

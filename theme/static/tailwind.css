@@ -45,8 +45,9 @@
     --animate-slide-1: 1s ease slide-lr forwards;
     --animate-slide-2: 1s 0.25s ease slide-rl forwards;
     --animate-slide-3: 1s 0.5s ease slide-lr forwards;
-    --font-firasans: "Fira Sans", sans;
+    --font-firasans: "Fira Sans", sans-serif;
     --font-firamono: "Fira Mono", monospace;
+    --font-roboto: "Roboto", sans-serif;
     --spacing-a4l: 1120px;
     --spacing-a4s: 794px;
   }
@@ -794,6 +795,9 @@
   .font-firasans {
     font-family: var(--font-firasans);
   }
+  .font-roboto {
+    font-family: var(--font-roboto);
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -1009,6 +1013,62 @@
       display: none;
     }
   }
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/FiraCode-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/FiraCode-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/FiraMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/FiraMono-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/FiraSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/FiraSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/Roboto-Bold.ttf") format("truetype");
 }
 @layer components {
   .fire {

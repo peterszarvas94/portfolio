@@ -11,15 +11,9 @@ templ IndexPage() {
 	<html class="bg-zinc-900 scroll-smooth">
 		@common.Head("Szarvas Péter", "Szarvas Péter full-stack developer's portfolio") {
 			<!-- TODO: vendor -->
-			<link rel="preconnect" href="https://fonts.googleapis.com"/>
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-			<link
-				href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-				rel="stylesheet"
-			/>
 			@home.ScrollScript()
 		}
-		<body class="bg-zinc-900 text-error overflow-x-hidden space-y-20" data-theme="dark">
+		<body class="bg-zinc-900 text-error overflow-x-hidden space-y-20 font-firasans" data-theme="dark">
 			@home.Header()
 			<main class="space-y-20">
 				@home.Section("about") {
@@ -27,7 +21,7 @@ templ IndexPage() {
 						@home.H2("about")
 						<div class="flex flex-col gap-10">
 							<p
-								class="text-md sm:text-lg text-white text-justify w-full font-firasans"
+								class="text-md sm:text-lg text-white text-justify w-full"
 							>
 								I'm a self-taught web developer from Hungary. I can use multiple programming languages and frameworks, I have built some developer tools I use myself, and delivered projects to clients. I work as a contactor, but I am always open to new opportunities.
 								<br/>
@@ -166,7 +160,7 @@ templ IndexPage() {
 					@home.SectionMain() {
 						@home.H2("contact")
 						<ul
-							class="text-white flex flex-col gap-2 w-full font-firasans"
+							class="text-white flex flex-col gap-2 w-full"
 						>
 							@home.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu", icons.Mail("text-gray-400"))
 							@home.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94", icons.Github("text-gray-400"))
