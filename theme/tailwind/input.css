@@ -29,22 +29,10 @@
 @theme {
   @keyframes fill {
     0% {
-      clip-path: inset(0 0 0 100%);
-    }
-    10% {
-      clip-path: inset(0 0 0 0);
-    }
-    15% {
-      clip-path: inset(0 0 0 0);
-    }
-    50% {
-      clip-path: inset(0 0 0 100%);
-    }
-    70% {
-      clip-path: inset(0 0 0 0);
+      clip-path: inset(0 100% 0 0);
     }
     100% {
-      clip-path: inset(0 0 0 100%);
+      clip-path: inset(0);
     }
   }
 
@@ -87,8 +75,10 @@
   --animate-slide-3: 1s 0.5s ease slide-lr forwards;
   --animate-slide-4: 1s 0.75s ease slide-bt forwards;
   --animate-slide-5: 0.5s ease slide-bt forwards;
+  --animate-name: 1s 0.25s ease slide-rl forwards, 1s 0.25s ease fill forwards;
 
   --font-firacode: "Fira Code", monospace;
+  --font-berkeleymono: "Berkeley Mono", monospace;
   --font-firasans: "Fira Sans", sans-serif;
   --font-firamono: "Fira Mono", monospace;
   --font-roboto: "Roboto", sans-serif;

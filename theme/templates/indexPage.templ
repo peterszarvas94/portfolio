@@ -8,61 +8,101 @@ import (
 )
 
 templ IndexPage() {
-	<html class="bg-zinc-900 scroll-smooth">
+	<html class="scroll-smooth">
 		@common.Head("Szarvas Péter", "Szarvas Péter full-stack developer's portfolio") {
 			<!-- TODO: vendor -->
+			@home.CarouselScript()
 			@home.ScrollScript()
 		}
-		<body class="bg-zinc-900 text-error overflow-x-hidden space-y-20 font-firasans" data-theme="dark">
+		<body class="bg-base-100 text-base-content overflow-x-hidden space-y-20 font-berkeleymono" data-theme="dark">
 			@home.Header()
 			<main class="space-y-20">
 				@home.Section("about") {
 					@home.SectionMain() {
 						@home.H2("about")
-						<div class="flex flex-col gap-10">
-							<p
-								class="text-md sm:text-lg text-white text-justify w-full"
-							>
-								I'm a self-taught web developer from Hungary. I can use multiple programming languages and frameworks, I have built some developer tools I use myself, and delivered projects to clients. I work as a contactor, but I am always open to new opportunities.
-								<br/>
-								<br/>
-								My focus is on writing the simplest, most elegant code that gets the job done, without unnecessary complexity.
+						<div class="flex flex-col gap-8">
+							<p class="text-justify">
+								I'm a self-taught web developer from Hungary, working as a contractor. I am familiar with multiple programming languages and frameworks, because I always keep learning. I have the most experience with TypeScript, React and Go.
+							</p>
+							<p class="text-justify">
+								I like simlpe and readable code, without unnecessary complexity or dependencies.
 							</p>
 							<a
 								href="/resume"
 								target="_blank"
 								rel="noreferrer noopener"
-								class="text-white font-firamono text-md sm:font-lg flex items-center gap-2"
+								class="text-base-content flex flex-row items-center justify-start gap-1 w-fit"
 							>
-								@icons.Document()
-								<span class="border-b border-gray-500 ">my resume (CV)</span>
+								<div class="link w-fit">Resume (CV)</div>
+								@icons.FileUser("size-5 text-base-content/50")
 							</a>
-							<ul
-								class="text-md sm:text-lg flex flex-row flex-wrap gap-4 font-firamono text-gray-400"
-							>
-								<li>/<span class="ocean">react</span></li>
-								<li>/<span class="">next.js</span></li>
-								<li>/<span class="">javascript</span></li>
-								<li>/<span class="ocean">typescript</span></li>
-								<li>/<span class="">node.js</span></li>
-								<li>/<span class="ocean ">go</span></li>
-								<li>/<span class="fire ">rails</span></li>
-								<li>/<span class="">git</span></li>
-								<li>/<span class="">linux</span></li>
+							<p class="text-justify">Book recommandations:</p>
+							<ul>
+								<li>
+									<a
+										href="https://hypermedia.systems/"
+										class="text-base-content flex flex-row items-center justify-start gap-1 w-fit"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<div class="link w-fit">Hypermedia Systems</div>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://grugbrain.dev/"
+										class="text-base-content flex flex-row items-center justify-start gap-1 w-fit"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<div class="link w-fit">The Grug Brained Developer</div>
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://www.oreilly.com/library/view/we-programmers-a/9780135344248/"
+										class="text-base-content flex flex-row items-center justify-start gap-1 w-fit"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										<div class="link w-fit">We, Programmers</div>
+									</a>
+								</li>
+							</ul>
+							<ul class="flex flex-row flex-wrap gap-4 text-base-content/60">
+								<li>/<span>javascript</span></li>
+								<li>/<span>typescript</span></li>
+								<li>/<span>react</span></li>
+								<li>/<span>node.js</span></li>
+								<li>/<span>astro</span></li>
+								<li>/<span>go</span></li>
+								<li>/<span>ruby_on_rails</span></li>
+								<li>/<span>git</span></li>
+								<li>/<span>linux</span></li>
 							</ul>
 						</div>
 					}
 					@home.SectionLink("projects") {
 						<div>
-							&#123;&nbsp;<span class="text-white">projects</span>&nbsp;&#125;
+							&#123;&nbsp;<span class="text-base-content">projects</span>&nbsp;&#125;
 						</div>
-						@icons.Chevron("w-6 h-6 text-gray-400 animate-bounce")
+						@icons.Chevron("w-6 h-6 animate-bounce")
 					}
 				}
 				@home.Section("projects") {
 					@home.SectionMain() {
 						@home.H2("projects")
 						<div class="flex flex-col gap-10">
+							@home.Project(&home.ProjectProps{
+								Href:       "https://szarvaspongrac.hu",
+								GithubHref: "https://github.com/peterszarvas94/szarvaspongrac",
+								Images: []string{
+									path.Join("static", "images", "szarvaspongrac1.png"),
+									path.Join("static", "images", "szarvaspongrac2.png"),
+								},
+								Title: "Artist portfolio",
+								IsTop: true,
+							})
 							@home.Project(&home.ProjectProps{
 								Href:       "https://szeremletanc.hu",
 								GithubHref: "https://github.com/peterszarvas94/szeremletanc-astro",
@@ -95,18 +135,6 @@ templ IndexPage() {
 								IsTop: false,
 							})
 							@home.Project(&home.ProjectProps{
-								Href:       "https://pengoe.hu",
-								GithubHref: "",
-								Images: []string{
-									path.Join("static", "images", "pengoe_1.png"),
-									path.Join("static", "images", "pengoe_2.png"),
-									path.Join("static", "images", "pengoe_3.png"),
-									path.Join("static", "images", "pengoe_4.png"),
-								},
-								Title: "Group management app (in progress)",
-								IsTop: false,
-							})
-							@home.Project(&home.ProjectProps{
 								Href:       "https://vite-movie-gallery.vercel.app",
 								GithubHref: "https://github.com/peterszarvas94/vite-react-movie-gallery",
 								Images: []string{
@@ -117,60 +145,28 @@ templ IndexPage() {
 								Title: "Movie database concept",
 								IsTop: true,
 							})
-							@home.Project(&home.ProjectProps{
-								Href:       "https://react-calculator-seven-theta.vercel.app",
-								GithubHref: "https://github.com/peterszarvas94/react-calculator",
-								Images: []string{
-									path.Join("static", "images", "calculator_1.png"),
-									path.Join("static", "images", "calculator_2.png"),
-								},
-								Title: "Calculator",
-								IsTop: true,
-							})
-							@home.Project(&home.ProjectProps{
-								Href:       "https://big-tac-toe.vercel.app",
-								GithubHref: "https://github.com/peterszarvas94/big-tac-toe",
-								Images: []string{
-									path.Join("static", "images", "tiktak_1.png"),
-									path.Join("static", "images", "tiktak_2.png"),
-								},
-								Title: "Tig Tac Toe game (but bigger)",
-								IsTop: true,
-							})
-							@home.Project(&home.ProjectProps{
-								Href:       "https://lytepage.peterszarvas.hu",
-								GithubHref: "https://github.com/peterszarvas94/lytepage",
-								Images: []string{
-									path.Join("static", "images", "lytepage_1.png"),
-									path.Join("static", "images", "lytepage_2.png"),
-								},
-								Title: "Static site generator (developer tool)",
-								IsTop: true,
-							})
 						</div>
 					}
 					@home.SectionLink("contact") {
 						<div>
-							&#91;&nbsp;<span class="text-white">contact</span>&nbsp;&#93;
+							(&nbsp;<span class="text-base-content">contact</span>&nbsp;)
 						</div>
-						@icons.Chevron("w-6 h-6 text-gray-400 animate-bounce")
+						@icons.Chevron("w-6 h-6 animate-bounce")
 					}
 				}
 				@home.Section("contact") {
 					@home.SectionMain() {
 						@home.H2("contact")
-						<ul
-							class="text-white flex flex-col gap-2 w-full"
-						>
-							@home.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu", icons.Mail("text-gray-400"))
-							@home.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94", icons.Github("text-gray-400"))
-							@home.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/", icons.LinkedIn("text-gray-400"))
-							@home.ContactLink("+36 20 274 6444", "tel:+36202746444", icons.Phone("text-gray-400"))
+						<ul class="text-base-content flex flex-col gap-2 w-full">
+							@home.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu", icons.Mail("text-base-content/60"))
+							@home.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94", icons.Github("text-base-content/60"))
+							@home.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/", icons.LinkedIn("text-base-content/60"))
+							@home.ContactLink("+36 20 274 6444", "tel:+36202746444", icons.Phone("text-base-content/60"))
 						</ul>
 					}
 					@home.SectionLink("header") {
 						<div>
-							&lt;&nbsp;<span class="text-white">jump to top</span>&nbsp;/&gt;
+							&lt;&nbsp;<span class="text-base-content">jump to top</span>&nbsp;/&gt;
 						</div>
 					}
 				}

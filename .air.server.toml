@@ -1,8 +1,8 @@
 [build]
 bin = "tmp/bin/server"
-cmd = "templ generate && go build -o tmp/bin/server ./cmd/ssr"
+cmd = "mise run tailwind-gen && templ generate && go build -o tmp/bin/server ./cmd/ssr"
 include_ext = ["go", "templ", "js", "css", "md", "png", "jpg", "jpeg"]
 exclude_regex = ["_templ\\.go"]
-include_dir = ["theme/static", "theme/templates"]
+include_dir = ["theme/static", "theme/templates", "theme/tailwind"]
 delay = 100
 send_interrupt = true

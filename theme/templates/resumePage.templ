@@ -7,10 +7,10 @@ import (
 )
 
 templ ResumePage() {
-	<html class="bg-transparent">
+	<html>
 		@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
 		}
-		<body data-theme="light" class="bg-none font-roboto">
+		<body data-theme="light" class="bg-base-100 text-base-content font-roboto">
 			<header class="flex justify-center py-10 print:hidden">
 				<div class="join">
 					<button
@@ -26,7 +26,7 @@ templ ResumePage() {
 						download="Szarvas Péter - resume.pdf"
 					>
 						@icons.Download()
-						Download
+						Download PDF
 					</a>
 				</div>
 			</header>
@@ -35,7 +35,7 @@ templ ResumePage() {
 			>
 				<div class="flex flex-col gap-4 sm:flex-row w-full">
 					<div class="grow">
-						<h1 class="text-3xl text-gray-700 uppercase font-bold">
+						<h1 class="text-3xl text-base-content uppercase font-bold">
 							Péter Szarvas
 						</h1>
 						<p class="text-2xl text-left">full-stack developer</p>
@@ -64,15 +64,15 @@ templ ResumePage() {
 				@resume.Article(false) {
 					@resume.Heading2("Skills")
 					<ul class="flex flex-wrap gap-2 justify-between">
-						<li>React</li>
-						<li>Next.js</li>
-						<li>JavaScript</li>
 						<li>TypeScript</li>
-						<li>Nest.js</li>
+						<li>React</li>
+						<li>NestJS</li>
 						<li>Node.js</li>
+						<li>Astro</li>
+						<li>SolidJS</li>
 						<li>Go</li>
 						<li>Ruby on Rails</li>
-						<li>Git</li>
+						<li>Tailwind CSS</li>
 						<li>Linux</li>
 					</ul>
 				}
@@ -109,7 +109,7 @@ templ ResumePage() {
 							<div class="flex flex-wrap gap-2">
 								Backend:
 								@resume.Chip("Node.js", "filled")
-								@resume.Chip("Nest.js", "filled")
+							@resume.Chip("NestJS", "filled")
 							</div>
 						</li>
 						<li>
@@ -151,44 +151,37 @@ templ ResumePage() {
 					@resume.Heading2("Projects")
 					@resume.List() {
 						<li>
+							@resume.Link("https://szarvaspongrac.hu") {
+								{ "szarvaspongrac.hu" }
+							}
+							{ " - artist portfolio: " }
+							@resume.Chip("Astro", "filled")
+							@resume.Chip("SolidJS", "filled")
+							@resume.Chip("Tailwind CSS", "filled")
+						</li>
+						<li>
 							@resume.Link("https://szeremletanc.hu") {
 								{ "szeremletanc.hu" }
 							}
-							{ " - dancegroup's site: Wordpress CMS, " }
-							@resume.Chip("Astro.js", "filled")
+							{ " - dancegroup's site: Wordpress CMS, Astro" }
 						</li>
 						<li>
 							@resume.Link("https://weddingsite-xi.vercel.app/") {
 								{ "weddingsite-xi.vercel.app" }
 							}
-							{ " - online wedding invitation: React" }
+							{ " - wedding invitation: React" }
 						</li>
 						<li>
 							@resume.Link("https://pantlikazenekar.hu/") {
 								{ "pantlikazekar.hu" }
 							}
-							{ " - music band's site: Astro.js" }
-						</li>
-						<li>
-							@resume.Link("https://pengoe.hu") {
-								{ "pengoe.hu" }
-							}
-							{ " - group management app (in progress): " }
-							@resume.Chip("Ruby on Rails", "filled")
+							{ " - music band's site: Astro" }
 						</li>
 						<li>
 							@resume.Link("https://vite-movie-gallery.vercel.app") {
 								{ "vite-movie-gallery.vercel.app" }
 							}
 							{ " - movie database concept: React" }
-						</li>
-						<li>
-							@resume.Link("https://lytepage.peterszarvas.hu") {
-								{ "lytepage.peterszarvas.hu" }
-							}
-							{ " - static site generator: " }
-							@resume.Chip("Go", "filled")
-							{ " Templ" }
 						</li>
 					}
 				}

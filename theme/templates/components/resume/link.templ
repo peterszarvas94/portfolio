@@ -1,7 +1,7 @@
 package resume
 
 templ Link(href string) {
-	<a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class="text-gray-700">
+	<a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class="text-base-content">
 		{ children... }
 	</a>
 }

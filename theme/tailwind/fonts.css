@@ -61,3 +61,35 @@
   font-display: swap;
   src: url("/static/fonts/Roboto-Bold.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Oblique.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Bold-Oblique.ttf") format("truetype");
+}

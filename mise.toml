@@ -1,0 +1,50 @@
+[tools]
+go = "1.25.6"
+air = "1.64.4"
+"github:a-h/templ" = { version = "0.3.977", exe = "templ" }
+"npm:@tailwindcss/cli" = "latest"
+
+[tasks.dev]
+run = "mise run tailwind & mise run watch"
+
+[tasks.tailwind]
+dir = "theme/tailwind"
+run = "mise x npm:@tailwindcss/cli -- tailwindcss -i ./input.css -o ../static/generated.css --watch"
+
+[tasks.tailwind-gen]
+dir = "theme/tailwind"
+run = "mise x npm:@tailwindcss/cli -- tailwindcss -i ./input.css -o ../static/generated.css"
+
+[tasks.watch]
+run = "air -c .air.server.toml"
+
+[tasks.build]
+run = [
+  "mise run tailwind-gen",
+  "templ generate",
+  "go build -o ./bin/main ./cmd/ssr",
+]
+
+[tasks.run]
+run = "./bin/main"
+
+[tasks.gen]
+run = [
+  "mise run tailwind-gen",
+  "templ generate",
+  "go run cmd/static/main.go --no-serve",
+]
+
+[tasks.ssr]
+run = [
+  "mise run tailwind-gen",
+  "templ generate",
+  "go run cmd/ssr/main.go",
+]
+
+[tasks.static]
+run = [
+  "mise run tailwind-gen",
+  "templ generate",
+  "go run cmd/static/main.go",
+]

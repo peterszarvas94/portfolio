@@ -3,18 +3,18 @@ package resume
 templ Chip(text, variant string) {
 	<span>
 		switch (variant) {
-			case "filled":
-				<strong class="font-normal text-white bg-gray-700 px-1 rounded-sm">
-					{ text }
-				</strong>
-			case "css":
-				<strong class="font-normal text-white bg-gray-700 pl-1 rounded-sm pr-2">
-					{ text }
-				</strong>
-			default:
-				<strong class="font-normal border border-gray-700 pl-1 rounded-sm pr-2">
-					{ text }
-				</strong>
+		case "filled":
+			<strong class="font-normal text-neutral-content bg-neutral/80 px-1 rounded-sm mr-1">
+				{ text }
+			</strong>
+		case "css":
+			<strong class="font-normal text-neutral-content bg-neutral/80 px-1 rounded-sm mr-1">
+				{ text }
+			</strong>
+		default:
+			<strong class="font-normal text-neutral-content bg-neutral/80 px-1 rounded-sm mr-1">
+				{ text }
+			</strong>
 		}
 	</span>
 }

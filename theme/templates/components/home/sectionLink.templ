@@ -5,10 +5,10 @@ import (
 )
 
 templ SectionLink(sectionId string) {
-	<div class="flex flex-col items-center font-firamono">
+	<div class="flex flex-col items-center">
 		<a
 			href={ fmt.Sprintf("#%s", sectionId) }
-			class="flex flex-col gap-1 items-center text-gray-700 w-fit"
+		class="flex flex-col gap-1 items-center text-base-content/30 w-fit"
 		>
 			{ children... }
 		</a>

@@ -1,0 +1,23 @@
+package home
+
+templ CarouselScript() {
+	<script type="module">window.scrollCarouselFromButton = (button, direction) => {
+  const figure = button.closest("figure");
+  const carousel = figure?.querySelector(".carousel");
+  const items = carousel?.querySelectorAll(".carousel-item");
+  if (!carousel || !items || items.length === 0) {
+    return;
+  }
+  const itemWidth = items[0].offsetWidth;
+  const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+  if (direction > 0 && carousel.scrollLeft >= maxScroll - 10) {
+    carousel.scrollTo({ left: 0, behavior: "smooth" });
+    return;
+  }
+  if (direction < 0 && carousel.scrollLeft <= 10) {
+    carousel.scrollTo({ left: maxScroll, behavior: "smooth" });
+    return;
+  }
+  carousel.scrollBy({ left: direction * itemWidth, behavior: "smooth" });
+};</script>
+}

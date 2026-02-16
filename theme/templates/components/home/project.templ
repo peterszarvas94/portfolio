@@ -16,27 +16,11 @@ type ProjectProps struct {
 
 templ Project(props *ProjectProps) {
 	<div>
-		<script>
-		function scrollCarouselFromButton(button, direction) {
-			const carousel = button.closest('figure').querySelector('.carousel');
-			const items = carousel.querySelectorAll('.carousel-item');
-			const itemWidth = items[0].offsetWidth;
-			const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-			
-			if (direction > 0 && carousel.scrollLeft >= maxScroll - 10) {
-				carousel.scrollTo({ left: 0, behavior: 'smooth' });
-			} else if (direction < 0 && carousel.scrollLeft <= 10) {
-				carousel.scrollTo({ left: maxScroll, behavior: 'smooth' });
-			} else {
-				carousel.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
-			}
-		}
-	</script>
 		<figure class="mb-4">
 			<div class="relative">
 				<div class="carousel carousel-center space-x-4 w-full mb-2 overflow-x-auto scroll-smooth">
 					for _, image := range props.Images {
-						<div class="carousel-item sm:mockup-window border border-gray-400/50 w-[calc(100%-2px)]">
+					<div class="carousel-item sm:mockup-window border border-base-content/30 w-[calc(100%-2px)]">
 							<img
 								src={ image }
 								alt={ props.Title }
@@ -50,17 +34,17 @@ templ Project(props *ProjectProps) {
 						class="btn btn-sm btn-circle"
 						onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), -1) }
 					>
-						@icons.Chevron("rotate-90")
+					@icons.Chevron("rotate-90")
 					</button>
 					<button
 						class="btn btn-sm btn-circle"
 						onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), 1) }
 					>
-						@icons.Chevron("-rotate-90")
+					@icons.Chevron("-rotate-90")
 					</button>
 				</div>
 			</div>
-			<figcaption class="text-lg font-firasans text-white">
+		<figcaption class="text-lg text-base-content">
 				<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">
 					{ props.Title }
 				</a>

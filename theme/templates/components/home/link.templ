@@ -5,19 +5,17 @@ import (
 )
 
 templ Link(href, text string, github bool) {
-	<div class="text-white flex flex-row items-center justify-start gap-1">
+	<a
+		href={ templ.SafeURL(href) }
+		class="text-base-content flex flex-row items-center justify-start gap-1 w-fit"
+		target="_blank"
+		rel="noopener noreferrer"
+	>
 		if github {
-			@icons.Github("size-5 text-gray-500")
+			@icons.Github("size-5 text-base-content/50")
 		} else {
-			@icons.Link("size-5 text-gray-500")
+			@icons.Link("size-5 text-base-content/50")
 		}
-		<a
-			href={ templ.SafeURL(href) }
-			class="font-firamono underline"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			{ text }
-		</a>
-	</div>
+		<div class="link w-fit">{ text }</div>
+	</a>
 }
