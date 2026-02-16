@@ -1,7 +1,7 @@
 # github.com/BurntSushi/toml v0.3.1
 ## explicit
 github.com/BurntSushi/toml
-# github.com/a-h/templ v0.3.943
+# github.com/a-h/templ v0.3.977
 ## explicit; go 1.23.0
 github.com/a-h/templ
 github.com/a-h/templ/runtime
