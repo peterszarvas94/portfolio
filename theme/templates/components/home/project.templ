@@ -20,12 +20,19 @@ templ Project(props *ProjectProps) {
 			<div class="relative">
 				<div class="carousel carousel-center space-x-4 w-full mb-2 overflow-x-auto scroll-smooth">
 					for _, image := range props.Images {
-					<div class="carousel-item sm:mockup-window border border-base-content/30 w-[calc(100%-2px)]">
-							<img
-								src={ image }
-								alt={ props.Title }
-								class="w-full h-full object-top object-cover aspect-video"
-							/>
+						<div class="carousel-item sm:mockup-window border border-base-content/30 w-[calc(100%-2px)]">
+							<a
+								href={ templ.SafeURL(props.Href) }
+								target="_blank"
+								rel="noopener noreferrer"
+								class="block w-full h-full"
+							>
+								<img
+									src={ image }
+									alt={ props.Title }
+									class="w-full h-full object-top object-cover aspect-video"
+								/>
+							</a>
 						</div>
 					}
 				</div>
