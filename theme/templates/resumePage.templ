@@ -41,9 +41,6 @@ templ ResumePage() {
 						<p class="text-2xl text-left">full-stack developer</p>
 					</div>
 					<ul class="grow mb-4 sm:mb-0">
-						@resume.ContactLink("+36 20 2746444", "tel:+36202746444") {
-							@icons.Phone("w-4 h-4 ml-1")
-						}
 						@resume.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
 							@icons.Mail("w-4 h-4 ml-1")
 						}
@@ -109,7 +106,7 @@ templ ResumePage() {
 							<div class="flex flex-wrap gap-2">
 								Backend:
 								@resume.Chip("Node.js", "filled")
-							@resume.Chip("NestJS", "filled")
+								@resume.Chip("NestJS", "filled")
 							</div>
 						</li>
 						<li>
