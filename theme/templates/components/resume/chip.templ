@@ -1,20 +1,7 @@
 package resume
 
-templ Chip(text, variant string) {
-	<span>
-		switch (variant) {
-		case "filled":
-			<strong class="font-normal text-neutral-content bg-neutral/80 px-1 rounded-sm mr-1">
-				{ text }
-			</strong>
-		case "css":
-			<strong class="font-normal text-neutral-content bg-neutral/80 px-1 rounded-sm mr-1">
-				{ text }
-			</strong>
-		default:
-			<strong class="font-normal text-neutral-content bg-neutral/80 px-1 rounded-sm mr-1">
-				{ text }
-			</strong>
-		}
-	</span>
+templ Chip(text string) {
+	<strong class="font-normal text-base-100 bg-base-content px-1 rounded-sm mr-1">
+		{ text }
+	</strong>
 }

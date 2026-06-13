@@ -2,15 +2,15 @@ package templates
 
 import (
 	"portfolio/theme/templates/components/common"
-	"portfolio/theme/templates/components/resume"
 	"portfolio/theme/templates/components/icons"
+	"portfolio/theme/templates/components/resume"
 )
 
 templ ResumePage() {
 	<html>
 		@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
 		}
-		<body data-theme="light" class="bg-base-100 text-base-content font-roboto">
+		<body class="bg-base-100 text-base-content font-roboto">
 			<header class="flex justify-center py-10 print:hidden">
 				<div class="join">
 					<button
@@ -35,10 +35,13 @@ templ ResumePage() {
 			>
 				<div class="flex flex-col gap-4 sm:flex-row w-full">
 					<div class="grow">
-						<h1 class="text-3xl text-base-content uppercase font-bold">
+						<h1 class="text-2xl text-base-content uppercase font-bold">
 							Péter Szarvas
 						</h1>
-						<p class="text-2xl text-left">full-stack developer</p>
+						<p class="text-xl text-left">Software Engineer</p>
+						<p class="text-sm text-base-content/70 mt-1 pb-4 max-w-prose">
+							Full-stack developer building production React, Node.js, and Go apps. Creator of <a href="https://bandcash.app" class="link">bandcash</a>, an event payment splitting SaaS app.
+						</p>
 					</div>
 					<ul class="grow mb-4 sm:mb-0">
 						@resume.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
@@ -58,142 +61,138 @@ templ ResumePage() {
 						}
 					</ul>
 				</div>
-				@resume.Article(false) {
-					@resume.Heading2("Skills")
-					<ul class="flex flex-wrap gap-2 justify-between">
-						<li>TypeScript</li>
-						<li>React</li>
-						<li>NestJS</li>
-						<li>Node.js</li>
-						<li>Astro</li>
-						<li>SolidJS</li>
-						<li>Go</li>
-						<li>Ruby on Rails</li>
-						<li>Tailwind CSS</li>
-						<li>Linux</li>
-					</ul>
-				}
-				@resume.Article(true) {
+				@resume.Article() {
 					@resume.Heading2("Experience")
 					@resume.Section() {
-						@resume.Heading3("Full-stack Developer @ Eviden", "(2024 - present)")
+						@resume.Heading3("Full-stack Developer @ Atos", "2024 - present")
 					}
 					@resume.List() {
 						<li>
-							Creating a greenfield application for a government project (millions of users)
-						</li>
-						<li>Implementing reusable UI components</li>
-						<li>
-							{ "Developing standardized " }
-							@resume.Chip("REST API", "filled")
-							{ " endpoints" }
+							{ "Creating a greenfield application for a government project (millions of users)" }
 						</li>
 						<li>
-							@resume.Chip("SCRUM", "filled")
-							{ " methodology, international team (10+ person)" }
+							{ "Implementing reusable " }
+							@resume.Chip("UI components")
+							{ "and " }
+							@resume.Chip("REST API")
+							{ "endpoints" }
 						</li>
 						<li>
-							<div class="flex flex-wrap gap-2">
-								Frontend:
-								@resume.Chip("React", "filled")
-								@resume.Chip("TypeScript", "filled")
-								@resume.Chip("Material UI", "filled")
-								@resume.Chip("CSS", "css")
-								i18next, React Query
-							</div>
+							@resume.Chip("SCRUM")
+							{ "methodology, international team (20+ person)" }
 						</li>
 						<li>
-							<div class="flex flex-wrap gap-2">
-								Backend:
-								@resume.Chip("Node.js", "filled")
-								@resume.Chip("NestJS", "filled")
-							</div>
+							{ "Frontend: " }
+							@resume.Chip("React")
+							@resume.Chip("TypeScript")
+							@resume.Chip("Material UI")
+							@resume.Chip("CSS")
+							{ "i18next, React Query" }
 						</li>
 						<li>
-							<div class="flex flex-wrap gap-2">
-								Testing:
-								@resume.Chip("Vitest", "filled")
-							</div>
+							{ "Backend: " }
+							@resume.Chip("Node.js")
+							@resume.Chip("NestJS")
 						</li>
 						<li>
-							<div class="flex flex-wrap gap-2">
-								Tools:
-								@resume.Chip("Git", "filled")
-								Gitlab, Jira
-							</div>
+							{ "Tools: " }
+							@resume.Chip("Vitest")
+							@resume.Chip("Git")
+							{ "Gitlab, Jira " }
 						</li>
 					}
 					@resume.Section() {
-						@resume.Heading3("Developer @ Kyndryl", "(2022 - 2024)")
+						@resume.Heading3("Developer @ Kyndryl", "2022 - 2024")
+						@resume.List() {
+							<li>Developed an internal business lead tracker in a 2-person team</li>
+							<li>React, JavaScript, Java, Git</li>
+						}
+					}
+					@resume.Section() {
+						@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl", "2020 - 2022")
 						@resume.List() {
 							<li>
-								Developing an internal application (business lead tracker)
+								{ "Managed a " }
+								@resume.Chip("hybrid could environment")
+								{ "using Windows servers and Microsoft Azure" }
 							</li>
 							<li>
-								<div class="flex flex-wrap">
-									React, JavaScript, Java, Git
-								</div>
+								Aquired AZ-104 Azure Fundamentals certification
+							</li>
+						}
+					}
+				}
+				@resume.Article() {
+					@resume.Heading2("Solo projects")
+					@resume.Section() {
+						@resume.Heading3Link("bandcash.app", "https://bandcash.app", "")
+						@resume.List() {
+							<li>
+								@resume.Chip("Financial tracking SaaS")
+								{ "for music bands (closed beta phase)" }
+							</li>
+							<li>Managing income, expenses, events, member payouts, permission control, etc.</li>
+							<li>
+								{ "Custom framework: " }
+								@resume.Chip("Go")
+								{ "echo, templ, datastar, SQLite" }
+							</li>
+							<li>
+								{ "Deployed on a VPS, full software with " }
+								@resume.Chip("payment integration")
+								{ "(Lemon Squeezy), log collection, uptime monitoring, staging-production environments" }
+							</li>
+							<li>
+								{ "Version control: " }
+								@resume.Chip("Jujutsu")
+								{ "(git-compatible modern alternative)" }
 							</li>
 						}
 					}
 					@resume.Section() {
-						@resume.Heading3("Microsoft System Administrator @ IBM / Kyndryl", "(2020 - 2022)")
-						<p>
-							Managing a hybrid could environment, with Windows servers and
-							Microsoft Azure
-						</p>
+						@resume.Heading3("Other", "")
+						@resume.List() {
+							<li>
+								@resume.Link("https://szarvaspongrac.hu") {
+									{ "szarvaspongrac.hu" }
+								}
+								{ " - artist portfolio: " }
+								@resume.Chip("Astro")
+								@resume.Chip("SolidJS")
+								@resume.Chip("Tailwind CSS")
+							</li>
+							<li>
+								@resume.Link("https://szeremletanc.hu") {
+									{ "szeremletanc.hu" }
+								}
+								{ " - dancegroup's site: Wordpress CMS, Astro" }
+							</li>
+							<li>
+								@resume.Link("https://pantlikazenekar.hu/") {
+									{ "pantlikazekar.hu" }
+								}
+								{ " - music band's site: Astro" }
+							</li>
+						}
 					}
 				}
-				@resume.Article(true) {
-					@resume.Heading2("Projects")
+				@resume.Article() {
+					@resume.Heading2("Skills")
 					@resume.List() {
 						<li>
-							@resume.Link("https://szarvaspongrac.hu") {
-								{ "szarvaspongrac.hu" }
-							}
-							{ " - artist portfolio: " }
-							@resume.Chip("Astro", "filled")
-							@resume.Chip("SolidJS", "filled")
-							@resume.Chip("Tailwind CSS", "filled")
+							@resume.Chip("AI-assisted development")
+							{ "with wide range of tools" }
 						</li>
-						<li>
-							@resume.Link("https://szeremletanc.hu") {
-								{ "szeremletanc.hu" }
-							}
-							{ " - dancegroup's site: Wordpress CMS, Astro" }
-						</li>
-						<li>
-							@resume.Link("https://weddingsite-xi.vercel.app/") {
-								{ "weddingsite-xi.vercel.app" }
-							}
-							{ " - wedding invitation: React" }
-						</li>
-						<li>
-							@resume.Link("https://pantlikazenekar.hu/") {
-								{ "pantlikazekar.hu" }
-							}
-							{ " - music band's site: Astro" }
-						</li>
-						<li>
-							@resume.Link("https://vite-movie-gallery.vercel.app") {
-								{ "vite-movie-gallery.vercel.app" }
-							}
-							{ " - movie database concept: React" }
-						</li>
+						<li>Professional English usage daily in an international team</li>
 					}
 				}
-				@resume.Article(true) {
+				@resume.Article() {
 					@resume.Heading2("Education")
 					@resume.Section() {
 						@resume.Heading3("Computer Science @ University of Szeged", "")
-						<p>3 semesters</p>
-					}
-				}
-				@resume.Article(true) {
-					@resume.Heading2("Other")
-					@resume.List() {
-						<li>Azure AZ-104 certification</li>
-						<li>Upper-intermediate English knowledge (used daily)</li>
+						@resume.List() {
+							<li>3 semesters of core subjects, transitioned to self-directed learning</li>
+						}
 					}
 				}
 			</main>

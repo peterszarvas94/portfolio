@@ -12,7 +12,10 @@ templ Head(title, description string) {
 		/>
 		<meta name="keywords" content="szarvas, péter, full-stack, developer, portfolio, frontend, backend, typescript, go"/>
 		<meta name="author" content="Szarvas Péter"/>
-		<!-- styles -->
+		<script>
+			const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+			document.documentElement.setAttribute("data-theme", theme);
+		</script>
 		<link rel="stylesheet" href="/static/generated.css"/>
 		{ children... }
 	</head>

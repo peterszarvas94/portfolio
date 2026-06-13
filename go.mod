@@ -1,9 +1,9 @@
 module portfolio
 
-go 1.24.1
+go 1.25.0
 
 require (
-	github.com/a-h/templ v0.3.977
+	github.com/a-h/templ v0.3.1020
 	github.com/peterszarvas94/lytepage v0.2.11
 )
 

@@ -44,11 +44,11 @@
         rec {
           default = templ;
 
-          templ = pkgs.buildGo124Module {
+          templ = pkgs.buildGoModule {
             name = "templ";
             subPackages = [ "cmd/templ" ];
             src = gitignore.lib.gitignoreSource ./.;
-            vendorHash = "sha256-pVZjZCXT/xhBCMyZdR7kEmB9jqhTwRISFp63bQf6w5A=";
+            vendorHash = "sha256-i4uDGZb3VZUvIyO2Tt53VR1Do/3OYtj6JccGoFnnlbs=";
             env = {
               CGO_ENABLED = 0;
             };
@@ -93,7 +93,6 @@
       # ];
       overlays.default = final: prev: {
         templ = self.packages.${final.stdenv.system}.templ;
-        templ-docs = self.packages.${final.stdenv.system}.templ-docs;
       };
     };
 }
