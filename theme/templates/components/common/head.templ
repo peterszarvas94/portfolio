@@ -1,6 +1,4 @@
-package common 
-
-import "portfolio/config"
+package common
 
 templ Head(title, description string) {
 	<head>
@@ -18,7 +16,7 @@ templ Head(title, description string) {
 			const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 			document.documentElement.setAttribute("data-theme", theme);
 		</script>
-		<link rel="stylesheet" href={ templ.SafeURL("/static/generated.css?v=" + config.Version) }/>
+		<link rel="stylesheet" href={ "/static/" + AssetFilename("generated.css") }/>
 		{ children... }
 	</head>
 }

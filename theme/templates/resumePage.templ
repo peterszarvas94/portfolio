@@ -1,7 +1,6 @@
 package templates
 
 import (
-	"portfolio/config"
 	"portfolio/theme/templates/components/common"
 	"portfolio/theme/templates/components/icons"
 	"portfolio/theme/templates/components/resume"
@@ -23,7 +22,7 @@ templ ResumePage() {
 					</button>
 					<a
 						class="btn join-item"
-						href={ templ.SafeURL("/static/Szarvas_Peter_resume.pdf?v=" + config.Version) }
+						href="/static/Szarvas_Peter_resume.pdf"
 						download="Szarvas Péter - resume.pdf"
 					>
 						@icons.Download()

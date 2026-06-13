@@ -18,9 +18,13 @@ run = "mise x npm:@tailwindcss/cli -- tailwindcss -i ./input.css -o ../static/ge
 [tasks.watch]
 run = "air -c .air.server.toml"
 
+[tasks.hash-css]
+run = "./scripts/hash-css.sh"
+
 [tasks.build]
 run = [
   "mise run tailwind-gen",
+  "mise run hash-css",
   "templ generate",
   "go build -o ./bin/main ./cmd/ssr",
 ]
@@ -31,6 +35,7 @@ run = "./bin/main"
 [tasks.gen]
 run = [
   "mise run tailwind-gen",
+  "mise run hash-css",
   "templ generate",
   "go run cmd/static/main.go --no-serve",
 ]
@@ -38,6 +43,7 @@ run = [
 [tasks.ssr]
 run = [
   "mise run tailwind-gen",
+  "mise run hash-css",
   "templ generate",
   "go run cmd/ssr/main.go",
 ]
@@ -45,6 +51,7 @@ run = [
 [tasks.static]
 run = [
   "mise run tailwind-gen",
+  "mise run hash-css",
   "templ generate",
   "go run cmd/static/main.go",
 ]
