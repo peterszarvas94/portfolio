@@ -773,6 +773,9 @@
   .pb-4 {
     padding-bottom: calc(var(--spacing) * 4);
   }
+  .pb-10 {
+    padding-bottom: calc(var(--spacing) * 10);
+  }
   .pl-6 {
     padding-left: calc(var(--spacing) * 6);
   }
@@ -961,6 +964,11 @@
   .print\:hidden {
     @media print {
       display: none;
+    }
+  }
+  .print\:pb-4 {
+    @media print {
+      padding-bottom: calc(var(--spacing) * 4);
     }
   }
 }
