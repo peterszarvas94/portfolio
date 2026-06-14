@@ -48,9 +48,9 @@ templ IndexPage() {
 								</a>, 
 								or libraries like <a href="https://htmx.org" class="link" target="_blank" rel="noreferrer noopener">htmx</a> and <a href="https://data-star.dev" class="link" target="_blank" rel="noreferrer noopener">datastar</a>, all of which aims to simplify modern development worflows.
 							</p>
-							<a href="/resume" target="_blank" rel="noreferrer noopener" class="link home-link">
-								<div class="label">Resume (CV)</div>
+							<a href="/resume" target="_blank" rel="noreferrer noopener" class="btn home-link">
 								@icons.FileUser()
+								<div class="label">Resume / CV</div>
 							</a>
 							<p class="text-justify">Book recommandations:</p>
 							<ul>
@@ -164,7 +164,7 @@ templ IndexPage() {
 					}
 				}
 			</main>
-			<a href="#header" class="home-jump-up" id="home-jump-up"><span class="art">↑</span> jump to top <span class="art">↑</span></a>
+			<a href="#header" class="btn home-jump-up" id="home-jump-up"><span class="art">↑</span> jump to top <span class="art">↑</span></a>
 			<script>
 				const jumpUp = document.getElementById("home-jump-up");
 				let jumpUpVisible = false;

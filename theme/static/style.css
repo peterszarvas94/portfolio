@@ -43,7 +43,29 @@
 }
 
 /* ============================
-   Fonts
+   Shared Button
+   ============================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--base-content);
+  font-family: var(--font-berkeleymono);
+  border: 1px solid var(--base-content);
+  background: var(--base-100);
+  padding: 0.5rem 0.75rem;
+  font-size: inherit;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--base-200);
+}
+
+/* ============================
+   Reset
    ============================ */
 @font-face {
   font-family: "Fira Code";
@@ -363,6 +385,7 @@ ul {
 .home-section-link .art,
 .home-jump-up .art {
   color: var(--muted);
+  font-size: 1em;
 }
 
 .home-jump-up {
@@ -370,15 +393,6 @@ ul {
   bottom: 1.5rem;
   right: 1.5rem;
   z-index: 50;
-  color: var(--base-content);
-  font-family: var(--font-berkeleymono);
-  border: 1px solid var(--base-content);
-  background: var(--base-100);
-  padding: 0.5rem 0.75rem;
-}
-
-.home-jump-up:hover {
-  background: var(--base-200);
 }
 
 .home-section-link .lucide-chevron-down {
@@ -529,6 +543,8 @@ ul {
 
 .home-body .lucide-file-user {
   color: var(--muted);
+  width: 1rem;
+  height: 1rem;
 }
 
 /* Tag list on home page */
@@ -574,35 +590,11 @@ ul {
   align-items: stretch;
 }
 
-.resume-join > * {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.375rem;
-  cursor: pointer;
-  user-select: none;
-  padding-inline: 1rem;
-  height: 2.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition:
-    color,
-    background-color,
-    border-color,
-    box-shadow 0.2s;
-  background: var(--base-200);
-  color: var(--base-content);
-  border: 1px solid var(--base-200);
-  text-align: center;
-  vertical-align: middle;
-  outline-offset: 2px;
-  touch-action: manipulation;
+.resume-join .btn .lucide {
+  color: var(--muted);
 }
 
-.resume-join > *:hover {
-  background: var(--base-300);
-  border-color: var(--base-300);
-}
+
 
 .resume-join > *:not(:first-child) {
   margin-inline-start: -1px;
