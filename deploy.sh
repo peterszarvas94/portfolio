@@ -9,7 +9,7 @@ RSYNC_PATH="${RSYNC_PATH:-sudo rsync}"
 
 cd "$ROOT_DIR"
 
-mise run gen
+mise run build
 
 RSYNC_PROGRESS_FLAGS=(--progress)
 if rsync --version 2>/dev/null | grep -q 'version 3'; then

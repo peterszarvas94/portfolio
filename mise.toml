@@ -3,35 +3,11 @@ go = "1.25.6"
 air = "1.64.4"
 "github:a-h/templ" = { version = "0.3.1020", exe = "templ" }
 
-[tasks.dev]
-run = "mise run watch"
-
-[tasks.watch]
-run = "air -c .air.server.toml"
-
 [tasks.build]
-run = [
-  "templ generate",
-  "go build -o ./bin/main ./cmd/ssr",
-]
+run = "templ generate && go run ./cmd"
+
+[tasks.dev]
+run = "air"
 
 [tasks.run]
-run = "./bin/main"
-
-[tasks.gen]
-run = [
-  "templ generate",
-  "go run cmd/static/main.go --no-serve",
-]
-
-[tasks.ssr]
-run = [
-  "templ generate",
-  "go run cmd/ssr/main.go",
-]
-
-[tasks.static]
-run = [
-  "templ generate",
-  "go run cmd/static/main.go",
-]
+run = "templ generate && go run ./cmd -serve"

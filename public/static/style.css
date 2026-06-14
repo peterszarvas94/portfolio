@@ -32,45 +32,146 @@
    Animations
    ============================ */
 @keyframes fill {
-  0% { clip-path: inset(0 100% 0 0); }
-  100% { clip-path: inset(0); }
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0);
+  }
 }
 
 @keyframes slide-lr {
-  0% { transform: translateX(-1rem); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0% {
+    transform: translateX(-1rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slide-rl {
-  0% { transform: translateX(1rem); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
+  0% {
+    transform: translateX(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slide-bt {
-  0% { transform: translateY(1rem); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
-  50% { transform: none; animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+  0%,
+  100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
 }
 
 /* ============================
    Fonts
    ============================ */
-@font-face { font-family: "Fira Code"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/FiraCode-Regular.ttf") format("truetype"); }
-@font-face { font-family: "Fira Code"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/FiraCode-Bold.ttf") format("truetype"); }
-@font-face { font-family: "Fira Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/FiraMono-Regular.ttf") format("truetype"); }
-@font-face { font-family: "Fira Mono"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/FiraMono-Bold.ttf") format("truetype"); }
-@font-face { font-family: "Fira Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/FiraSans-Regular.ttf") format("truetype"); }
-@font-face { font-family: "Fira Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/FiraSans-Bold.ttf") format("truetype"); }
-@font-face { font-family: "Roboto"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/Roboto-Regular.ttf") format("truetype"); }
-@font-face { font-family: "Roboto"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/Roboto-Bold.ttf") format("truetype"); }
-@font-face { font-family: "Berkeley Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("/static/fonts/BerkeleyMono-Regular.ttf") format("truetype"); }
-@font-face { font-family: "Berkeley Mono"; font-style: italic; font-weight: 400; font-display: swap; src: url("/static/fonts/BerkeleyMono-Oblique.ttf") format("truetype"); }
-@font-face { font-family: "Berkeley Mono"; font-style: normal; font-weight: 700; font-display: swap; src: url("/static/fonts/BerkeleyMono-Bold.ttf") format("truetype"); }
-@font-face { font-family: "Berkeley Mono"; font-style: italic; font-weight: 700; font-display: swap; src: url("/static/fonts/BerkeleyMono-Bold-Oblique.ttf") format("truetype"); }
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/FiraCode-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/FiraCode-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/FiraMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/FiraMono-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/FiraSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Fira Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/FiraSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/Roboto-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Oblique.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Berkeley Mono";
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/static/fonts/BerkeleyMono-Bold-Oblique.ttf") format("truetype");
+}
 
 /* ============================
    Print
@@ -96,7 +197,9 @@
 /* ============================
    Reset
    ============================ */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -113,31 +216,78 @@ body {
   color: var(--base-content);
 }
 
-h1, h2, h3, h4 { font-size: inherit; font-weight: inherit; }
-a { color: inherit; text-decoration: inherit; }
-ul { list-style: none; }
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+ul {
+  list-style: none;
+}
 
 /* ============================
    Shared Layout Utilities
    ============================ */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.flex-row { flex-direction: row; }
-.flex-wrap { flex-wrap: wrap; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.justify-end { justify-content: flex-end; }
-.justify-start { justify-content: flex-start; }
-.grow { flex-grow: 1; }
-.relative { position: relative; }
-.absolute { position: absolute; }
-.block { display: block; }
-.hidden { display: none; }
-.w-full { width: 100%; }
-.w-fit { width: fit-content; }
-.h-full { height: 100%; }
-.mx-auto { margin-inline: auto; }
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.grow {
+  flex-grow: 1;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.block {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.w-full {
+  width: 100%;
+}
+.w-fit {
+  width: fit-content;
+}
+.h-full {
+  height: 100%;
+}
+.mx-auto {
+  margin-inline: auto;
+}
 
 /* ============================
    Shared Components
@@ -191,7 +341,9 @@ ul { list-style: none; }
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: 1s 0.25s ease slide-rl forwards, 1s 0.25s ease fill forwards;
+  animation:
+    1s 0.25s ease slide-rl forwards,
+    1s 0.25s ease fill forwards;
 }
 
 .home-header .subtitle {
@@ -299,7 +451,9 @@ ul { list-style: none; }
   scroll-behavior: smooth;
 }
 
-.home-project .carousel-wrap::-webkit-scrollbar { display: none; }
+.home-project .carousel-wrap::-webkit-scrollbar {
+  display: none;
+}
 
 .home-project .carousel-slide {
   box-sizing: content-box;
@@ -330,7 +484,10 @@ ul { list-style: none; }
     flex-shrink: 0;
     align-self: flex-start;
     border-radius: 50%;
-    box-shadow: 1.4em 0, 2.8em 0, 4.2em 0;
+    box-shadow:
+      1.4em 0,
+      2.8em 0,
+      4.2em 0;
   }
 }
 
@@ -363,7 +520,9 @@ ul { list-style: none; }
   cursor: pointer;
   font-size: 0.75rem;
   padding-inline: 0.75rem;
-  transition: color, background-color 0.2s;
+  transition:
+    color,
+    background-color 0.2s;
   background: var(--base-200);
   color: var(--base-content);
   border: 1px solid var(--base-200);
@@ -432,7 +591,9 @@ ul { list-style: none; }
 }
 
 @media print {
-  .resume-body > header { display: none; }
+  .resume-body > header {
+    display: none;
+  }
 }
 
 /* Join button group */
@@ -452,7 +613,11 @@ ul { list-style: none; }
   height: 2.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  transition: color, background-color, border-color, box-shadow 0.2s;
+  transition:
+    color,
+    background-color,
+    border-color,
+    box-shadow 0.2s;
   background: var(--base-200);
   color: var(--base-content);
   border: 1px solid var(--base-200);
@@ -556,6 +721,13 @@ ul { list-style: none; }
   color: var(--base-content);
 }
 
+.resume-contacts li a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
 .resume-contacts .lucide {
   width: 1rem;
   height: 1rem;
@@ -630,10 +802,16 @@ ul { list-style: none; }
 /* ============================
    Rotation Utilities
    ============================ */
-.rot-90 { rotate: 90deg; }
-.rot-neg-90 { rotate: -90deg; }
+.rot-90 {
+  rotate: 90deg;
+}
+.rot-neg-90 {
+  rotate: -90deg;
+}
 
 /* ============================
    SVG Icons
    ============================ */
-.lucide { display: inline-block; }
+.lucide {
+  display: inline-block;
+}

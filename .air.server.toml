@@ -1,7 +1,7 @@
 [build]
-bin = "tmp/bin/server"
-cmd = "templ generate && go build -o tmp/bin/server ./cmd/ssr"
-include_ext = ["go", "templ", "js", "css", "md", "png", "jpg", "jpeg"]
+bin = "tmp/bin/gen"
+cmd = "templ generate && go build -o tmp/bin/gen ./cmd && ./tmp/bin/gen -serve"
+include_ext = ["go", "templ", "css", "js", "png", "jpg", "jpeg", "svg"]
 exclude_regex = ["_templ\\.go"]
 include_dir = ["theme/static", "theme/templates"]
 delay = 100
