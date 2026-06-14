@@ -37,9 +37,17 @@
 }
 
 @keyframes blink {
-  0%, 49% { opacity: 0; }
-  50%, 99% { opacity: 1; }
-  100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* ============================
@@ -50,9 +58,17 @@
 }
 
 @keyframes blink {
-  0%, 49% { opacity: 0; }
-  50%, 99% { opacity: 1; }
-  100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* ============================
@@ -63,11 +79,11 @@
   align-items: center;
   gap: 0.7rem;
   color: var(--base-content);
-  font-family: var(--font-berkeleymono);
   border: 1px solid var(--base-content);
   background: var(--base-100);
   padding: 0.5rem 0.75rem;
   font-size: inherit;
+  font-family: inherit;
   cursor: pointer;
   user-select: none;
   text-decoration: none;
@@ -80,48 +96,6 @@
 /* ============================
    Reset
    ============================ */
-@font-face {
-  font-family: "Fira Code";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/static/fonts/FiraCode-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Fira Code";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/static/fonts/FiraCode-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Fira Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/static/fonts/FiraMono-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Fira Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/static/fonts/FiraMono-Bold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Fira Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/static/fonts/FiraSans-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "Fira Sans";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/static/fonts/FiraSans-Bold.ttf") format("truetype");
-}
 @font-face {
   font-family: "Roboto";
   font-style: normal;
@@ -198,9 +172,9 @@
 }
 
 html {
+  font-family: var(--font-berkeleymono);
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
-  font-family: var(--font-roboto);
   scroll-behavior: smooth;
 }
 
@@ -290,7 +264,6 @@ ul {
    Home Page
    ============================ */
 .home-body {
-  font-family: var(--font-berkeleymono);
   background: var(--base-100);
   color: var(--base-content);
   overflow-x: hidden;
@@ -304,7 +277,6 @@ ul {
   height: 100vh;
   display: flex;
   align-items: center;
-  font-family: var(--font-berkeleymono);
   padding: 0 1rem;
 }
 
@@ -566,7 +538,6 @@ ul {
    Resume Page
    ============================ */
 .resume-body {
-  font-family: var(--font-roboto);
   background: var(--base-100);
   color: var(--base-content);
 }
@@ -575,42 +546,25 @@ ul {
 .resume-body > header {
   display: flex;
   justify-content: center;
+  gap: 0.7rem;
   padding: 2.5rem 0;
+}
+
+/* Resume main content area */
+.resume-body .btn .lucide {
+  color: var(--muted);
+}
+.resume-body > main {
+  font-family: var(--font-roboto);
+  min-height: var(--a4l);
+  max-width: var(--a4s);
+  margin: 0 auto;
+  padding: 1.5rem;
 }
 
 @media print {
   .resume-body > header {
     display: none;
-  }
-}
-
-/* Join button group */
-.resume-join {
-  display: inline-flex;
-  align-items: stretch;
-}
-
-.resume-join .btn .lucide {
-  color: var(--muted);
-}
-
-
-
-.resume-join > *:not(:first-child) {
-  margin-inline-start: -1px;
-}
-
-/* Resume main content area */
-.resume-body > main {
-  min-height: var(--a4l);
-  max-width: var(--a4s);
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-@media (min-width: 640px) {
-  .resume-body > main {
-    padding: 2.5rem;
   }
 }
 
@@ -691,19 +645,12 @@ ul {
   text-align: right;
 }
 
-/* Resume sections */
 .resume-body article {
-  padding-bottom: 2.5rem;
-}
-
-@media print {
-  .resume-body article {
-    padding-bottom: 1rem;
-  }
+  padding-bottom: 1rem;
 }
 
 .resume-body section {
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
 }
 
 .resume-body h2 {

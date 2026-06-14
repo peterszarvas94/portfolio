@@ -12,16 +12,14 @@ templ ResumePage() {
 		}
 		<body class="resume-body">
 			<header>
-				<div class="resume-join">
-					<button onclick="window.print()" class="btn">
-						@icons.Print()
-						Print
-					</button>
-					<a href="/static/Szarvas_Peter_resume.pdf" download="Szarvas Péter - resume.pdf" class="btn">
-						@icons.Download()
-						Download PDF
-					</a>
-				</div>
+				<button onclick="window.print()" class="btn">
+					@icons.Print()
+					Print
+				</button>
+				<a href="/static/Szarvas_Peter_resume.pdf" download="Szarvas Péter - resume.pdf" class="btn">
+					@icons.Download()
+					Download PDF
+				</a>
 			</header>
 			<main>
 				<div class="resume-layout">
@@ -69,23 +67,15 @@ templ ResumePage() {
 							{ "methodology, international team (20+ person)" }
 						</li>
 						<li>
-							{ "Frontend: " }
 							@resume.Chip("React")
 							@resume.Chip("TypeScript")
 							@resume.Chip("Material UI")
 							@resume.Chip("CSS")
-							{ "i18next, React Query" }
-						</li>
-						<li>
-							{ "Backend: " }
+							{ "i18next, React Query, " }
 							@resume.Chip("Node.js")
 							@resume.Chip("NestJS")
-						</li>
-						<li>
-							{ "Tools: " }
 							@resume.Chip("Vitest")
 							@resume.Chip("Git")
-							{ "Gitlab, Jira " }
 						</li>
 					}
 					@resume.Section() {
