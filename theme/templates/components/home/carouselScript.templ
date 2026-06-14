@@ -3,8 +3,8 @@ package home
 templ CarouselScript() {
 	<script type="module">window.scrollCarouselFromButton = (button, direction) => {
   const figure = button.closest("figure");
-  const carousel = figure?.querySelector(".carousel");
-  const items = carousel?.querySelectorAll(".carousel-item");
+  const carousel = figure?.querySelector(".carousel-wrap");
+  const items = carousel?.querySelectorAll(".carousel-slide");
   if (!carousel || !items || items.length === 0) {
     return;
   }

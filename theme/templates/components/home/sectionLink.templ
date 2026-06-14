@@ -1,15 +1,10 @@
 package home
 
-import (
-	"fmt"
-)
+import "fmt"
 
 templ SectionLink(sectionId string) {
-	<div class="flex flex-col items-center">
-		<a
-			href={ fmt.Sprintf("#%s", sectionId) }
-		class="flex flex-col gap-1 items-center text-base-content/30 w-fit"
-		>
+	<div class="home-section-link">
+		<a href={ fmt.Sprintf("#%s", sectionId) } class="inner">
 			{ children... }
 		</a>
 	</div>

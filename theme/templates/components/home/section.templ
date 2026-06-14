@@ -1,10 +1,8 @@
 package home
 
 templ Section(sectionId string, classes ...string) {
-	<section class={ "min-h-screen flex items-center justify-center", classes } id={ sectionId }>
-		<div
-			class="flex flex-col gap-10 justify-center w-full max-w-5xl mx-auto sm:px-10"
-		>
+	<section class={ "section", classes } id={ sectionId }>
+		<div class="content">
 			{ children... }
 		</div>
 	</section>

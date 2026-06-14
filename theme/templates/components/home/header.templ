@@ -5,30 +5,18 @@ import (
 )
 
 templ Header() {
-	<header class="h-screen flex items-center" id="header">
-		<div
-			class="w-fit mx-auto text-base-content flex flex-col justify-between h-full max-h-96"
-		>
-			<div class="">
-				<p class="text-3xl sm:text-4xl mb-5 animate-slide-1 opacity-0">
-					Welcome, I am
-				</p>
-				<h1
-					class="text-6xl sm:text-7xl mb-5 w-fit ocean relative stroke-2-transparent animate-name opacity-0"
-				>
-					Péter
-					<br/>
-					Szarvas
-				</h1>
-				<p class="text-3xl sm:text-4xl animate-slide-3 opacity-0">
-					full-stack developer
-				</p>
+	<header class="home-header" id="header">
+		<div class="inner">
+			<div>
+				<p class="hello">Welcome, I am</p>
+				<h1 class="name">Péter<br/>Szarvas</h1>
+				<p class="subtitle">full-stack developer</p>
 			</div>
 			@SectionLink("about") {
 				<div>
-					[&nbsp;<span class="text-base-content">about</span>&nbsp;]
+					[&nbsp;<span>about</span>&nbsp;]
 				</div>
-				@icons.Chevron("w-6 h-6 animate-bounce")
+				@icons.Chevron("bounce-icon")
 			}
 		</div>
 	</header>

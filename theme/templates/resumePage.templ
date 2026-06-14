@@ -10,54 +10,41 @@ templ ResumePage() {
 	<html>
 		@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
 		}
-		<body class="bg-base-100 text-base-content font-roboto">
-			<header class="flex justify-center py-10 print:hidden">
-				<div class="join">
-					<button
-						class="btn join-item"
-						onclick="window.print()"
-					>
+		<body class="resume-body">
+			<header>
+				<div class="resume-join">
+					<button onclick="window.print()">
 						@icons.Print()
 						Print
 					</button>
-					<a
-						class="btn join-item"
-						href="/static/Szarvas_Peter_resume.pdf"
-						download="Szarvas Péter - resume.pdf"
-					>
+					<a href="/static/Szarvas_Peter_resume.pdf" download="Szarvas Péter - resume.pdf">
 						@icons.Download()
 						Download PDF
 					</a>
 				</div>
 			</header>
-			<main
-				class="min-h-a4l max-w-a4s mx-auto p-4 sm:p-10"
-			>
-				<div class="flex flex-col gap-4 sm:flex-row w-full">
-					<div class="grow">
-						<h1 class="text-2xl text-base-content uppercase font-bold">
-							Péter Szarvas
-						</h1>
-						<p class="text-xl text-left">Software Engineer</p>
-						<p class="text-sm text-base-content/70 mt-1 pb-4 max-w-prose">
-							Full-stack developer building production React, Node.js, and Go apps. Creator of <a href="https://bandcash.app" class="link" target="_blank" rel="noopener noreferrer">bandcash</a>, an event payment splitting SaaS app.
-						</p>
+			<main>
+				<div class="resume-layout">
+					<div>
+						<h1>Péter Szarvas</h1>
+						<p>Software Engineer</p>
+						<p class="bio">Full-stack developer building production React, Node.js, and Go apps. Creator of <a href="https://bandcash.app">bandcash</a>, an event payment splitting SaaS app.</p>
 					</div>
-					<ul class="grow mb-4 sm:mb-0">
+					<ul class="resume-contacts">
 						@resume.ContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
-							@icons.Mail("w-4 h-4 ml-1")
+							@icons.Mail()
 						}
 						@resume.ContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/") {
-							@icons.LinkedIn("w-4 h-4 ml-1")
+							@icons.LinkedIn()
 						}
 						@resume.ContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94") {
-							@icons.Github("w-4 h-4 ml-1")
+							@icons.Github()
 						}
 						@resume.ContactLink("peterszarvas.hu", "https://peterszarvas.hu") {
-							@icons.Globe("w-4 h-4 ml-1")
+							@icons.Globe()
 						}
 						@resume.ContactItem("Martonvásár, Hungary") {
-							@icons.Pin("w-4 h-4 ml-1")
+							@icons.Pin()
 						}
 					</ul>
 				</div>

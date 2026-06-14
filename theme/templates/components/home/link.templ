@@ -5,17 +5,12 @@ import (
 )
 
 templ Link(href, text string, github bool) {
-	<a
-		href={ templ.SafeURL(href) }
-		class="text-base-content flex flex-row items-center justify-start gap-1 w-fit"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
+	<a href={ templ.SafeURL(href) } class="home-link" target="_blank" rel="noopener noreferrer">
 		if github {
-			@icons.Github("size-5 text-base-content/50")
+			@icons.Github()
 		} else {
-			@icons.Link("size-5 text-base-content/50")
+			@icons.Link()
 		}
-		<div class="link w-fit">{ text }</div>
+		<div class="label">{ text }</div>
 	</a>
 }

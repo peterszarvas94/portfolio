@@ -1,14 +1,8 @@
 package home
 
 templ ContactLink(text string, href string, icon templ.Component) {
-	<li class="flex items-center gap-2 justify-end">
-		<a
-			href={ templ.SafeURL(href) }
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			{ text }
-		</a>
+	<li class="home-contact-item">
+		<a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer">{ text }</a>
 		@icon
 	</li>
 }

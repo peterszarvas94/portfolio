@@ -15,46 +15,29 @@ type ProjectProps struct {
 }
 
 templ Project(props *ProjectProps) {
-	<div>
-		<figure class="mb-4">
+	<div class="home-project">
+		<figure>
 			<div class="relative">
-				<div class="carousel carousel-center space-x-4 w-full mb-2 overflow-x-auto scroll-smooth">
+				<div class="carousel-wrap">
 					for _, image := range props.Images {
-						<div class="carousel-item sm:mockup-window border border-base-content/30 w-[calc(100%-2px)]">
-							<a
-								href={ templ.SafeURL(props.Href) }
-								target="_blank"
-								rel="noopener noreferrer"
-								class="block w-full h-full"
-							>
-								<img
-									src={ image }
-									alt={ props.Title }
-									class="w-full h-full object-top object-cover aspect-video"
-								/>
+						<div class="carousel-slide">
+							<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+								<img src={ image } alt={ props.Title } class="block w-full h-full"/>
 							</a>
 						</div>
 					}
 				</div>
-				<div class="absolute left-2 right-2 top-1/2 flex -translate-y-1/2 transform justify-between">
-					<button
-						class="btn btn-sm btn-circle"
-						onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), -1) }
-					>
-					@icons.Chevron("rotate-90")
+				<div class="nav">
+					<button class="carousel-btn" onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), -1) }>
+						@icons.Chevron("rot-90")
 					</button>
-					<button
-						class="btn btn-sm btn-circle"
-						onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), 1) }
-					>
-					@icons.Chevron("-rotate-90")
+					<button class="carousel-btn" onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), 1) }>
+						@icons.Chevron("rot-neg-90")
 					</button>
 				</div>
 			</div>
-		<figcaption class="text-lg text-base-content">
-				<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">
-					{ props.Title }
-				</a>
+			<figcaption class="title">
+				<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">{ props.Title }</a>
 			</figcaption>
 			@Link(props.Href, strings.Split(props.Href, "https://")[1], false)
 			if props.GithubHref != "" {
