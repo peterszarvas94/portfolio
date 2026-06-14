@@ -11,3 +11,6 @@ run = "air -c .air.toml"
 
 [tasks.run]
 run = "templ generate && go run ./cmd -serve"
+
+[tasks.deploy]
+run = "./deploy.sh"
