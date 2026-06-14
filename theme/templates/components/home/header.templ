@@ -5,8 +5,8 @@ templ Header() {
 		<div class="inner">
 			<div>
 				<p class="hello">Welcome, I am</p>
-				<h1 class="name">Péter<br/>Szarvas</h1>
-				<p class="subtitle">full-stack developer</p>
+				<h1 class="name">Péter Szarvas</h1>
+				<p class="subtitle">software engineer</p>
 			</div>
 			@SectionLink("about") {
 				<div>
@@ -15,4 +15,36 @@ templ Header() {
 			}
 		</div>
 	</header>
+	<script>
+		(()=>{
+			const els = document.querySelectorAll(".home-header .hello, .home-header .name, .home-header .subtitle");
+			for(const el of els){
+				const text = el.textContent;
+				el.textContent = "";
+				for(const ch of text){
+					const span = document.createElement("span");
+					span.textContent = ch;
+					span.style.opacity = "0";
+					el.appendChild(span);
+				}
+			}
+			const cursor = document.createElement("span");
+			cursor.textContent = "_";
+			cursor.style.setProperty("color", "var(--muted)");
+			els[0].insertBefore(cursor, els[0].firstChild);
+			let idx = 0;
+			const spans = document.querySelectorAll(".home-header .hello span, .home-header .name span, .home-header .subtitle span");
+			const reveal = () => {
+				if(idx >= spans.length){
+					cursor.className = "typing-cursor";
+					return;
+				}
+				spans[idx].style.opacity = "1";
+				spans[idx].parentNode.insertBefore(cursor, spans[idx].nextSibling);
+				idx++;
+				setTimeout(reveal, 40 + Math.random() * 30);
+			};
+			reveal();
+		})();
+	</script>
 }
