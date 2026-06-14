@@ -556,6 +556,13 @@ ul { list-style: none; }
   color: var(--base-content);
 }
 
+.resume-contacts li a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
 .resume-contacts .lucide {
   width: 1rem;
   height: 1rem;
