@@ -12,14 +12,13 @@ templ ResumePage() {
 		}
 		<body class="resume-body">
 			<header>
+				<a href="/" class="btn"><span class="btn-icon">&larr;</span> Back</a>
 				<button onclick="window.print()" class="btn">
-					@icons.Print()
-					Print
-				</button>
-				<a href="/static/Szarvas_Peter_resume.pdf" download="Szarvas Péter - resume.pdf" class="btn">
-					@icons.Download()
-					Download PDF
-				</a>
+						Print
+					</button>
+					<a href="/static/Szarvas_Peter_resume.pdf" download="Szarvas Péter - resume.pdf" class="btn">
+						Download PDF
+					</a>
 			</header>
 			<main>
 				<div class="resume-layout">

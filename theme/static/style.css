@@ -87,6 +87,7 @@
   cursor: pointer;
   user-select: none;
   text-decoration: none;
+  width: fit-content;
 }
 
 .btn:hover {
@@ -354,13 +355,18 @@ ul {
   align-items: center;
 }
 
-.home-section-link .art,
-.home-jump-up .art {
+.home-section-link .art {
   color: var(--muted);
   font-size: 1em;
 }
 
-.home-jump-up {
+#home-jump-up .btn-icon,
+.home-body .btn .btn-icon,
+.resume-body .btn .btn-icon {
+  color: var(--muted);
+}
+
+#home-jump-up {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
