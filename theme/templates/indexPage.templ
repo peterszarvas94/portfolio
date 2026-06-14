@@ -1,10 +1,10 @@
 package templates
 
 import (
-	"portfolio/theme/templates/components/common"
-	"portfolio/theme/templates/components/icons"
-	"portfolio/theme/templates/components/home"
 	"path"
+	"portfolio/theme/templates/components/common"
+	"portfolio/theme/templates/components/home"
+	"portfolio/theme/templates/components/icons"
 )
 
 templ IndexPage() {
@@ -19,30 +19,53 @@ templ IndexPage() {
 					@home.SectionMain() {
 						@home.H2("about")
 						<div class="home-bio">
-							<p class="text-justify">
-								I'm a self-taught web developer from Hungary, working as a contractor. I am familiar with multiple programming languages and frameworks, because I always keep learning. I have the most experience with TypeScript, React and Go.
+							<p>
+								Welcome!
 							</p>
-							<p class="text-justify">
-								I like simlpe and readable code, without unnecessary complexity or dependencies.
+							<p>
+								I build Go, Node.js and React applications.
 							</p>
-							<a href="/resume" target="_blank" rel="noreferrer noopener" class="home-link">
+							<p>
+								I work as a contractor and also building <a href="https://bandcash.app" class="link">bandcash</a>, an event payment splitting SaaS app.
+							</p>
+							<p>
+								I like simple and working code, without unnecessay complexity. This lead to me to discover 
+								<a
+									href="https://world.hey.com/dhh/you-can-t-get-faster-than-no-build-7a44131c"
+									class="link"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									no-build
+								</a>, 
+								<a
+									href="https://htmx.org/essays/vendoring/"
+									class="link"
+									target="_blank"
+									rel="noreferrer noopener"
+								>
+									vendoring
+								</a>, 
+								or libraries like <a href="https://htmx.org" class="link" target="_blank" rel="noreferrer noopener">htmx</a> and <a href="https://data-star.dev" class="link" target="_blank" rel="noreferrer noopener">datastar</a>, all of which aims to simplify modern development worflows.
+							</p>
+							<a href="/resume" target="_blank" rel="noreferrer noopener" class="link home-link">
 								<div class="label">Resume (CV)</div>
 								@icons.FileUser()
 							</a>
 							<p class="text-justify">Book recommandations:</p>
 							<ul>
 								<li>
-									<a href="https://hypermedia.systems/" class="home-link" target="_blank" rel="noopener noreferrer">
+									<a href="https://hypermedia.systems/" class="link home-link" target="_blank" rel="noopener noreferrer">
 										<div class="label">Hypermedia Systems</div>
 									</a>
 								</li>
 								<li>
-									<a href="https://grugbrain.dev/" class="home-link" target="_blank" rel="noopener noreferrer">
+									<a href="https://grugbrain.dev/" class="link home-link" target="_blank" rel="noopener noreferrer">
 										<div class="label">The Grug Brained Developer</div>
 									</a>
 								</li>
 								<li>
-									<a href="https://www.oreilly.com/library/view/we-programmers-a/9780135344248/" class="home-link" target="_blank" rel="noopener noreferrer">
+									<a href="https://www.oreilly.com/library/view/we-programmers-a/9780135344248/" class="link home-link" target="_blank" rel="noopener noreferrer">
 										<div class="label">We, Programmers</div>
 									</a>
 								</li>
@@ -54,7 +77,6 @@ templ IndexPage() {
 								<li>/<span>node.js</span></li>
 								<li>/<span>astro</span></li>
 								<li>/<span>go</span></li>
-
 								<li>/<span>git</span></li>
 								<li>/<span>linux</span></li>
 							</ul>

@@ -5,7 +5,7 @@ import (
 )
 
 templ Link(href, text string, github bool) {
-	<a href={ templ.SafeURL(href) } class="home-link" target="_blank" rel="noopener noreferrer">
+	<a href={ templ.SafeURL(href) } class="link home-link" target="_blank" rel="noopener noreferrer">
 		if github {
 			@icons.Github()
 		} else {

@@ -442,6 +442,11 @@ ul {
   width: fit-content;
 }
 
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--muted);
+}
+
 .home-link {
   color: var(--base-content);
   display: flex;
@@ -464,8 +469,6 @@ ul {
 
 .home-link .label {
   width: fit-content;
-  text-decoration: underline;
-  text-decoration-color: var(--muted);
 }
 
 .bounce-icon {

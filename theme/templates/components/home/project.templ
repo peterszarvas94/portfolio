@@ -37,7 +37,7 @@ templ Project(props *ProjectProps) {
 				</div>
 			</div>
 			<figcaption class="title">
-				<a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">{ props.Title }</a>
+				<a href={ templ.SafeURL(props.Href) } class="link" target="_blank" rel="noopener noreferrer">{ props.Title }</a>
 			</figcaption>
 			@Link(props.Href, strings.Split(props.Href, "https://")[1], false)
 			if props.GithubHref != "" {
