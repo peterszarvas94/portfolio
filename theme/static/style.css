@@ -10,6 +10,7 @@
   --neutral: oklch(14% 0.005 285.823);
   --neutral-content: oklch(92% 0.004 286.32);
 
+  --muted: color-mix(in srgb, var(--base-content) 40%, transparent);
   --font-berkeleymono: "Berkeley Mono", monospace;
   --font-roboto: "Roboto", sans-serif;
   --font-firacode: "Fira Code", monospace;
@@ -209,6 +210,7 @@ html {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   font-family: var(--font-roboto);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -366,12 +368,12 @@ ul {
   width: 100%;
   max-width: 64rem;
   margin: 0 auto;
-  padding: 0 2.5rem;
+  padding: 0 1rem;
 }
 
 @media (min-width: 640px) {
   .home-body .section .content {
-    padding: 0;
+    padding: 0 2.5rem;
   }
 }
 
@@ -384,8 +386,13 @@ ul {
 .home-h2 {
   display: flex;
   font-size: 1.875rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 3rem;
   color: var(--base-content);
+}
+
+.home-h2 > :first-child {
+  color: var(--muted);
+  margin-right: 0.2rem;
 }
 
 .home-h2 .hash {
@@ -399,6 +406,31 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.home-section-link .art,
+.home-jump-up .art {
+  color: var(--muted);
+}
+
+.home-jump-up {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  color: var(--base-content);
+  font-family: var(--font-berkeleymono);
+  border: 1px solid var(--base-content);
+  background: var(--base-100);
+  padding: 0.5rem 0.75rem;
+}
+
+.home-jump-up:hover {
+  background: var(--base-200);
+}
+
+.home-section-link .lucide-chevron-down {
+  color: var(--muted);
 }
 
 .home-section-link .inner {
@@ -425,8 +457,15 @@ ul {
   height: 1.25rem;
 }
 
+.home-link .lucide-link-2,
+.home-link .lucide-github {
+  color: var(--muted);
+}
+
 .home-link .label {
   width: fit-content;
+  text-decoration: underline;
+  text-decoration-color: var(--muted);
 }
 
 .bounce-icon {
@@ -461,34 +500,11 @@ ul {
   flex: none;
   scroll-snap-align: start;
   width: calc(100% - 2px);
-}
-
-@media (min-width: 640px) {
-  .home-project .carousel-slide {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    overflow-x: auto;
-    border-radius: 0.5rem;
-    padding-top: 1.25rem;
-    border: 1px solid color-mix(in srgb, var(--base-content) 30%, transparent);
-  }
-
-  .home-project .carousel-slide::before {
-    content: "";
-    margin-bottom: 1rem;
-    display: block;
-    aspect-ratio: 1 / 1;
-    height: 0.75rem;
-    flex-shrink: 0;
-    align-self: flex-start;
-    border-radius: 50%;
-    box-shadow:
-      1.4em 0,
-      2.8em 0,
-      4.2em 0;
-  }
+  border: 1px solid color-mix(in srgb, var(--base-content) 30%, transparent);
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-x: auto;
 }
 
 .home-project .carousel-slide img {
@@ -514,18 +530,20 @@ ul {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   cursor: pointer;
   font-size: 0.75rem;
-  padding-inline: 0.75rem;
-  transition:
-    color,
-    background-color 0.2s;
+  padding: 0;
   background: var(--base-200);
   color: var(--base-content);
   border: 1px solid var(--base-200);
+}
+
+.home-project .carousel-btn .lucide {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .home-project .carousel-btn:hover {
@@ -551,12 +569,17 @@ ul {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .home-contact-item .lucide {
   width: 1.25rem;
   height: 1.25rem;
+  color: var(--muted);
+}
+
+.home-body .lucide-file-user {
+  color: var(--muted);
 }
 
 /* Tag list on home page */
@@ -565,7 +588,7 @@ ul {
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  color: var(--base-content);
+  color: var(--muted);
 }
 
 .home-bio {
@@ -634,18 +657,6 @@ ul {
 
 .resume-join > *:not(:first-child) {
   margin-inline-start: -1px;
-}
-
-.resume-join > *:first-child {
-  border-radius: 0.25rem 0 0 0.25rem;
-}
-
-.resume-join > *:last-child {
-  border-radius: 0 0.25rem 0.25rem 0;
-}
-
-.resume-join > *:only-child {
-  border-radius: 0.25rem;
 }
 
 /* Resume main content area */
@@ -791,7 +802,6 @@ ul {
   color: var(--base-100);
   background: var(--base-content);
   padding: 0 0.25rem;
-  border-radius: 0.125rem;
   margin-right: 0.25rem;
 }
 

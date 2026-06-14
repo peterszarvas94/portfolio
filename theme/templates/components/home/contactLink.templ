@@ -2,7 +2,7 @@ package home
 
 templ ContactLink(text string, href string, icon templ.Component) {
 	<li class="home-contact-item">
-		<a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer">{ text }</a>
 		@icon
+		<a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer">{ text }</a>
 	</li>
 }

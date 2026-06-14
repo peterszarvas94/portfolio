@@ -54,7 +54,7 @@ templ IndexPage() {
 								<li>/<span>node.js</span></li>
 								<li>/<span>astro</span></li>
 								<li>/<span>go</span></li>
-								<li>/<span>ruby_on_rails</span></li>
+
 								<li>/<span>git</span></li>
 								<li>/<span>linux</span></li>
 							</ul>
@@ -62,9 +62,8 @@ templ IndexPage() {
 					}
 					@home.SectionLink("projects") {
 						<div>
-							&#123;&nbsp;<span>projects</span>&nbsp;&#125;
+							<span class="art">↓</span>&nbsp;<span>projects</span>&nbsp;<span class="art">↓</span>
 						</div>
-						@icons.Chevron("bounce-icon")
 					}
 				}
 				@home.Section("projects") {
@@ -127,9 +126,8 @@ templ IndexPage() {
 					}
 					@home.SectionLink("contact") {
 						<div>
-							(&nbsp;<span>contact</span>&nbsp;)
+							<span class="art">↓</span>&nbsp;<span>contact</span>&nbsp;<span class="art">↓</span>
 						</div>
-						@icons.Chevron("bounce-icon")
 					}
 				}
 				@home.Section("contact") {
@@ -142,14 +140,22 @@ templ IndexPage() {
 							@home.ContactLink("+36 20 274 6444", "tel:+36202746444", icons.Phone())
 						</ul>
 					}
-					@home.SectionLink("header") {
-						<div>
-							&lt;&nbsp;<span>jump to top</span>&nbsp;/&gt;
-						</div>
-						@icons.Chevron("bounce-icon")
-					}
 				}
 			</main>
+			<a href="#header" class="home-jump-up" id="home-jump-up"><span class="art">↑</span> jump to top <span class="art">↑</span></a>
+			<script>
+				const jumpUp = document.getElementById("home-jump-up");
+				let jumpUpVisible = false;
+				const toggleJumpUp = () => {
+					const show = window.scrollY > 200;
+					if (show !== jumpUpVisible) {
+						jumpUpVisible = show;
+						jumpUp.style.display = show ? "" : "none";
+					}
+				};
+				window.addEventListener("scroll", toggleJumpUp, { passive: true });
+				toggleJumpUp();
+			</script>
 		</body>
 	</html>
 }

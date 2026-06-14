@@ -1,9 +1,5 @@
 package home
 
-import (
-	"portfolio/theme/templates/components/icons"
-)
-
 templ Header() {
 	<header class="home-header" id="header">
 		<div class="inner">
@@ -14,9 +10,8 @@ templ Header() {
 			</div>
 			@SectionLink("about") {
 				<div>
-					[&nbsp;<span>about</span>&nbsp;]
+					<span class="art">↓</span>&nbsp;<span>about</span>&nbsp;<span class="art">↓</span>
 				</div>
-				@icons.Chevron("bounce-icon")
 			}
 		</div>
 	</header>
