@@ -9,9 +9,7 @@ import (
 
 templ IndexPage(fingerprint string) {
 	<html>
-		@common.Head("Szarvas Péter", "Portfolio of Szarvas Péter software engineer", fingerprint) {
-			@home.CarouselScript()
-		}
+		@common.Head("Szarvas Péter", "Portfolio of Szarvas Péter software engineer", fingerprint)
 		<body class="home-body">
 			@home.Header()
 			<main>
@@ -47,7 +45,7 @@ templ IndexPage(fingerprint string) {
 							</a>, 
 							or libraries like <a href="https://htmx.org" class="link" target="_blank" rel="noreferrer noopener">htmx</a> and <a href="https://data-star.dev" class="link" target="_blank" rel="noreferrer noopener">datastar</a>, all of which aims to simplify modern development workflows.
 						</p>
-						<a href="/resume" target="_blank" rel="noreferrer noopener" class="btn">
+						<a href="/resume" class="btn">
 							Resume / CV <span class="btn-icon">&rarr;</span>
 						</a>
 						<p class="text-justify">Book recommendations:</p>
@@ -157,20 +155,7 @@ templ IndexPage(fingerprint string) {
 					</ul>
 				}
 			</main>
-			<a href="#header" class="btn" id="home-jump-up"><span class="btn-icon">↑</span> jump to top <span class="btn-icon">↑</span></a>
-			<script>
-				const jumpUp = document.getElementById("home-jump-up");
-				let jumpUpVisible = false;
-				const toggleJumpUp = () => {
-					const show = window.scrollY > 200;
-					if (show !== jumpUpVisible) {
-						jumpUpVisible = show;
-						jumpUp.style.display = show ? "" : "none";
-					}
-				};
-				window.addEventListener("scroll", toggleJumpUp, { passive: true });
-				toggleJumpUp();
-			</script>
+			<a href="#header" class="btn" id="home-jump-up" style="display: none"><span class="btn-icon">↑</span> jump to top <span class="btn-icon">↑</span></a>
 		</body>
 	</html>
 }

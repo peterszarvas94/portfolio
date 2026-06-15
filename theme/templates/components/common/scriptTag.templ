@@ -1,0 +1,7 @@
+package common
+
+import "fmt"
+
+templ ScriptTag(fingerprint string) {
+	<script src={ fmt.Sprintf("/static/js/main.%s.js", fingerprint) }></script>
+}

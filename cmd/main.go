@@ -47,7 +47,7 @@ func main() {
 	writePage(templates.NotFoundPage(fingerprint), filepath.Join(outDir, "404", "index.html"))
 
 	slog.Info("copying static assets", "src", "theme/static", "dst", filepath.Join(outDir, "static"))
-	if err := copyDir("theme/static", filepath.Join(outDir, "static"), "css"); err != nil {
+	if err := copyDir("theme/static", filepath.Join(outDir, "static"), "css", "js"); err != nil {
 		panic(err)
 	}
 
@@ -73,21 +73,16 @@ func fingerprintCSS(outDir string) string {
 		panic(err)
 	}
 	fpStr := hex.EncodeToString(fp)
-	slog.Info("generated CSS fingerprint", "fingerprint", fpStr)
+	slog.Info("generated fingerprint", "fingerprint", fpStr)
 
+	// CSS
 	cssSrc := "theme/static/css"
 	cssFiles := []string{"base.css", "components.css", "style.css", "utilities.css"}
-
 	outCSSDir := filepath.Join(outDir, "static", "css")
-	if err := os.MkdirAll(outCSSDir, 0755); err != nil {
-		panic(err)
-	}
+	os.MkdirAll(outCSSDir, 0755)
 
 	for _, name := range cssFiles {
-		data, err := os.ReadFile(filepath.Join(cssSrc, name))
-		if err != nil {
-			panic(err)
-		}
+		data, _ := os.ReadFile(filepath.Join(cssSrc, name))
 
 		if name == "style.css" {
 			content := string(data)
@@ -99,11 +94,21 @@ func fingerprintCSS(outDir string) string {
 		}
 
 		outName := fmt.Sprintf("%s.%s.css", strings.TrimSuffix(name, ".css"), fpStr)
-		if err := os.WriteFile(filepath.Join(outCSSDir, outName), data, 0644); err != nil {
-			panic(err)
-		}
+		os.WriteFile(filepath.Join(outCSSDir, outName), data, 0644)
 		slog.Debug("fingerprinted CSS", "src", name, "dst", outName)
 	}
+
+	// JS
+	jsSrc := filepath.Join("theme", "static", "js", "main.js")
+	jsData, err := os.ReadFile(jsSrc)
+	if err != nil {
+		panic(err)
+	}
+	outJSDir := filepath.Join(outDir, "static", "js")
+	os.MkdirAll(outJSDir, 0755)
+	jsOut := fmt.Sprintf("main.%s.js", fpStr)
+	os.WriteFile(filepath.Join(outJSDir, jsOut), jsData, 0644)
+	slog.Info("fingerprinted JS", "src", "main.js", "dst", jsOut)
 
 	return fpStr
 }

@@ -17,39 +17,4 @@ templ Header() {
 			}
 		</div>
 	</header>
-	<script>
-		(()=>{
-			const els = Array.from(document.querySelectorAll(".home-header h1 > div"));
-			const texts = els.map(el => el.textContent);
-			for(const el of els) el.textContent = "";
-			const cursor = document.createElement("span");
-			cursor.textContent = "_";
-			cursor.style.setProperty("color", "var(--muted)");
-			cursor.style.setProperty("-webkit-text-fill-color", "var(--muted)");
-			els[0].appendChild(cursor);
-			let elIdx = 0;
-			let charIdx = 0;
-			const reveal = () => {
-				if(elIdx >= els.length){
-					cursor.className = "typing-cursor";
-					return;
-				}
-				const el = els[elIdx];
-				const text = texts[elIdx];
-				cursor.remove();
-				el.textContent = text.slice(0, charIdx + 1);
-				el.appendChild(cursor);
-				charIdx++;
-				if(charIdx >= text.length){
-					elIdx++;
-					charIdx = 0;
-					if(elIdx < els.length){
-						els[elIdx].appendChild(cursor);
-					}
-				}
-				setTimeout(reveal, 40 + Math.random() * 30);
-			};
-			reveal();
-		})();
-	</script>
 }

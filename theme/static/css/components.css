@@ -37,10 +37,10 @@
     width: 100%;
     max-width: 64rem;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 4rem 1rem;
 
     @media (min-width: 640px) {
-      padding: 2rem 2.5rem;
+      padding: 2rem 2.5rem 4rem 2.5rem;
     }
 
     h2 {
