@@ -9,12 +9,12 @@ RSYNC_PATH="${RSYNC_PATH:-sudo rsync}"
 
 cd "$ROOT_DIR"
 
-echo "> Running: build"
-mise run build 2>&1 | sed 's/^/  /'
+echo "Building..."
+mise run build
 
-echo "> Running: deploy"
+echo "Deploying..."
 rsync -az --delete --progress \
   --rsync-path="$RSYNC_PATH" \
   "${ROOT_DIR}/public/" \
-  "${REMOTE_HOST}:${REMOTE_PATH}/" | grep --line-buffered -v '^\s*$' | sed 's/^/  /'
-echo "> Site it deployed: https://peterszarvas.hu"
+  "${REMOTE_HOST}:${REMOTE_PATH}/"
+echo "Deployed: https://peterszarvas.hu"
