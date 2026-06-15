@@ -4,7 +4,7 @@ cmd = "templ generate && go build -o tmp/bin/gen ./cmd"
 args_bin = ["-serve"]
 include_ext = ["go", "templ", "css", "js", "png", "jpg", "jpeg", "svg"]
 exclude_regex = ["_templ\\.go"]
-include_dir = ["theme/static", "theme/templates"]
+include_dir = ["static", "templates"]
 delay = 100
 send_interrupt = true
 

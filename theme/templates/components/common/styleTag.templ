@@ -1,7 +1,0 @@
-package common
-
-import "fmt"
-
-templ StyleTag(fingerprint string) {
-	<link rel="stylesheet" href={ fmt.Sprintf("/static/css/style.%s.css", fingerprint) }/>
-}

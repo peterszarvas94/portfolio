@@ -1,0 +1,8 @@
+package components
+
+templ HomeContactLink(text string, href string, icon templ.Component) {
+	<li class="home-contact-item">
+		@icon
+		<a href={ templ.SafeURL(href) } target="_blank" rel="noopener noreferrer" class="link home-link">{ text }</a>
+	</li>
+}

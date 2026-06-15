@@ -1,0 +1,174 @@
+package pages
+
+import (
+	"portfolio/templates/components"
+)
+
+templ ResumePage(fingerprint string) {
+	<html>
+		@components.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume", fingerprint)
+		<body class="resume-body">
+			<header class="resume-header">
+				<a href="/" class="btn"><span class="btn-icon">&larr;</span> Back</a>
+				<button onclick="window.print()" class="btn">
+						Print
+					</button>
+					<a href="/static/Szarvas_Peter_resume.pdf" download="Szarvas Péter - components.pdf" class="btn">
+						Download PDF
+					</a>
+			</header>
+			<main class="resume-main">
+				<div class="resume-layout">
+					<div>
+						<h1>Péter Szarvas</h1>
+						<p>software engineer</p>
+						<p class="bio">Full-stack developer building production React, Node.js, and Go apps. Creator of <a href="https://bandcash.app" class="link">bandcash</a>, an event payment splitting SaaS app.</p>
+					</div>
+					<ul class="resume-contacts">
+						@components.ResumeContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu") {
+							@components.Mail()
+						}
+						@components.ResumeContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/") {
+							@components.LinkedIn()
+						}
+						@components.ResumeContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94") {
+							@components.Github()
+						}
+						@components.ResumeContactLink("peterszarvas.hu", "https://peterszarvas.hu") {
+							@components.Globe()
+						}
+						@components.ContactItem("Martonvásár, Hungary") {
+							@components.Pin()
+						}
+					</ul>
+				</div>
+				@components.Article() {
+					@components.Heading2("Experience")
+					@components.ResumeSection() {
+						@components.Heading3("Full-stack Developer @ Atos", "2024 - present")
+					}
+					@components.List() {
+						<li>
+							{ "Creating a greenfield application for a government project (millions of users)" }
+						</li>
+						<li>
+							{ "Implementing reusable " }
+							@components.Chip("UI components")
+							{ "and " }
+							@components.Chip("REST API")
+							{ "endpoints" }
+						</li>
+						<li>
+							@components.Chip("SCRUM")
+							{ "methodology, international team (20+ person)" }
+						</li>
+						<li>
+							@components.Chip("React")
+							@components.Chip("TypeScript")
+							@components.Chip("Material UI")
+							@components.Chip("CSS")
+							{ "i18next, React Query, " }
+							@components.Chip("Node.js")
+							@components.Chip("NestJS")
+							@components.Chip("Vitest")
+							@components.Chip("Git")
+						</li>
+					}
+					@components.ResumeSection() {
+						@components.Heading3("Developer @ Kyndryl", "2022 - 2024")
+						@components.List() {
+							<li>Developed an internal business lead tracker in a 2-person team</li>
+							<li>React, JavaScript, Java, Git</li>
+						}
+					}
+					@components.ResumeSection() {
+						@components.Heading3("Microsoft System Administrator @ IBM / Kyndryl", "2020 - 2022")
+						@components.List() {
+							<li>
+								{ "Managed a " }
+								@components.Chip("hybrid could environment")
+								{ "using Windows servers and Microsoft Azure" }
+							</li>
+							<li>
+								Acquired AZ-104 Azure Fundamentals certification
+							</li>
+						}
+					}
+				}
+				@components.Article() {
+					@components.Heading2("Solo projects")
+					@components.ResumeSection() {
+						@components.Heading3Link("bandcash.app", "https://bandcash.app", "")
+						@components.List() {
+							<li>
+								@components.Chip("Financial tracking SaaS")
+								{ "for music bands (closed beta phase)" }
+							</li>
+							<li>Managing income, expenses, events, member payouts, permission control, etc.</li>
+							<li>
+								{ "Custom framework: " }
+								@components.Chip("Go")
+								{ "echo, templ, datastar, SQLite" }
+							</li>
+							<li>
+								{ "Deployed on a VPS, full software with " }
+								@components.Chip("payment integration")
+								{ "(Lemon Squeezy), log collection, uptime monitoring, staging-production environments" }
+							</li>
+							<li>
+								{ "Version control: " }
+								@components.Chip("Jujutsu")
+								{ "(git-compatible modern alternative)" }
+							</li>
+						}
+					}
+					@components.ResumeSection() {
+						@components.Heading3("Other", "")
+						@components.List() {
+							<li>
+								@components.ResumeLink("https://szarvaspongrac.hu") {
+									{ "szarvaspongrac.hu" }
+								}
+								{ " - artist portfolio: " }
+								@components.Chip("Astro")
+								@components.Chip("SolidJS")
+								@components.Chip("Tailwind CSS")
+							</li>
+							<li>
+								@components.ResumeLink("https://szeremletanc.hu") {
+									{ "szeremletanc.hu" }
+								}
+								{ " - dancegroup's site: Wordpress CMS, Astro" }
+							</li>
+							<li>
+								@components.ResumeLink("https://pantlikazenekar.hu/") {
+									{ "pantlikazekar.hu" }
+								}
+								{ " - music band's site: Astro" }
+							</li>
+						}
+					}
+				}
+				@components.Article() {
+					@components.Heading2("Skills")
+					@components.List() {
+						<li>
+							@components.Chip("AI-assisted development")
+							{ "with wide range of tools" }
+						</li>
+						<li>Professional English usage daily in an international team</li>
+					}
+				}
+				@components.Article() {
+					@components.Heading2("Education")
+					@components.ResumeSection() {
+						@components.Heading3("Computer Science @ University of Szeged", "")
+						@components.List() {
+							<li>3 semesters of core subjects, transitioned to self-directed learning</li>
+						}
+					}
+				}
+			</main>
+		</body>
+	</html>
+}

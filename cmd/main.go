@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-	"portfolio/theme/templates"
+	"portfolio/templates/pages"
 	"strings"
 
 	"github.com/a-h/templ"
@@ -42,17 +42,16 @@ func main() {
 		}
 	}
 
-	writePage(templates.IndexPage(fingerprint), filepath.Join(outDir, "index.html"))
-	writePage(templates.ResumePage(fingerprint), filepath.Join(outDir, "resume", "index.html"))
-	writePage(templates.NotFoundPage(fingerprint), filepath.Join(outDir, "404", "index.html"))
+	writePage(pages.IndexPage(fingerprint), filepath.Join(outDir, "index.html"))
+	writePage(pages.ResumePage(fingerprint), filepath.Join(outDir, "resume", "index.html"))
 
-	slog.Info("copying static assets", "src", "theme/static", "dst", filepath.Join(outDir, "static"))
-	if err := copyDir("theme/static", filepath.Join(outDir, "static"), "css", "js"); err != nil {
+	slog.Info("copying static assets", "src", "static", "dst", filepath.Join(outDir, "static"))
+	if err := copyDir("static", filepath.Join(outDir, "static"), "css", "js"); err != nil {
 		panic(err)
 	}
 
 	// Copy root favicon
-	if data, err := os.ReadFile("theme/static/favicon.ico"); err == nil {
+	if data, err := os.ReadFile("static/favicon.ico"); err == nil {
 		os.WriteFile(filepath.Join(outDir, "favicon.ico"), data, 0644)
 		slog.Info("copied favicon")
 	}
@@ -76,7 +75,7 @@ func fingerprintCSS(outDir string) string {
 	slog.Info("generated fingerprint", "fingerprint", fpStr)
 
 	// CSS
-	cssSrc := "theme/static/css"
+	cssSrc := "static/css"
 	cssFiles := []string{"base.css", "components.css", "style.css", "utilities.css"}
 	outCSSDir := filepath.Join(outDir, "static", "css")
 	os.MkdirAll(outCSSDir, 0755)
@@ -99,7 +98,7 @@ func fingerprintCSS(outDir string) string {
 	}
 
 	// JS
-	jsSrc := filepath.Join("theme", "static", "js", "main.js")
+	jsSrc := filepath.Join("static", "js", "main.js")
 	jsData, err := os.ReadFile(jsSrc)
 	if err != nil {
 		panic(err)
@@ -134,7 +133,6 @@ func fileServer(root string) http.Handler {
 			return
 		}
 
-		r.URL.Path = "/404/index.html"
 		fs.ServeHTTP(w, r)
 	})
 }

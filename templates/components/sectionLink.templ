@@ -1,0 +1,11 @@
+package components
+
+import "fmt"
+
+templ SectionLink(sectionId string) {
+	<div class="home-section-link">
+		<a href={ fmt.Sprintf("#%s", sectionId) }>
+			{ children... }
+		</a>
+	</div>
+}
