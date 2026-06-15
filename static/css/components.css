@@ -45,7 +45,7 @@
 
     h2 {
       display: flex;
-      font-size: 1.875rem;
+      font-size: var(--text-3xl);
       color: var(--base-content);
       align-self: flex-start;
 
@@ -66,11 +66,6 @@
     }
   }
 
-  .lucide-file-user {
-    color: var(--muted);
-    width: 1rem;
-    height: 1rem;
-  }
 }
 
 .home-header {
@@ -93,7 +88,7 @@
   }
 
   h1 {
-    font-size: 1.875rem;
+    font-size: var(--text-3xl);
     font-weight: normal;
 
     > div:nth-child(2) {
@@ -109,7 +104,7 @@
 
   .art {
     color: var(--muted);
-    font-size: 1em;
+    font-size: var(--text-md);
   }
 
   a {
@@ -119,10 +114,6 @@
     align-items: center;
     color: var(--base-content);
     width: fit-content;
-  }
-
-  .lucide-chevron-down {
-    color: var(--muted);
   }
 }
 
@@ -137,100 +128,56 @@
   align-items: center;
   gap: 0.25rem;
   width: fit-content;
-
-  .lucide {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .lucide-link-2,
-  .lucide-github {
-    color: var(--muted);
-  }
+  max-width: 100%;
 
   div {
     width: fit-content;
+    overflow-wrap: anywhere;
   }
 }
 
 .home-project {
-  margin-bottom: 1rem;
+  h3 {
+    font-size: var(--text-xl);
+    font-weight: normal;
+    padding: 0.5rem 0;
+  }
 
   .carousel-wrap {
-    display: inline-flex;
-    overflow-x: scroll;
+    display: flex;
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 1rem;
-    width: 100%;
-    margin-bottom: 0.5rem;
-    scroll-behavior: smooth;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   .carousel-slide {
-    box-sizing: content-box;
-    display: flex;
-    flex: none;
+    flex: 0 0 100%;
     scroll-snap-align: start;
-    width: calc(100% - 2px);
     border: 1px solid var(--muted);
-    position: relative;
-    flex-direction: column;
-    overflow: hidden;
-    overflow-x: auto;
+  }
 
-    img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      aspect-ratio: 16 / 9;
-    }
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
 
   .nav {
     position: absolute;
-    left: 0.5rem;
-    right: 0.5rem;
-    top: 50%;
     display: flex;
     justify-content: space-between;
+    inset: 50% 0.5rem auto;
     transform: translateY(-50%);
   }
 
   .carousel-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 0.75rem;
     padding: 0;
     background: var(--base-200);
-    color: var(--base-content);
     border: 1px solid var(--base-200);
-
-    .lucide {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-
-    &:hover {
-      background: var(--base-300);
-      border-color: var(--base-300);
-    }
-  }
-
-  .title {
-    font-size: 1.125rem;
-    color: var(--base-content);
   }
 }
 
@@ -247,12 +194,6 @@
   align-items: center;
   gap: 0.5rem;
   justify-content: flex-start;
-
-  .lucide {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--muted);
-  }
 }
 
 .home-tags {
@@ -285,10 +226,6 @@
   color: var(--base-content);
 
   .btn {
-    .lucide {
-      color: var(--muted);
-    }
-
     .btn-icon {
       color: var(--muted);
     }
@@ -314,18 +251,18 @@
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: var(--text-2xl);
     text-transform: uppercase;
     font-weight: 700;
     color: var(--base-content);
 
     + p {
-      font-size: 1.25rem;
+      font-size: var(--text-xl);
     }
   }
 
   .bio {
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     color: var(--base-content);
     margin-top: 0.25rem;
     padding-bottom: 2rem;
@@ -337,7 +274,7 @@
   }
 
   .resume-h2 {
-    font-size: 1.25rem;
+    font-size: var(--text-xl);
     color: var(--base-content);
     text-transform: uppercase;
     font-weight: 700;
@@ -365,7 +302,7 @@
       align-items: center;
 
       .text {
-        font-size: 1.125rem;
+        font-size: var(--text-lg);
         font-weight: 700;
         color: var(--base-content);
       }
@@ -425,12 +362,6 @@
       gap: 0.25rem;
       white-space: nowrap;
     }
-  }
-
-  .lucide {
-    width: 1rem;
-    height: 1rem;
-    margin-left: 0.25rem;
   }
 
   .right {

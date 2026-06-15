@@ -2,7 +2,7 @@ package components
 
 import (
 	"strings"
-	"fmt"
+	"portfolio/templates/icons"
 )
 
 type ProjectProps struct {
@@ -28,19 +28,18 @@ templ Project(props *ProjectProps) {
 				</div>
 				<div class="nav">
 					<button class="carousel-btn" onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), -1) }>
-						@Chevron("rot-90")
+						@icons.ChevronDown(templ.Attributes{"class": "icon rot-90"})
 					</button>
 					<button class="carousel-btn" onclick={ templ.JSFuncCall("scrollCarouselFromButton", templ.JSExpression("this"), 1) }>
-						@Chevron("rot-neg-90")
+						@icons.ChevronDown(templ.Attributes{"class": "icon rot-neg-90"})
 					</button>
 				</div>
 			</div>
-			<figcaption class="title">
-				<a href={ templ.SafeURL(props.Href) } class="link" target="_blank" rel="noopener noreferrer">{ props.Title }</a>
-			</figcaption>
-			@HomeLink(props.Href, strings.Split(props.Href, "https://")[1], false)
+			<h3><a href={ templ.SafeURL(props.Href) } target="_blank" rel="noopener noreferrer">{ props.Title }</a></h3>
+			<a href={ templ.SafeURL(props.Href) } class="link" target="_blank" rel="noopener noreferrer">{ strings.Split(props.Href, "https://")[1] }</a>
 			if props.GithubHref != "" {
-				@HomeLink(props.GithubHref, fmt.Sprintf("github.com/peterszarvas94/%s", strings.Split(props.GithubHref, "https://github.com/peterszarvas94/")[1]), true)
+				<br/>
+				<a href={ templ.SafeURL(props.GithubHref) } class="link" target="_blank" rel="noopener noreferrer">{ strings.Split(props.GithubHref, "https://")[1] }</a>
 			}
 		</figure>
 	</div>

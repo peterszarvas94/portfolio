@@ -13,6 +13,13 @@
   --font-inter: "Inter", sans-serif;
   --font-firacode: "Fira Code", monospace;
 
+  --text-sm: 0.875rem;
+  --text-md: 1em;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+
   --a4l: 1120px;
   --a4s: 794px;
 
@@ -137,3 +144,7 @@ ul {
     opacity: 0;
   }
 }
+
+/* * { */
+/*   outline: 1px solid lime; */
+/* } */

@@ -92,7 +92,7 @@ templ IndexPage(fingerprint string) {
 								path.Join("static", "images", "bandcash_1.png"),
 								path.Join("static", "images", "bandcash_2.png"),
 							},
-							Title: "bandcash",
+							Title: "Event payment splitting SaaS app for music bands.",
 							IsTop: true,
 						})
 						@components.Project(&components.ProjectProps{
@@ -146,10 +146,9 @@ templ IndexPage(fingerprint string) {
 				@components.HomeSection("contact") {
 					@components.H2("contact")
 					<ul class="home-contacts">
-						@components.HomeContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu", components.Mail())
-						@components.HomeContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94", components.Github())
-						@components.HomeContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/", components.LinkedIn())
-						@components.HomeContactLink("+36 20 274 6444", "tel:+36202746444", components.Phone())
+						@components.HomeContactLink("contact@peterszarvas.hu", "mailto:contact@peterszarvas.hu")
+						@components.HomeContactLink("github.com/peterszarvas94", "https://github.com/peterszarvas94")
+						@components.HomeContactLink("linkedin.com/in/peterszarvas94", "https://www.linkedin.com/in/peterszarvas94/")
 					</ul>
 				}
 			</main>
