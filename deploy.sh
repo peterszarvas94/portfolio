@@ -9,16 +9,13 @@ RSYNC_PATH="${RSYNC_PATH:-sudo rsync}"
 
 cd "$ROOT_DIR"
 
-mise run build
+echo "> build"
+templ generate 2>&1 | sed 's/^/  /'
+go run ./cmd 2>&1 | sed 's/^/  /'
 
-RSYNC_PROGRESS_FLAGS=(--progress)
-if rsync --version 2>/dev/null | grep -q 'version 3'; then
-  RSYNC_PROGRESS_FLAGS=(--info=progress2)
-fi
-
-rsync -az --delete "${RSYNC_PROGRESS_FLAGS[@]}" \
+echo "> deploy"
+rsync -az --delete --progress \
   --rsync-path="$RSYNC_PATH" \
   "${ROOT_DIR}/public/" \
-  "${REMOTE_HOST}:${REMOTE_PATH}/"
-
-echo "Live: https://peterszarvas.hu/"
+  "${REMOTE_HOST}:${REMOTE_PATH}/" | grep --line-buffered -v '^\s*$' | sed 's/^/  /'
+echo "> https://peterszarvas.hu"
