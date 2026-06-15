@@ -2,8 +2,6 @@ package home
 
 templ Section(sectionId string, classes ...string) {
 	<section class={ "section", classes } id={ sectionId }>
-		<div class="content">
-			{ children... }
-		</div>
+		{ children... }
 	</section>
 }

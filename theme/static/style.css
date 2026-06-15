@@ -306,38 +306,25 @@ ul {
 .home-body .section {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-body .section .content {
-  display: flex;
+  gap: 2rem;
   flex-direction: column;
-  gap: 2.5rem;
+  align-items: center;
   justify-content: center;
   width: 100%;
   max-width: 64rem;
   margin: 0 auto;
-  padding: 0 1rem;
-}
+  padding: 2rem 1rem 2rem 1rem;
 
-@media (min-width: 640px) {
-  .home-body .section .content {
-    padding: 0 2.5rem;
+  @media (min-width: 640px) {
+    padding: 2rem 2.5rem 2rem 2.5rem;
   }
-}
-
-.home-body .section-main {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
 }
 
 .home-h2 {
   display: flex;
   font-size: 1.875rem;
-  padding-bottom: 3rem;
   color: var(--base-content);
+  align-self: flex-start;
 }
 
 .home-h2 > :first-child {
