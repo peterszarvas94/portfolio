@@ -4,8 +4,8 @@ import (
 	"portfolio/theme/templates/components/common"
 )
 
-templ NotFoundPage() {
-	@common.Head("", "")
+templ NotFoundPage(fingerprint string) {
+	@common.Head("", "", fingerprint)
 	@notFoundBody()
 }
 

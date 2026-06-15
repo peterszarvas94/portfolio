@@ -6,9 +6,9 @@ import (
 	"portfolio/theme/templates/components/resume"
 )
 
-templ ResumePage() {
+templ ResumePage(fingerprint string) {
 	<html>
-		@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume") {
+		@common.Head("Szarvas Péter - resume", "Szarvas Péter full-stack developer's resume", fingerprint) {
 		}
 		<body class="resume-body">
 			<header>

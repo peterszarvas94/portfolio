@@ -7,9 +7,9 @@ import (
 	"portfolio/theme/templates/components/icons"
 )
 
-templ IndexPage() {
+templ IndexPage(fingerprint string) {
 	<html>
-		@common.Head("Szarvas Péter", "Portfolio of Szarvas Péter software engineer") {
+		@common.Head("Szarvas Péter", "Portfolio of Szarvas Péter software engineer", fingerprint) {
 			@home.CarouselScript()
 		}
 		<body class="home-body">

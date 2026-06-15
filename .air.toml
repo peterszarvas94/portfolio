@@ -7,3 +7,11 @@ exclude_regex = ["_templ\\.go"]
 include_dir = ["theme/static", "theme/templates"]
 delay = 100
 send_interrupt = true
+
+[log]
+time = false
+main_only = true
+silent = true
+
+[misc]
+startup_banner = ""

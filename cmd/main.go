@@ -2,8 +2,11 @@ package main
 
 import (
 	"context"
+	"crypto/rand"
+	"encoding/hex"
 	"flag"
 	"fmt"
+	"log/slog"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -19,9 +22,13 @@ func main() {
 
 	outDir := "public"
 
+	slog.Info("cleaning output directory", "dir", outDir)
 	os.RemoveAll(outDir)
 
+	fingerprint := fingerprintCSS(outDir)
+
 	writePage := func(component templ.Component, path string) {
+		slog.Info("rendering page", "path", path)
 		if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 			panic(err)
 		}
@@ -35,27 +42,70 @@ func main() {
 		}
 	}
 
-	writePage(templates.IndexPage(), filepath.Join(outDir, "index.html"))
-	writePage(templates.ResumePage(), filepath.Join(outDir, "resume", "index.html"))
-	writePage(templates.NotFoundPage(), filepath.Join(outDir, "404", "index.html"))
+	writePage(templates.IndexPage(fingerprint), filepath.Join(outDir, "index.html"))
+	writePage(templates.ResumePage(fingerprint), filepath.Join(outDir, "resume", "index.html"))
+	writePage(templates.NotFoundPage(fingerprint), filepath.Join(outDir, "404", "index.html"))
 
-	if err := copyDir("theme/static", filepath.Join(outDir, "static")); err != nil {
+	slog.Info("copying static assets", "src", "theme/static", "dst", filepath.Join(outDir, "static"))
+	if err := copyDir("theme/static", filepath.Join(outDir, "static"), "css"); err != nil {
 		panic(err)
 	}
 
 	// Copy root favicon
 	if data, err := os.ReadFile("theme/static/favicon.ico"); err == nil {
 		os.WriteFile(filepath.Join(outDir, "favicon.ico"), data, 0644)
+		slog.Info("copied favicon")
 	}
 
-	fmt.Println("Generated public/")
+	slog.Info("build complete", "dir", outDir)
 
 	if *serve {
-		fmt.Println("Serving on http://localhost:8080")
-		if err := http.ListenAndServe(":8080", fileServer(outDir)); err != nil {
+		slog.Info("starting dev server", "url", "http://localhost:8080")
+		if err := http.ListenAndServe("localhost:8080", fileServer(outDir)); err != nil {
 			panic(err)
 		}
 	}
+}
+
+func fingerprintCSS(outDir string) string {
+	fp := make([]byte, 4)
+	if _, err := rand.Read(fp); err != nil {
+		panic(err)
+	}
+	fpStr := hex.EncodeToString(fp)
+	slog.Info("generated CSS fingerprint", "fingerprint", fpStr)
+
+	cssSrc := "theme/static/css"
+	cssFiles := []string{"base.css", "components.css", "style.css", "utilities.css"}
+
+	outCSSDir := filepath.Join(outDir, "static", "css")
+	if err := os.MkdirAll(outCSSDir, 0755); err != nil {
+		panic(err)
+	}
+
+	for _, name := range cssFiles {
+		data, err := os.ReadFile(filepath.Join(cssSrc, name))
+		if err != nil {
+			panic(err)
+		}
+
+		if name == "style.css" {
+			content := string(data)
+			content = strings.ReplaceAll(content, `"base.css"`, fmt.Sprintf(`"base.%s.css"`, fpStr))
+			content = strings.ReplaceAll(content, `"components.css"`, fmt.Sprintf(`"components.%s.css"`, fpStr))
+			content = strings.ReplaceAll(content, `"utilities.css"`, fmt.Sprintf(`"utilities.%s.css"`, fpStr))
+			data = []byte(content)
+			slog.Info("rewrote @import paths", "file", "style.css")
+		}
+
+		outName := fmt.Sprintf("%s.%s.css", strings.TrimSuffix(name, ".css"), fpStr)
+		if err := os.WriteFile(filepath.Join(outCSSDir, outName), data, 0644); err != nil {
+			panic(err)
+		}
+		slog.Debug("fingerprinted CSS", "src", name, "dst", outName)
+	}
+
+	return fpStr
 }
 
 func fileServer(root string) http.Handler {
@@ -84,12 +134,20 @@ func fileServer(root string) http.Handler {
 	})
 }
 
-func copyDir(src, dst string) error {
+func copyDir(src, dst string, excludeDirs ...string) error {
 	return filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
 		}
 		rel, _ := filepath.Rel(src, path)
+		for _, exclude := range excludeDirs {
+			if rel == exclude || strings.HasPrefix(rel, exclude+string(filepath.Separator)) {
+				if info.IsDir() {
+					return filepath.SkipDir
+				}
+				return nil
+			}
+		}
 		target := filepath.Join(dst, rel)
 		if info.IsDir() {
 			return os.MkdirAll(target, 0755)

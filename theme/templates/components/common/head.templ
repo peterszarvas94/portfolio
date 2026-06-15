@@ -1,6 +1,6 @@
 package common
 
-templ Head(title, description string) {
+templ Head(title, description, fingerprint string) {
 	<head>
 		<title>{ title }</title>
 		<meta charset="UTF-8"/>
@@ -8,7 +8,7 @@ templ Head(title, description string) {
 		<meta name="description" content={ description }/>
 		<meta name="keywords" content="szarvas, péter, full-stack, developer, portfolio, frontend, backend, typescript, go"/>
 		<meta name="author" content="Szarvas Péter"/>
-		<link rel="stylesheet" href="/static/style.css"/>
+		@StyleTag(fingerprint)
 		{ children... }
 	</head>
 }
