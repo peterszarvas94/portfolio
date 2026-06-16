@@ -1,6 +1,7 @@
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.7rem;
   color: var(--base-content);
   border: 1px solid var(--base-content);
@@ -8,10 +9,12 @@
   padding: 0.5rem 0.75rem;
   font-size: inherit;
   font-family: inherit;
+  line-height: inherit;
   cursor: pointer;
   user-select: none;
   text-decoration: none;
   width: fit-content;
+  box-sizing: border-box;
 
   &:hover {
     background: var(--base-200);
@@ -274,8 +277,12 @@
     font-size: var(--text-sm);
     color: var(--base-content);
     margin-top: 0.25rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0;
     max-width: 65ch;
+
+    @media (min-width: 640px) {
+      padding-bottom: 2rem;
+    }
 
     @media print {
       padding-bottom: 1rem;
@@ -307,8 +314,15 @@
   .resume-section {
     .resume-h3 {
       display: flex;
-      gap: 0.5rem;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+
+      @media (min-width: 640px) {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
       .text {
         font-size: var(--text-lg);
