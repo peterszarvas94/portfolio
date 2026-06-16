@@ -233,9 +233,15 @@
 
   .resume-header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: 0.7rem;
     padding: 2.5rem 0;
+
+    @media (min-width: 640px) {
+      flex-direction: row;
+    }
 
     @media print {
       display: none;
