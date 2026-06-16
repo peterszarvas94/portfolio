@@ -39,7 +39,7 @@ templ Project(props *ProjectProps) {
 			<a href={ templ.SafeURL(props.Href) } class="link" target="_blank" rel="noopener noreferrer">{ strings.Split(props.Href, "https://")[1] }</a>
 			if props.GithubHref != "" {
 				<br/>
-				<a href={ templ.SafeURL(props.GithubHref) } class="link" target="_blank" rel="noopener noreferrer">{ strings.Split(props.GithubHref, "https://")[1] }</a>
+				<a href={ templ.SafeURL(props.GithubHref) } class="link" target="_blank" rel="noopener noreferrer">{ "gh/" + strings.Split(props.GithubHref, "/")[len(strings.Split(props.GithubHref, "/"))-1] }</a>
 			}
 		</figure>
 	</div>
