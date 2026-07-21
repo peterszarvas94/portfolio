@@ -22,6 +22,7 @@
 }
 
 .home-body {
+  font-family: var(--font-jetbrainsmono);
   background: var(--base-100);
   color: var(--base-content);
   overflow-x: hidden;
@@ -225,10 +226,13 @@
 }
 
 .resume-body {
+  font-family: var(--font-inter);
   background: var(--base-100);
   color: var(--base-content);
 
   .btn {
+    font-family: var(--font-jetbrainsmono);
+
     .btn-icon {
       color: var(--muted);
     }
