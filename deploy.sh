@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-REMOTE_HOST="${REMOTE_HOST:-peti@shared}"
+REMOTE_HOST="${REMOTE_HOST:-peti@peterszarvas.hu}"
 REMOTE_PATH="${REMOTE_PATH:-/var/www/peterszarvas.hu}"
 RSYNC_PATH="${RSYNC_PATH:-sudo rsync}"
 
