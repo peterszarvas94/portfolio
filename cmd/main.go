@@ -11,14 +11,20 @@ import (
 	"os"
 	"path/filepath"
 	"portfolio/templates/pages"
+	"strconv"
 	"strings"
 
 	"github.com/a-h/templ"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	serve := flag.Bool("serve", false, "start dev server on http://localhost:8080")
+	serve := flag.Bool("serve", false, "start server on the configured port")
 	flag.Parse()
+
+	if err := godotenv.Load(); err != nil && !os.IsNotExist(err) {
+		panic(err)
+	}
 
 	outDir := "public"
 
@@ -59,8 +65,16 @@ func main() {
 	slog.Info("build complete", "dir", outDir)
 
 	if *serve {
-		slog.Info("starting dev server", "url", "http://localhost:8080")
-		if err := http.ListenAndServe("localhost:8080", fileServer(outDir)); err != nil {
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "8080"
+		}
+		if _, err := strconv.Atoi(port); err != nil {
+			panic(fmt.Errorf("invalid PORT %q: %w", port, err))
+		}
+		addr := ":" + port
+		slog.Info("starting server", "url", "http://localhost:"+port)
+		if err := http.ListenAndServe(addr, fileServer(outDir)); err != nil {
 			panic(err)
 		}
 	}

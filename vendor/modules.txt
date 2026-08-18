@@ -3,3 +3,6 @@
 github.com/a-h/templ
 github.com/a-h/templ/runtime
 github.com/a-h/templ/safehtml
+# github.com/joho/godotenv v1.5.1
+## explicit; go 1.12
+github.com/joho/godotenv

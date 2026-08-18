@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --base-100: oklch(100% 0 0);
   --base-200: oklch(98% 0 0);
   --base-300: oklch(95% 0 0);
@@ -8,7 +8,7 @@
   --neutral-content: oklch(92% 0.004 286.32);
 
   --muted: color-mix(in srgb, var(--base-content) 40%, transparent);
-  --accent: light-dark(#c2410c, #fb923c);
+  --accent: #c2410c;
   --font-jetbrainsmono: "JetBrains Mono", monospace;
   --font-inter: "Inter", sans-serif;
 
@@ -22,12 +22,15 @@
   --a4l: 1120px;
   --a4s: 794px;
 
-  @media (prefers-color-scheme: dark) {
-    --base-100: oklch(25.33% 0.016 252.42);
-    --base-200: oklch(23.26% 0.014 253.1);
-    --base-300: oklch(21.15% 0.012 254.09);
-    --base-content: oklch(97.807% 0.029 256.847);
-  }
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --base-100: oklch(25.33% 0.016 252.42);
+  --base-200: oklch(23.26% 0.014 253.1);
+  --base-300: oklch(21.15% 0.012 254.09);
+  --base-content: oklch(97.807% 0.029 256.847);
+  --accent: #fb923c;
 }
 
 @font-face {
