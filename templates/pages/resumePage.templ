@@ -99,14 +99,22 @@ templ ResumePage(fingerprint string) {
 								{ "echo, templ, datastar, SQLite" }
 							</li>
 							<li>
-								{ "Deployed on a VPS, full software with " }
+								{ "Deployed on " }
+								@components.Chip("Railway")
+								{ "with " }
+								@components.Chip("Docker")
+								{ ", staging + production services/environments" }
+							</li>
+							<li>
+								{ "Full software with " }
 								@components.Chip("payment integration")
-								{ "(Lemon Squeezy), log collection, uptime monitoring, staging-production environments" }
+								{ "(Lemon Squeezy), SQLite on persistent volume with R2 backups, health checks + pre-deploy validation, log collection, external uptime monitoring" }
 							</li>
 							<li>
 								{ "Version control: " }
-								@components.Chip("Jujutsu")
-								{ "(git-compatible modern alternative)" }
+								@components.Chip("Git")
+								@components.Chip("GitHub")
+								{ "(staging branch workflow, PRs, auto-deploy)" }
 							</li>
 						}
 					}

@@ -4,7 +4,10 @@ air = "1.64.4"
 "github:a-h/templ" = { version = "0.3.1020", exe = "templ" }
 
 [tasks.build]
-run = "templ generate && go run ./cmd"
+run = "templ generate && go run ./cmd && go run ./cmd/resumepdf"
+
+[tasks.resume-pdf]
+run = "go run ./cmd/resumepdf"
 
 [tasks.dev]
 run = "air -c .air.toml"
