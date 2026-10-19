@@ -18,3 +18,7 @@ and commit it when the resume changes. Chromium is not needed in this image.
 The Datastar/Tiptap demo is a separate application. If sharing this domain,
 route `/demo/datastar-tiptap` to its container, strip the prefix, and set that
 application's `BASE_PATH` to `/demo/datastar-tiptap`.
+
+Deployments are managed by central Coolify on Shared. Pushes to the configured
+production branch deploy automatically through the Forgejo bridge. Host Caddy
+provides HTTPS; application listeners are bound to loopback.
