@@ -9,7 +9,8 @@ COPY static/ static/
 RUN go run github.com/a-h/templ/cmd/templ@v0.3.1020 generate \
     && go run ./cmd
 
-FROM nginxinc/nginx-unprivileged:1.28-alpine
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /src/public/ /usr/share/nginx/html/
+FROM caddy:2.11-alpine
+COPY docker/Caddyfile /etc/caddy/Caddyfile
+COPY --from=build /src/public/ /srv/
+USER 10001:10001
 EXPOSE 8080
