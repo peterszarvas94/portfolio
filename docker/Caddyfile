@@ -5,6 +5,11 @@
 }
 
 :8080 {
+	@tiptap path /demo/datastar-tiptap /demo/datastar-tiptap/*
+	handle @tiptap {
+		uri strip_prefix /demo/datastar-tiptap
+		redir https://tiptap.peterszarvas.hu{uri} permanent
+	}
 	root * /srv
 	file_server
 }
