@@ -5,14 +5,21 @@ go = "1.25.6"
 [tasks.generate]
 run = "templ generate"
 
-[tasks.dev]
-run = "templ generate && go run ./cmd/server"
-
 [tasks.build]
-run = "templ generate && go run ./cmd/resumepdf && go build -o bin/portfolio ./cmd/server"
+description = "Render the static site into public/"
+run = "templ generate && go run ./cmd/build"
+
+[tasks.dev]
+description = "Build and preview public/ on $PORT (default 8080), without Caddy redirects"
+run = "templ generate && go run ./cmd/build -serve"
+
+[tasks.resume-pdf]
+description = "Regenerate static/resume.pdf with Chromium; commit the result"
+run = "templ generate && go run ./cmd/resumepdf"
 
 [tasks.check]
 run = "templ fmt -fail . && go vet ./..."
 
-[tasks.resume-pdf]
-run = "templ generate && go run ./cmd/resumepdf"
+[tasks.docker]
+description = "Build and run the production image (Caddy) on port 8080"
+run = "docker build -t portfolio . && docker run --rm -p 8080:8080 portfolio"

@@ -1,0 +1,33 @@
+{
+	admin off
+	persist_config off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * {$SITE_ROOT:/srv}
+
+	# Legacy Tiptap demo lives on its own subdomain.
+	@tiptap path /demo/datastar-tiptap /demo/datastar-tiptap/*
+	route @tiptap {
+		uri strip_prefix /demo/datastar-tiptap
+		redir https://tiptap.peterszarvas.hu{uri} permanent
+	}
+
+	# The résumé used to be a separate page; it is now the home page.
+	@resume path /resume /resume/ /resume/index.html
+	redir @resume / permanent
+
+	# Old PDF location from the previous site.
+	redir /static/Szarvas_Peter_resume.pdf /resume.pdf permanent
+
+	header /resume.pdf Content-Disposition `attachment; filename="Peter-Szarvas-resume.pdf"`
+
+	# Fonts never change; everything else revalidates so deploys show up immediately.
+	@fonts path /static/fonts/*
+	header @fonts Cache-Control "public, max-age=31536000, immutable"
+	@revalidate not path /static/fonts/*
+	header @revalidate Cache-Control "no-cache"
+
+	file_server
+}

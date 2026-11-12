@@ -1,15 +1,36 @@
 # Péter Szarvas
 
-A deliberately small, single-page portfolio and résumé. Go serves a templ template and one stylesheet. IBM Plex Mono is self-hosted; its license is in `static/fonts/OFL.txt`.
+A deliberately small, single-page portfolio and résumé, built as a static site. A templ template is rendered to `public/index.html` at build time; Caddy serves the files. IBM Plex Mono is self-hosted; its license is in `static/fonts/OFL.txt`.
 
-## Run
+## Develop
 
-Install the tools in `mise.toml`, then run `mise run dev`. Open http://localhost:8080. Set `PORT` to use another port.
+Install the tools in `mise.toml`, then:
 
-The page includes career history, projects, and background. **Save resume** downloads the compact one-page A4 PDF. **Print resume** opens the browser print dialog with the same compact layout. Homepage extras and controls are excluded from print. The print stylesheet requests A4 portrait with a zero page margin (16mm/18mm spacing comes from the content), so browsers have no room for their date/URL headers and footers, and exact print colors. It keeps headings and company entries together and works with background graphics disabled. Margins and Scale in the print dialog should stay on Default.
-
-`mise run build` generates templates, refreshes `static/resume.pdf`, and builds `bin/portfolio`. PDF generation requires Chromium (`chromium` on PATH, or set `CHROMIUM_BIN`). Regenerate the PDF with `mise run resume-pdf` after changing résumé content or print styles. The generated PDF is committed so serving the site only requires the binary and `static/`.
-
-Run the binary from the project directory so it can find `static/`. `mise run check` checks template formatting and runs Go vet. No Node runtime or frontend build is needed. `/resume` redirects to the single page for old links.
+- `mise run dev` builds `public/` and previews it on http://localhost:8080 (set `PORT` to change). The preview is a plain file server, so Caddy's redirects are not applied.
+- `mise run build` renders `public/` only.
+- `mise run docker` builds and runs the production image on http://localhost:8080, with the real Caddy config.
+- `mise run check` checks template formatting and runs Go vet.
 
 Career content lives in `templates/page.templ`. Employer year ranges come from the previous résumé; IBM/Kyndryl is grouped because separate dates were not available. Bandcash is explicitly shown as independent work alongside employment.
+
+## Résumé PDF
+
+`static/resume.pdf` is generated from the same page and print stylesheet with headless Chromium, and committed. Regenerate it with `mise run resume-pdf` after changing résumé content or print styles (needs `chromium` on PATH, or set `CHROMIUM_BIN`). The build fails if the PDF is missing, so the deploy never needs Chromium.
+
+**Save resume** downloads the PDF. **Print resume** opens the browser print dialog with the same layout. Homepage extras and controls are excluded from print. The print stylesheet requests A4 portrait with a zero page margin (16mm/18mm spacing comes from the content), so browsers have no room for their date/URL headers and footers. Margins and Scale in the print dialog should stay on Default.
+
+## Deploy
+
+Coolify builds the `Dockerfile` (build pack: Dockerfile, exposed port 8080). The build stage generates the templ code and runs `go run ./cmd/build`; the final image is `caddy` serving `public/` with the `Caddyfile`.
+
+Routes handled by Caddy:
+
+| Path | Result |
+| --- | --- |
+| `/` | The page |
+| `/resume`, `/resume/`, `/resume/index.html` | 301 to `/` (the old résumé page) |
+| `/resume.pdf` | The PDF, downloaded as `Peter-Szarvas-resume.pdf` |
+| `/static/Szarvas_Peter_resume.pdf` | 301 to `/resume.pdf` (the old PDF link) |
+| `/demo/datastar-tiptap/*` | 301 to `https://tiptap.peterszarvas.hu/*` |
+
+HTML, CSS and the PDF are served with `Cache-Control: no-cache` (revalidated by ETag), so a deploy shows up immediately; fonts are cached for a year.
