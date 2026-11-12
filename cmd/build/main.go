@@ -15,6 +15,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
+	"sync"
 
 	"portfolio/templates"
 )
@@ -37,8 +39,22 @@ func main() {
 		}
 		log.Printf("Preview: http://localhost:%s", port)
 		// Revalidate every request, as Caddy does in production, so edits never show stale CSS.
+		// Page requests rebuild first: templ's watch mode hot-reloads text-only template edits
+		// without re-running this command, so the static output would otherwise go stale.
 		files := http.FileServer(http.Dir(outDir))
+		var mu sync.RWMutex
 		log.Fatal(http.ListenAndServe(":"+port, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.URL.Path == "/" || strings.HasSuffix(r.URL.Path, ".html") {
+				mu.Lock()
+				err := build()
+				mu.Unlock()
+				if err != nil {
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+				}
+			}
+			mu.RLock()
+			defer mu.RUnlock()
 			w.Header().Set("Cache-Control", "no-cache")
 			files.ServeHTTP(w, r)
 		})))

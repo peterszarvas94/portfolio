@@ -535,7 +535,11 @@ a {
     print-color-adjust: exact;
   }
 
-  .page-nav, .skip-link, .home-extra, .next, .typesheet { display: none; }
+  /* Print keeps the projects from the homepage extras; the story and the call to action stay on screen. */
+  .page-nav, .skip-link, .next, .typesheet, .lore, .home-extra footer { display: none; }
+  .home-extra { break-inside: avoid; }
+  /* Links stay clickable in the PDF but print as plain text. */
+  a { text-decoration: none; }
 
   .paper {
     box-shadow: none;
@@ -547,8 +551,6 @@ a {
     -webkit-box-decoration-break: clone;
   }
 
-  .identity address { flex-direction: row; flex-wrap: wrap; column-gap: var(--space-4); }
-  a { text-decoration: none; }
   h1, h2, h3 { break-after: avoid; }
   .identity, .stage, .job { break-inside: avoid; }
   p, li { orphans: 2; widows: 2; }
