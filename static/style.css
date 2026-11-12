@@ -62,7 +62,7 @@ address { display: flex; flex-direction: column; align-items: flex-start; margin
 .arrow svg { position: absolute; width: 10px; height: 6px; bottom: 0; left: 50%; transform: translateX(-50%); }
 .job { position: relative; break-inside: avoid; }
 /* A step marker on the arrow, level with the company name. The arrow column is --rail wide, 1ch to the left. */
-.job::before { content: ''; position: absolute; top: .5lh; left: calc(-1ch - var(--rail, 3ch) / 2); width: 9px; height: 9px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); transform: translate(-50%, -50%); box-sizing: border-box; }
+.job::before { content: ''; position: absolute; top: .5lh; left: calc(-1ch - var(--rail, 3ch) / 2); width: 9px; height: 9px; border: 1.5px solid var(--ink); border-radius: 50%; background: radial-gradient(circle closest-side, var(--ink) 0 45%, var(--paper) 55%); transform: translate(-50%, -50%); box-sizing: border-box; }
 .job + .job { margin-top: 20px; }
 .job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 12px; }
 .dates { color: var(--muted); font-size: .875rem; }
