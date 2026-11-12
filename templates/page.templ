@@ -8,29 +8,17 @@ templ Page() {
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<meta name="description" content="Péter Szarvas. From systems administration to full-stack development. Building simple software that works."/>
 			<title>Péter Szarvas</title>
-			<meta name="color-scheme" content="light dark"/>
-			<script>
-				try {
-					const saved = localStorage.getItem("portfolio-color-scheme");
-					if (saved === "light" || saved === "dark")
-						document.querySelector('meta[name="color-scheme"]').content = saved;
-				} catch {}
-			</script>
-			<script src="/static/theme.js" defer></script>
+			<meta name="color-scheme" content="light"/>
 			<link rel="preload" href="/static/fonts/IBMPlexMono-Regular.ttf" as="font" type="font/ttf" crossorigin/>
 			<link rel="stylesheet" href="/static/style.css"/>
 		</head>
 		<body>
 			<a class="skip-link" href="#content">Skip to content</a>
-			<nav class="page-nav" aria-label="Resume and appearance">
+			<nav class="page-nav" aria-label="Resume">
 				<div class="resume-actions">
 					<a href="/resume.pdf" download="Peter-Szarvas-resume.pdf">Save resume</a>
 					<button type="button" onclick="document.fonts.ready.then(() => window.print())">Print resume</button>
 				</div>
-				<label class="theme-control" hidden>
-					Theme
-					<select id="theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
-				</label>
 			</nav>
 			<main id="content" class="paper">
 				<header class="identity">

@@ -13,7 +13,7 @@
   font-display: swap;
 }
 :root {
-  color-scheme: light dark;
+  color-scheme: light;
   --ink: #111;
   --muted: #5c5c5c;
   --paper: #fff;
@@ -28,17 +28,13 @@
 body { margin: 0; padding: 32px 16px 64px; font-size: 1rem; line-height: 1.5; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover, button:hover { color: var(--paper); background: var(--ink); }
-a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
 p, h1, h2, h3, ul, ol { margin: 0; }
 h1 { font-size: 1.5rem; line-height: 1.25; }
 h2, h3 { font-size: 1rem; line-height: inherit; }
 h3 { font-weight: 400; }
 .page-nav { max-width: 46rem; margin: 0 auto 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: .8125rem; }
 .resume-actions { display: flex; gap: 20px; align-items: baseline; }
-.theme-control:not([hidden]) { display: flex; align-items: baseline; gap: 8px; }
-select { font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--muted); border-radius: 0; padding: 3px; }
-:root:has(> head > meta[name="color-scheme"][content="light"]) { color-scheme: light; }
-:root:has(> head > meta[name="color-scheme"][content="dark"]) { color-scheme: dark; --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
 .resume-actions > :is(a, button) {
   display: block;
   font: inherit;
@@ -97,14 +93,11 @@ footer > a { display: inline-block; margin-top: 8px; }
   .next { margin-left: 3ch; }
   .job h3 span { font-size: .8125rem; }
 }
-@media (prefers-color-scheme: dark) {
-  :root:has(> head > meta[name="color-scheme"][content="light dark"]) { --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
-}
 /* Zero page margin leaves no room for browser headers/footers; .paper carries the spacing. */
 @page { size: A4 portrait; margin: 0; }
 @media print {
-  :root:has(> head > meta[name="color-scheme"][content]) { color-scheme: light; --ink: #111; --muted: #5c5c5c; --paper: #fff; --canvas: #fff; background: white; }
-  /* Print is deliberately independent of the selected screen theme. */
+  :root { --canvas: #fff; background: white; }
+  /* Print always uses a white page. */
   body {
     margin: 0;
     padding: 0;
