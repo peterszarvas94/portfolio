@@ -60,14 +60,14 @@ select { font: inherit; color: inherit; background: var(--paper); border: 1px so
 address { display: flex; flex-direction: column; align-items: flex-start; margin-top: 16px; font-size: .8125rem; font-style: normal; line-height: 1.7; overflow-wrap: anywhere; }
 .career { padding: 0; list-style: none; }
 .stage + .stage { margin-top: 24px; }
-.stage > h2 { font-weight: 400; color: var(--muted); }
+.stage > h2 { font-size: 1.25rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
 .stage-body { display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 1ch; margin-top: 12px; }
 .arrow { position: relative; display: block; width: 3ch; margin: 4px 0 -8px; }
 .arrow::before { content: ''; position: absolute; top: 0; bottom: 3px; left: 50%; border-left: 1.5px solid; transform: translateX(-50%); }
 .arrow svg { position: absolute; width: 24px; height: 14px; bottom: 0; left: 50%; transform: translateX(-50%); }
 .job { break-inside: avoid; }
 .job + .job { margin-top: 20px; }
-.job h3 { font-size: 1.0625rem; font-weight: 700; align-items: baseline; display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; }
+.job h3 { font-size: 1rem; font-weight: 700; align-items: baseline; display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; }
 .job h3 span { font-weight: 400; color: var(--muted); font-size: .875rem; }
 .job ul { padding-left: 2ch; list-style: '- '; margin-top: 4px; }
 .job li + li { margin-top: 2px; }
@@ -119,6 +119,7 @@ footer > a { display: inline-block; margin-top: 8px; }
   .paper { width: auto; max-width: none; margin: 0; padding: 16mm 18mm; border: 0; background: white; box-shadow: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
   h1 { font-size: 18pt; }
   h2, h3, .job h3 { font-size: 10pt; }
+  .stage > h2 { font-size: 12pt; }
   h1, h2, h3 { break-after: avoid; }
   .identity, .stage, .job { break-inside: avoid; }
   p, li { orphans: 2; widows: 2; }
