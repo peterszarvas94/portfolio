@@ -1,6 +1,6 @@
 # Péter Szarvas
 
-A deliberately small, single-page portfolio and résumé. Go serves a templ template, one stylesheet, and a small theme script. Courier Prime is self-hosted; its license is in `static/fonts/OFL.txt`.
+A deliberately small, single-page portfolio and résumé. Go serves a templ template, one stylesheet, and a small theme script. IBM Plex Mono is self-hosted; its license is in `static/fonts/OFL.txt`.
 
 ## Run
 

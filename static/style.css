@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Courier Prime';
-  src: url('/static/fonts/CourierPrime-Regular.ttf') format('truetype');
+  font-family: 'IBM Plex Mono';
+  src: url('/static/fonts/IBMPlexMono-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Courier Prime';
-  src: url('/static/fonts/CourierPrime-Bold.ttf') format('truetype');
+  font-family: 'IBM Plex Mono';
+  src: url('/static/fonts/IBMPlexMono-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -18,7 +18,7 @@
   --muted: #5c5c5c;
   --paper: #fff;
   --canvas: #e8e7e3;
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
   color: var(--ink);
   background: var(--canvas);
   font-synthesis: none;
