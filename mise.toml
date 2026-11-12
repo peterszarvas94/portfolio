@@ -9,7 +9,10 @@ run = "templ generate"
 run = "templ generate && go run ./cmd/server"
 
 [tasks.build]
-run = "templ generate && go build -o bin/portfolio ./cmd/server"
+run = "templ generate && go run ./cmd/resumepdf && go build -o bin/portfolio ./cmd/server"
 
 [tasks.check]
 run = "templ fmt -fail . && go vet ./..."
+
+[tasks.resume-pdf]
+run = "templ generate && go run ./cmd/resumepdf"

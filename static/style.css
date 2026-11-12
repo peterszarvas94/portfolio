@@ -13,7 +13,7 @@
   font-display: swap;
 }
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --ink: #111;
   --muted: #5c5c5c;
   --paper: #fff;
@@ -28,13 +28,17 @@
 body { margin: 0; padding: 32px 16px 64px; font-size: 1rem; line-height: 1.5; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover, button:hover { color: var(--paper); background: var(--ink); }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
 p, h1, h2, h3, ul, ol { margin: 0; }
 h1 { font-size: 1.5rem; line-height: 1.25; }
 h2, h3 { font-size: 1rem; line-height: inherit; }
 h3 { font-weight: 400; }
 .page-nav { max-width: 46rem; margin: 0 auto 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: .8125rem; }
-.page-nav span { color: var(--muted); }
+.resume-actions { display: flex; gap: 20px; align-items: baseline; }
+.theme-control:not([hidden]) { display: flex; align-items: baseline; gap: 8px; }
+select { font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--muted); border-radius: 0; padding: 3px; }
+:root:has(> head > meta[name="color-scheme"][content="light"]) { color-scheme: light; }
+:root:has(> head > meta[name="color-scheme"][content="dark"]) { color-scheme: dark; --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
 button { font: inherit; color: inherit; padding: 0; background: transparent; border: 0; border-bottom: 1px solid; cursor: pointer; }
 .paper { max-width: 46rem; margin: auto; padding: 44px 48px 48px; border: 1px solid var(--ink); background: var(--paper); }
 .identity { margin-bottom: 36px; }
@@ -64,13 +68,13 @@ address { display: flex; flex-wrap: wrap; column-gap: 20px; margin-top: 16px; fo
 .lore p { margin-top: 16px; }
 footer { margin-top: 36px; font-size: .875rem; }
 footer > a { display: inline-block; margin-top: 8px; }
-.skip-link { position: absolute; top: -100px; background: white; padding: 8px; }
+.skip-link { position: absolute; top: -100px; background: var(--paper); padding: 8px; }
 .skip-link:focus { top: 8px; }
 @media (max-width: 600px) {
   body { padding-top: 20px; padding-bottom: 24px; }
   .page-nav { font-size: .75rem; }
-  .page-nav span { display: none; }
-  .page-nav:has(span) { justify-content: flex-end; }
+  .page-nav { flex-wrap: wrap; row-gap: 12px; }
+  .resume-actions { gap: 20px; }
   .paper { padding: 28px 20px 32px; }
   .identity { margin-bottom: 28px; }
   address { display: block; }
@@ -81,14 +85,11 @@ footer > a { display: inline-block; margin-top: 8px; }
   .job h3 span { font-size: .8125rem; }
 }
 @media (prefers-color-scheme: dark) {
-  :root { --canvas: #1c1c1c; }
-  .page-nav { color: #fff; }
-  .page-nav span { color: #c0c0c0; }
-  .page-nav a:focus-visible, .page-nav button:focus-visible { outline-color: white; }
+  :root:has(> head > meta[name="color-scheme"][content="light dark"]) { --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
 }
 @page { size: A4; margin: 16mm 18mm; }
 @media print {
-  :root { background: white; }
+  :root:has(> head > meta[name="color-scheme"][content]) { color-scheme: light; --ink: #111; --muted: #5c5c5c; --paper: #fff; --canvas: #fff; background: white; }
   body { padding: 0; font-size: 10pt; line-height: 1.35; }
   .page-nav, .skip-link, .home-extra, .next { display: none; }
   .paper { padding: 0; border: 0; max-width: none; }

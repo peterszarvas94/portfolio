@@ -1,30 +1,36 @@
 package templates
 
-templ Page(resume bool) {
+templ Page() {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
 			<meta charset="utf-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
 			<meta name="description" content="Péter Szarvas. From systems administration to full-stack development. Building simple software that works."/>
-			if resume {
-				<title>Péter Szarvas — résumé</title>
-			} else {
-				<title>Péter Szarvas</title>
-			}
+			<title>Péter Szarvas</title>
+			<meta name="color-scheme" content="light dark"/>
+			<script>
+				try {
+					const saved = localStorage.getItem("portfolio-color-scheme");
+					if (saved === "light" || saved === "dark")
+						document.querySelector('meta[name="color-scheme"]').content = saved;
+				} catch {}
+			</script>
+			<script src="/static/theme.js" defer></script>
 			<link rel="preload" href="/static/fonts/CourierPrime-Regular.ttf" as="font" type="font/ttf" crossorigin/>
 			<link rel="stylesheet" href="/static/style.css"/>
 		</head>
 		<body>
 			<a class="skip-link" href="#content">Skip to content</a>
-			<nav class="page-nav" aria-label="Pages">
-				if resume {
-					<a href="/">Home</a>
-					<button type="button" onclick="window.print()">Print / save PDF</button>
-				} else {
-					<span>peterszarvas.hu</span>
-					<a href="/resume">The short version / résumé</a>
-				}
+			<nav class="page-nav" aria-label="Resume and appearance">
+				<div class="resume-actions">
+					<a href="/resume.pdf" download="Peter-Szarvas-resume.pdf">Save resume</a>
+					<button type="button" onclick="window.print()">Print resume</button>
+				</div>
+				<label class="theme-control" hidden>
+					Theme
+					<select id="theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
+				</label>
 			</nav>
 			<main id="content" class="paper">
 				<header class="identity">
@@ -37,28 +43,26 @@ templ Page(resume bool) {
 					</address>
 				</header>
 				@Career()
-				if !resume {
-					<div class="home-extra">
-						<section aria-labelledby="projects-heading">
-							<h2 id="projects-heading">a few things I've built</h2>
-							<ul class="projects">
-								<li><a href="https://bandcash.app">Bandcash</a><p>Events, expenses and fair payouts for music bands.</p></li>
-								<li><a href="https://szarvaspongrac.hu">Pongrác Szarvas</a><p>An artist's portfolio. A place for the work to speak.</p></li>
-								<li><a href="https://szeremletanc.hu">Szeremle</a><p>A home on the web for a folk dance group.</p></li>
-								<li><a href="https://pantlikazenekar.hu">Pántlika</a><p>A website for a folk music band.</p></li>
-								<li><a href="https://github.com/peterszarvas94/weddingsite">Wedding invitation</a><p>A small website for a big day.</p></li>
-							</ul>
-						</section>
-						<section class="lore" aria-labelledby="lore-heading">
-							<h2 id="lore-heading">a little more of the story</h2>
-							<p>I started with servers, moved into applications, and kept wanting to understand the whole thing. These days that means building the interface, writing the backend, and keeping it running.</p>
-							<p>I like simple code and small tools. Go, server-rendered HTML, and fewer moving parts when they do the job. React and TypeScript when they fit.</p>
-							<p>Bandcash brings that thinking to the world of music bands: less time untangling who owes what, more time for the music.</p>
-							<p>On my reading list: <a href="https://hypermedia.systems/">Hypermedia Systems</a>, <a href="https://grugbrain.dev/">The Grug Brained Developer</a>, and <a href="https://www.oreilly.com/library/view/we-programmers-a/9780135344248/">We, Programmers</a>.</p>
-						</section>
-						<footer><p>Have something in mind? <a href="mailto:contact@peterszarvas.hu">Let's talk.</a></p><a href="/resume">Or take the one-page résumé.</a></footer>
-					</div>
-				}
+				<div class="home-extra">
+					<section aria-labelledby="projects-heading">
+						<h2 id="projects-heading">a few things I've built</h2>
+						<ul class="projects">
+							<li><a href="https://bandcash.app">Bandcash</a><p>Events, expenses and fair payouts for music bands.</p></li>
+							<li><a href="https://szarvaspongrac.hu">Pongrác Szarvas</a><p>An artist's portfolio. A place for the work to speak.</p></li>
+							<li><a href="https://szeremletanc.hu">Szeremle</a><p>A home on the web for a folk dance group.</p></li>
+							<li><a href="https://pantlikazenekar.hu">Pántlika</a><p>A website for a folk music band.</p></li>
+							<li><a href="https://github.com/peterszarvas94/weddingsite">Wedding invitation</a><p>A small website for a big day.</p></li>
+						</ul>
+					</section>
+					<section class="lore" aria-labelledby="lore-heading">
+						<h2 id="lore-heading">a little more of the story</h2>
+						<p>I started with servers, moved into applications, and kept wanting to understand the whole thing. These days that means building the interface, writing the backend, and keeping it running.</p>
+						<p>I like simple code and small tools. Go, server-rendered HTML, and fewer moving parts when they do the job. React and TypeScript when they fit.</p>
+						<p>Bandcash brings that thinking to the world of music bands: less time untangling who owes what, more time for the music.</p>
+						<p>On my reading list: <a href="https://hypermedia.systems/">Hypermedia Systems</a>, <a href="https://grugbrain.dev/">The Grug Brained Developer</a>, and <a href="https://www.oreilly.com/library/view/we-programmers-a/9780135344248/">We, Programmers</a>.</p>
+					</section>
+					<footer><p>Have something in mind? <a href="mailto:contact@peterszarvas.hu">Let's talk.</a></p></footer>
+				</div>
 			</main>
 		</body>
 	</html>
