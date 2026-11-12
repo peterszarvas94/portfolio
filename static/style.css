@@ -102,8 +102,8 @@ footer > a { display: inline-block; margin-top: 8px; }
 @media (prefers-color-scheme: dark) {
   :root:has(> head > meta[name="color-scheme"][content="light dark"]) { --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
 }
-/* The PDF generator and browser print dialog use this same page geometry. */
-@page { size: A4 portrait; margin: 16mm 18mm; }
+/* Zero page margin leaves no room for browser headers/footers; .paper carries the spacing. */
+@page { size: A4 portrait; margin: 0; }
 @media print {
   :root:has(> head > meta[name="color-scheme"][content]) { color-scheme: light; --ink: #111; --muted: #5c5c5c; --paper: #fff; --canvas: #fff; background: white; }
   /* Print is deliberately independent of the selected screen theme. */
@@ -118,7 +118,7 @@ footer > a { display: inline-block; margin-top: 8px; }
     print-color-adjust: exact;
   }
   .page-nav, .skip-link, .home-extra, .next { display: none; }
-  .paper { width: auto; max-width: none; margin: 0; padding: 0; border: 0; background: white; box-shadow: none; }
+  .paper { width: auto; max-width: none; margin: 0; padding: 16mm 18mm; border: 0; background: white; box-shadow: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
   h1 { font-size: 18pt; }
   h2, h3, .job h3 { font-size: 10pt; }
   h1, h2, h3 { break-after: avoid; }
