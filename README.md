@@ -6,7 +6,7 @@ A deliberately small, single-page portfolio and résumé, built as a static site
 
 Install the tools in `mise.toml`, then:
 
-- `mise run dev` builds `public/` and previews it on http://localhost:8080 (set `PORT` to change). The preview is a plain file server, so Caddy's redirects are not applied.
+- `mise run dev` is the live-reload dev server on http://localhost:8080. templ watches templates, Go and `static/`, rebuilds `public/` on every change and reloads the browser. Set `DEV_PORT` to change the port and `DEV_BIND=0.0.0.0` to reach it from other machines. It is a plain file server, so Caddy's redirects are not applied.
 - `mise run build` renders `public/` only.
 - `mise run docker` builds and runs the production image on http://localhost:8080, with the real Caddy config.
 - `mise run check` checks template formatting and runs Go vet.
