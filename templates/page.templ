@@ -35,11 +35,11 @@ templ Page() {
 					<section aria-labelledby="projects-heading">
 						<h2 id="projects-heading">a few things I've built</h2>
 						<ul class="projects">
-							<li><a href="https://bandcash.app">Bandcash</a><p>Events, expenses and fair payouts for music bands.</p></li>
-							<li><a href="https://szarvaspongrac.hu">Pongrác Szarvas</a><p>An artist's portfolio. A place for the work to speak.</p></li>
-							<li><a href="https://szeremletanc.hu">Szeremle</a><p>A home on the web for a folk dance group.</p></li>
-							<li><a href="https://pantlikazenekar.hu">Pántlika</a><p>A website for a folk music band.</p></li>
-							<li><a href="https://github.com/peterszarvas94/weddingsite">Wedding invitation</a><p>A small website for a big day.</p></li>
+							<li><h3><a href="https://bandcash.app">Bandcash</a></h3><p>Events, expenses and fair payouts for music bands.</p></li>
+							<li><h3><a href="https://szarvaspongrac.hu">Pongrác Szarvas</a></h3><p>An artist's portfolio. A place for the work to speak.</p></li>
+							<li><h3><a href="https://szeremletanc.hu">Szeremle</a></h3><p>A home on the web for a folk dance group.</p></li>
+							<li><h3><a href="https://pantlikazenekar.hu">Pántlika</a></h3><p>A website for a folk music band.</p></li>
+							<li><h3><a href="https://github.com/peterszarvas94/weddingsite">Wedding invitation</a></h3><p>A small website for a big day.</p></li>
 						</ul>
 					</section>
 					<section class="lore" aria-labelledby="lore-heading">
@@ -70,7 +70,7 @@ templ Career() {
 				@Arrow()
 				<div class="jobs">
 					<section class="job" aria-labelledby="ibm-heading">
-						<h3 id="ibm-heading">IBM / Kyndryl <span>2020–2022</span></h3>
+						<header class="job-head"><h3 id="ibm-heading">IBM / Kyndryl</h3><p class="dates"><time datetime="2020">2020</time>–<time datetime="2022">2022</time></p></header>
 						<ul><li>Managed Windows servers and hybrid Microsoft Azure environments.</li><li>Learned to keep things running, not just get them running.</li></ul>
 					</section>
 				</div>
@@ -82,11 +82,11 @@ templ Career() {
 				@Arrow()
 				<div class="jobs">
 					<section class="job" aria-labelledby="kyndryl-heading">
-						<h3 id="kyndryl-heading">Kyndryl <span>2022–2024</span></h3>
+						<header class="job-head"><h3 id="kyndryl-heading">Kyndryl</h3><p class="dates"><time datetime="2022">2022</time>–<time datetime="2024">2024</time></p></header>
 						<ul><li>Built an internal business lead tracker in a two-person team.</li><li>React, JavaScript and Java.</li></ul>
 					</section>
 					<section class="job" aria-labelledby="eviden-heading">
-						<h3 id="eviden-heading">Eviden / Atos <span>2024–present</span></h3>
+						<header class="job-head"><h3 id="eviden-heading">Eviden / Atos</h3><p class="dates"><time datetime="2024">2024</time>–present</p></header>
 						<ul><li>Building a government application in an international team.</li><li>React, TypeScript, Node.js and NestJS.</li></ul>
 					</section>
 				</div>
@@ -98,13 +98,13 @@ templ Career() {
 				@Arrow()
 				<div class="jobs">
 					<section class="job" aria-labelledby="bandcash-heading">
-						<h3 id="bandcash-heading"><a href="https://bandcash.app">Bandcash</a></h3>
+						<header class="job-head"><h3 id="bandcash-heading"><a href="https://bandcash.app">Bandcash</a></h3></header>
 						<p class="aside">Independent work, alongside my day job.</p>
 						<ul><li>Building and operating a payment splitting app for music bands.</li><li>Go, templ, Datastar, SQLite. From the first screen to deployment, with AI in the workflow.</li></ul>
 					</section>
 				</div>
 			</div>
-			<p class="next"><a href="mailto:contact@peterszarvas.hu">[Your company?]</a><span>Something useful, built together.</span></p>
+			<div class="next"><p><a href="mailto:contact@peterszarvas.hu">[Your company?]</a></p><p>Something useful, built together.</p></div>
 		</li>
 	</ol>
 }

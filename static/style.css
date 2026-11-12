@@ -31,8 +31,8 @@ a:hover, button:hover { color: var(--paper); background: var(--ink); text-decora
 a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
 p, h1, h2, h3, ul, ol { margin: 0; }
 h1 { font-size: 1.5rem; line-height: 1.25; }
-h2, h3 { font-size: 1rem; line-height: inherit; }
-h3 { font-weight: 400; }
+h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.5; letter-spacing: -.01em; }
+h3 { font-size: 1rem; font-weight: 700; line-height: inherit; }
 .page-nav { max-width: 46rem; margin: 0 auto 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: .8125rem; }
 .resume-actions { display: flex; gap: 20px; align-items: baseline; }
 .resume-actions > :is(a, button) {
@@ -56,24 +56,24 @@ h3 { font-weight: 400; }
 address { display: flex; flex-direction: column; align-items: flex-start; margin-top: 16px; font-size: .8125rem; font-style: normal; line-height: 1.7; overflow-wrap: anywhere; }
 .career { padding: 0; list-style: none; }
 .stage + .stage { margin-top: 24px; }
-.stage > h2 { font-size: 1.25rem; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
 .stage-body { display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 1ch; margin-top: 12px; }
 .arrow { position: relative; display: block; width: 3ch; margin: 4px 0 -4px; }
 .arrow::before { content: ''; position: absolute; top: 0; bottom: 1px; left: 50%; border-left: 1.5px solid; transform: translateX(-50%); }
 .arrow svg { position: absolute; width: 10px; height: 6px; bottom: 0; left: 50%; transform: translateX(-50%); }
 .job { break-inside: avoid; }
 .job + .job { margin-top: 20px; }
-.job h3 { font-size: 1rem; font-weight: 700; align-items: baseline; display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; }
-.job h3 span { font-weight: 400; color: var(--muted); font-size: .875rem; }
+.job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 12px; }
+.dates { color: var(--muted); font-size: .875rem; }
 .job ul { padding-left: 2ch; list-style: '- '; margin-top: 4px; }
 .job li + li { margin-top: 2px; }
 .aside { color: var(--muted); font-size: .8125rem; }
 .next { margin: 24px 0 0 4ch; }
 .next a { display: inline-block; }
-.next span { display: block; font-size: .8125rem; color: var(--muted); margin-top: 4px; }
+.next p + p { font-size: .8125rem; color: var(--muted); margin-top: 4px; }
 .home-extra { border-top: 1px dashed var(--muted); margin-top: 40px; padding-top: 32px; }
 .projects { padding: 0; margin-top: 20px; list-style: none; }
 .projects li + li { margin-top: 18px; }
+.projects h3 { font-weight: 400; }
 .projects p { color: var(--muted); font-size: .875rem; }
 .lore { margin-top: 36px; }
 .lore p { margin-top: 16px; }
@@ -91,7 +91,7 @@ footer > a { display: inline-block; margin-top: 8px; }
   .stage-body { grid-template-columns: 2ch minmax(0, 1fr); }
   .arrow { width: 2ch; }
   .next { margin-left: 3ch; }
-  .job h3 span { font-size: .8125rem; }
+  .dates { font-size: .8125rem; }
 }
 /* Zero page margin leaves no room for browser headers/footers; .paper carries the spacing. */
 @page { size: A4 portrait; margin: 0; }
@@ -111,8 +111,8 @@ footer > a { display: inline-block; margin-top: 8px; }
   .page-nav, .skip-link, .home-extra, .next { display: none; }
   .paper { width: auto; max-width: none; margin: 0; padding: 16mm 18mm; border: 0; background: white; box-shadow: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
   h1 { font-size: 18pt; }
-  h2, h3, .job h3 { font-size: 10pt; }
-  .stage > h2 { font-size: 12pt; }
+  h2 { font-size: 12pt; }
+  h3 { font-size: 10pt; }
   h1, h2, h3 { break-after: avoid; }
   .identity, .stage, .job { break-inside: avoid; }
   p, li { orphans: 2; widows: 2; }
@@ -123,7 +123,7 @@ footer > a { display: inline-block; margin-top: 8px; }
   .stage-body { grid-template-columns: 3ch minmax(0, 1fr); margin-top: 9pt; }
   .arrow { width: 3ch; }
   .job + .job { margin-top: 14pt; }
-  .job h3 span, .aside { font-size: 9pt; }
+  .dates, .aside { font-size: 9pt; }
   .arrow::before { border-left-width: .75pt; }
   a { text-decoration: none; }
 }
