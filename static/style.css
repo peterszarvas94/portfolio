@@ -27,7 +27,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; padding: 32px 16px 64px; font-size: 1rem; line-height: 1.5; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover, button:hover { color: var(--paper); background: var(--ink); }
+a:hover, button:hover { color: var(--paper); background: var(--ink); text-decoration: none; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
 p, h1, h2, h3, ul, ol { margin: 0; }
 h1 { font-size: 1.5rem; line-height: 1.25; }
@@ -49,7 +49,7 @@ h3 { font-weight: 400; }
   text-box: trim-both cap alphabetic;
   cursor: pointer;
 }
-.resume-actions > :is(a, button):hover { color: var(--paper); background: var(--ink); }
+.resume-actions > :is(a, button):hover { color: var(--paper); background: var(--ink); text-decoration: none; }
 .paper { max-width: 46rem; margin: auto; padding: 44px 48px 48px; border: 1px solid var(--ink); background: var(--paper); }
 .identity { margin-bottom: 36px; }
 .intro { margin-top: 8px; }
