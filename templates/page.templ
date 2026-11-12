@@ -25,7 +25,7 @@ templ Page() {
 			<nav class="page-nav" aria-label="Resume and appearance">
 				<div class="resume-actions">
 					<a href="/resume.pdf" download="Peter-Szarvas-resume.pdf">Save resume</a>
-					<button type="button" onclick="window.print()">Print resume</button>
+					<button type="button" onclick="document.fonts.ready.then(() => window.print())">Print resume</button>
 				</div>
 				<label class="theme-control" hidden>
 					Theme

@@ -6,7 +6,7 @@ A deliberately small, single-page portfolio and résumé. Go serves a templ temp
 
 Install the tools in `mise.toml`, then run `mise run dev`. Open http://localhost:8080. Set `PORT` to use another port.
 
-The page includes career history, projects, and background. **Save resume** downloads the compact one-page A4 PDF. **Print resume** opens the browser print dialog with the same compact layout. Homepage extras and controls are excluded from print; print always uses light colors.
+The page includes career history, projects, and background. **Save resume** downloads the compact one-page A4 PDF. **Print resume** opens the browser print dialog with the same compact layout. Homepage extras and controls are excluded from print; print always uses light colors. The print stylesheet requests A4 portrait, 16mm top/bottom and 18mm side margins, and exact print colors. It keeps headings and company entries together and works with background graphics disabled. Browser/printer settings can override CSS, and headers/footers remain a browser setting; the downloadable PDF has those disabled.
 
 The theme selector supports light, dark, and system. The default follows the system, including live changes. Explicit choices are remembered in local storage and synchronized across tabs. The page still follows the system if JavaScript is disabled.
 

@@ -85,7 +85,7 @@ footer { margin-top: 36px; font-size: .875rem; }
 footer > a { display: inline-block; margin-top: 8px; }
 .skip-link { position: absolute; top: -100px; background: var(--paper); padding: 8px; }
 .skip-link:focus { top: 8px; }
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   body { padding-top: 20px; padding-bottom: 24px; }
   .page-nav { font-size: .75rem; }
   .page-nav { flex-wrap: wrap; row-gap: 12px; }
@@ -102,19 +102,34 @@ footer > a { display: inline-block; margin-top: 8px; }
 @media (prefers-color-scheme: dark) {
   :root:has(> head > meta[name="color-scheme"][content="light dark"]) { --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
 }
-@page { size: A4; margin: 16mm 18mm; }
+/* The PDF generator and browser print dialog use this same page geometry. */
+@page { size: A4 portrait; margin: 16mm 18mm; }
 @media print {
   :root:has(> head > meta[name="color-scheme"][content]) { color-scheme: light; --ink: #111; --muted: #5c5c5c; --paper: #fff; --canvas: #fff; background: white; }
-  body { padding: 0; font-size: 10pt; line-height: 1.35; }
+  /* Print is deliberately independent of the selected screen theme. */
+  body {
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    background: white;
+    font-size: 10pt;
+    line-height: 1.35;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   .page-nav, .skip-link, .home-extra, .next { display: none; }
-  .paper { padding: 0; border: 0; max-width: none; }
+  .paper { width: auto; max-width: none; margin: 0; padding: 0; border: 0; background: white; box-shadow: none; }
   h1 { font-size: 18pt; }
-  h2, h3 { font-size: 10pt; }
+  h2, h3, .job h3 { font-size: 10pt; }
+  h1, h2, h3 { break-after: avoid; }
+  .identity, .stage, .job { break-inside: avoid; }
+  p, li { orphans: 2; widows: 2; }
   .identity { margin-bottom: 24pt; }
   .intro { margin-top: 6pt; }
-  address { margin-top: 10pt; font-size: 9pt; column-gap: 16pt; }
+  address { display: flex; flex-wrap: wrap; margin-top: 10pt; font-size: 9pt; column-gap: 16pt; }
   .stage + .stage { margin-top: 20pt; }
-  .stage-body { margin-top: 9pt; }
+  .stage-body { grid-template-columns: 3ch minmax(0, 1fr); margin-top: 9pt; }
+  .arrow { width: 3ch; }
   .job + .job { margin-top: 14pt; }
   .job h3 span, .aside { font-size: 9pt; }
   .arrow::before { border-left-width: .75pt; }
