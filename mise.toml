@@ -1,16 +1,15 @@
 [tools]
 go = "1.25.6"
-air = "1.64.4"
 "github:a-h/templ" = { version = "0.3.1020", exe = "templ" }
 
-[tasks.build]
-run = "templ generate && go run ./cmd && go run ./cmd/resumepdf"
-
-[tasks.resume-pdf]
-run = "go run ./cmd/resumepdf"
+[tasks.generate]
+run = "templ generate"
 
 [tasks.dev]
-run = "air -c .air.toml"
+run = "templ generate && go run ./cmd/server"
 
-[tasks.run]
-run = "templ generate && go run ./cmd -serve"
+[tasks.build]
+run = "templ generate && go build -o bin/portfolio ./cmd/server"
+
+[tasks.check]
+run = "templ fmt -fail . && go vet ./..."

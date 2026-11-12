@@ -1,9 +1,2 @@
-bin/
-tmp/
-public/
 *_templ.go
-node_modules/
-**/node_modules/
-.DS_Store
-.jj/
-.env
+bin/
