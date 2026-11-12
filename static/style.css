@@ -12,122 +12,300 @@
   font-style: normal;
   font-display: swap;
 }
+
+/*
+ * Shared type, weight and spacing tokens. Print reuses the same roles with point-sized values.
+ *
+ * Type roles:
+ *   title    – the name (h1)
+ *   heading  – section titles (h2)
+ *   body     – running text; h3 is body size in bold
+ *   small    – secondary text: nav, contacts, dates, notes, descriptions. Muted text is always small.
+ */
 :root {
   color-scheme: light;
+
   --ink: #111;
   --muted: #5c5c5c;
   --paper: #fff;
   --canvas: #e8e7e3;
-  font-family: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+
+  --font: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  --text-title: 1.5rem;
+  --text-heading: 1.25rem;
+  --text-body: 1rem;
+  --text-small: .8125rem;
+  --leading: 1.5;
+  --leading-tight: 1.25;
+  --regular: 400;
+  --bold: 700;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 36px;
+  --space-7: 48px;
+
+  --line: 1.5px;
+  --step: 9px;
+  --rail: 3ch;
+  --measure: 46rem;
+
+  font-family: var(--font);
+  font-size: var(--text-body);
+  font-weight: var(--regular);
+  line-height: var(--leading);
   color: var(--ink);
   background: var(--canvas);
   font-synthesis: none;
   font-variant-ligatures: none;
 }
-* { box-sizing: border-box; }
-body { margin: 0; padding: 32px 16px 64px; font-size: 1rem; line-height: 1.5; }
-a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover, button:hover { color: var(--paper); background: var(--ink); text-decoration: none; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
-p, h1, h2, h3, ul, ol { margin: 0; }
-h1 { font-size: 1.5rem; line-height: 1.25; }
-h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.5; letter-spacing: -.01em; }
-h3 { font-size: 1rem; font-weight: 700; line-height: inherit; }
-.page-nav { max-width: 46rem; margin: 0 auto 14px; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: .8125rem; }
-.resume-actions { display: flex; gap: 20px; align-items: baseline; }
-.resume-actions > :is(a, button) {
-  display: block;
-  font: inherit;
-  line-height: inherit;
+
+/* Base */
+:where(p, h1, h2, h3, ul, ol) { margin: 0; }
+
+body {
+  margin: 0;
+  padding: var(--space-6) var(--space-4) var(--space-7);
+}
+
+h1 { font-size: var(--text-title); line-height: var(--leading-tight); font-weight: var(--bold); }
+h2 { font-size: var(--text-heading); font-weight: var(--bold); letter-spacing: -.01em; }
+h3 { font-size: var(--text-body); font-weight: var(--bold); }
+
+a, .resume-actions button {
   color: inherit;
-  padding: 9px 0;
-  background: transparent;
-  border: 0;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-box: trim-both cap alphabetic;
-  cursor: pointer;
+
+  &:hover { color: var(--paper); background: var(--ink); text-decoration: none; }
+  &:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
 }
-.resume-actions > :is(a, button):hover { color: var(--paper); background: var(--ink); text-decoration: none; }
-.paper { max-width: 46rem; margin: auto; padding: 44px 48px 48px; border: 1px solid var(--ink); background: var(--paper); }
-.identity { margin-bottom: 36px; }
-.intro { margin-top: 8px; }
-address { display: flex; flex-direction: column; align-items: flex-start; margin-top: 16px; font-size: .8125rem; font-style: normal; line-height: 1.7; overflow-wrap: anywhere; }
-.career { padding: 0; list-style: none; }
-.stage + .stage { margin-top: 24px; }
-.stage-body { display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 1ch; margin-top: 12px; }
-.arrow { position: relative; display: block; width: 3ch; margin: 4px 0 -4px; }
-.arrow::before { content: ''; position: absolute; top: 0; bottom: 1px; left: 50%; border-left: 1.5px solid; transform: translateX(-50%); }
-.arrow svg { position: absolute; width: 10px; height: 6px; bottom: 0; left: 50%; transform: translateX(-50%); }
-.job { position: relative; break-inside: avoid; }
-/* A step marker on the arrow, level with the company name. The arrow column is --rail wide, 1ch to the left. */
-.job::before { content: ''; position: absolute; top: .5lh; left: calc(-1ch - var(--rail, 3ch) / 2); width: 9px; height: 9px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); transform: translate(-50%, -50%); box-sizing: border-box; }
-.job + .job { margin-top: 20px; }
-.job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 12px; }
-.dates { color: var(--muted); font-size: .875rem; }
-.job ul { padding-left: 2ch; list-style: '- '; margin-top: 4px; }
-.job li + li { margin-top: 2px; }
-.aside { color: var(--muted); font-size: .8125rem; }
-.next { margin: 24px 0 0 4ch; }
-.next a { display: inline-block; font-weight: 700; }
-.next p + p { font-size: .8125rem; color: var(--muted); margin-top: 4px; }
-.home-extra { border-top: 1px dashed var(--muted); margin-top: 40px; padding-top: 32px; }
-.projects { padding: 0; margin-top: 20px; list-style: none; }
-.projects li + li { margin-top: 18px; }
-.projects h3 { font-weight: 400; }
-.projects p { color: var(--muted); font-size: .875rem; }
-.lore { margin-top: 36px; }
-.lore p { margin-top: 16px; }
-footer { margin-top: 36px; font-size: .875rem; }
-footer > a { display: inline-block; margin-top: 8px; }
-.skip-link { position: absolute; top: -100px; background: var(--paper); padding: 8px; }
-.skip-link:focus { top: 8px; }
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  padding: var(--space-2);
+  background: var(--paper);
+
+  &:focus { top: var(--space-2); }
+}
+
+/* Top controls */
+.page-nav {
+  max-width: var(--measure);
+  margin: 0 auto var(--space-3);
+  font-size: var(--text-small);
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+
+  /* :where keeps this reset below the shared hover rule in specificity. */
+  & > :where(a, button) {
+    display: block;
+    padding: var(--space-2) 0;
+    font: inherit;
+    border: 0;
+    background: transparent;
+    text-box: trim-both cap alphabetic;
+    cursor: pointer;
+  }
+}
+
+/* The sheet */
+.paper {
+  box-sizing: border-box;
+  max-width: var(--measure);
+  margin: auto;
+  padding: var(--space-7);
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.identity {
+  margin-bottom: var(--space-6);
+
+  & .intro { margin-top: var(--space-2); }
+
+  & address {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: var(--space-1);
+    margin-top: var(--space-4);
+    font-size: var(--text-small);
+    font-style: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Career: each stage is a role with an arrow running past its companies */
+.career {
+  padding: 0;
+  list-style: none;
+}
+
+.stage {
+  & + & { margin-top: var(--space-5); }
+}
+
+.stage-body {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: 1ch;
+  margin-top: var(--space-3);
+}
+
+.arrow {
+  position: relative;
+  display: block;
+  margin: var(--space-1) 0 calc(-1 * var(--space-1));
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 1px;
+    left: 50%;
+    border-left: var(--line) solid;
+    transform: translateX(-50%);
+  }
+
+  & svg {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    height: 6px;
+    transform: translateX(-50%);
+  }
+}
+
+.job {
+  position: relative;
+  break-inside: avoid;
+
+  & + & { margin-top: var(--space-4); }
+
+  /* Step marker on the arrow, level with the company name. */
+  &::before {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: .5lh;
+    left: calc(-1ch - var(--rail) / 2);
+    width: var(--step);
+    height: var(--step);
+    border: var(--line) solid var(--ink);
+    border-radius: 50%;
+    background: var(--paper);
+    transform: translate(-50%, -50%);
+  }
+
+  & ul {
+    margin-top: var(--space-1);
+    padding-left: 2ch;
+    list-style: '- ';
+  }
+
+  & li + li { margin-top: calc(var(--space-1) / 2); }
+}
+
+.job-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: var(--space-3);
+}
+
+.dates, .aside { font-size: var(--text-small); color: var(--muted); }
+
+.next {
+  margin: var(--space-5) 0 0 calc(var(--rail) + 1ch);
+
+  & a { font-weight: var(--bold); }
+  & p + p { margin-top: var(--space-1); font-size: var(--text-small); color: var(--muted); }
+}
+
+/* Homepage extras, screen only */
+.home-extra {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px dashed var(--muted);
+
+  & section + section, & footer { margin-top: var(--space-6); }
+}
+
+.projects {
+  margin-top: var(--space-4);
+  padding: 0;
+  list-style: none;
+
+  & li + li { margin-top: var(--space-4); }
+  & p { font-size: var(--text-small); color: var(--muted); }
+}
+
+.lore {
+  & p { margin-top: var(--space-4); }
+}
+
 @media screen and (max-width: 600px) {
-  body { padding-top: 20px; padding-bottom: 24px; }
-  .page-nav { font-size: .75rem; }
-  .page-nav { flex-wrap: wrap; row-gap: 12px; }
-  .resume-actions { gap: 20px; }
-  .paper { padding: 28px 20px 32px; }
-  .identity { margin-bottom: 28px; }
-  .stage-body { grid-template-columns: 2ch minmax(0, 1fr); }
-  .arrow { width: 2ch; }
-  .stage-body { --rail: 2ch; }
-  .next { margin-left: 3ch; }
-  .dates { font-size: .8125rem; }
+  :root { --rail: 2ch; }
+  body { padding: var(--space-5) var(--space-4); }
+  .paper { padding: var(--space-5) var(--space-4); }
+  .identity { margin-bottom: var(--space-5); }
 }
-/* Zero page margin leaves no room for browser headers/footers; .paper carries the spacing. */
+
+/* Print: zero page margin leaves no room for browser headers/footers; .paper carries the spacing. */
 @page { size: A4 portrait; margin: 0; }
+
 @media print {
-  :root { --canvas: #fff; background: white; }
-  /* Print always uses a white page. */
+  :root {
+    --canvas: #fff;
+    --text-title: 18pt;
+    --text-heading: 12pt;
+    --text-body: 10pt;
+    --text-small: 9pt;
+    --leading: 1.35;
+    --space-1: 3pt;
+    --space-2: 6pt;
+    --space-3: 9pt;
+    --space-4: 12pt;
+    --space-5: 18pt;
+    --space-6: 24pt;
+    --space-7: 36pt;
+    --line: .75pt;
+    --step: 6pt;
+  }
+
   body {
-    margin: 0;
     padding: 0;
-    color: var(--ink);
-    background: white;
-    font-size: 10pt;
-    line-height: 1.35;
+    background: var(--paper);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
+
   .page-nav, .skip-link, .home-extra, .next { display: none; }
-  .paper { width: auto; max-width: none; margin: 0; padding: 16mm 18mm; border: 0; background: white; box-shadow: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-  h1 { font-size: 18pt; }
-  h2 { font-size: 12pt; }
-  h3 { font-size: 10pt; }
+
+  .paper {
+    max-width: none;
+    margin: 0;
+    padding: 16mm 18mm;
+    border: 0;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .identity address { flex-direction: row; flex-wrap: wrap; column-gap: var(--space-4); }
+  a { text-decoration: none; }
   h1, h2, h3 { break-after: avoid; }
   .identity, .stage, .job { break-inside: avoid; }
   p, li { orphans: 2; widows: 2; }
-  .identity { margin-bottom: 24pt; }
-  .intro { margin-top: 6pt; }
-  address { display: flex; flex-direction: row; flex-wrap: wrap; margin-top: 10pt; font-size: 9pt; column-gap: 16pt; }
-  .stage + .stage { margin-top: 20pt; }
-  .stage-body { grid-template-columns: 3ch minmax(0, 1fr); margin-top: 9pt; }
-  .arrow { width: 3ch; }
-  .job + .job { margin-top: 14pt; }
-  .dates, .aside { font-size: 9pt; }
-  .arrow::before { border-left-width: .75pt; }
-  .job::before { width: 6pt; height: 6pt; border-width: .75pt; }
-  a { text-decoration: none; }
 }

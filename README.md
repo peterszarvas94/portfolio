@@ -13,6 +13,10 @@ Install the tools in `mise.toml`, then:
 
 Career content lives in `templates/page.templ`. Employer year ranges come from the previous résumé; IBM/Kyndryl is grouped because separate dates were not available. Bandcash is explicitly shown as independent work alongside employment.
 
+## Typography and styles
+
+`static/style.css` uses native CSS nesting and shared `:root` variables. IBM Plex Mono has four text roles: title (24px, bold), section heading (20px, bold), body (16px, regular; company and project headings bold), and secondary text (13px, regular). Screen sizes use rem units. Dates, notes and project descriptions share the same muted style. Print overrides the four size tokens to 18/12/10/9pt. Change the role tokens rather than adding one-off sizes.
+
 ## Résumé PDF
 
 `static/resume.pdf` is generated from the same page and print stylesheet with headless Chromium, and committed. Regenerate it with `mise run resume-pdf` after changing résumé content or print styles (needs `chromium` on PATH, or set `CHROMIUM_BIN`). The build fails if the PDF is missing, so the deploy never needs Chromium.
