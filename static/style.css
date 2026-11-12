@@ -60,7 +60,9 @@ address { display: flex; flex-direction: column; align-items: flex-start; margin
 .arrow { position: relative; display: block; width: 3ch; margin: 4px 0 -4px; }
 .arrow::before { content: ''; position: absolute; top: 0; bottom: 1px; left: 50%; border-left: 1.5px solid; transform: translateX(-50%); }
 .arrow svg { position: absolute; width: 10px; height: 6px; bottom: 0; left: 50%; transform: translateX(-50%); }
-.job { break-inside: avoid; }
+.job { position: relative; break-inside: avoid; }
+/* A step marker on the arrow, level with the company name. The arrow column is --rail wide, 1ch to the left. */
+.job::before { content: ''; position: absolute; top: .5lh; left: calc(-1ch - var(--rail, 3ch) / 2); width: 9px; height: 9px; border: 1.5px solid var(--ink); border-radius: 50%; background: var(--paper); transform: translate(-50%, -50%); box-sizing: border-box; }
 .job + .job { margin-top: 20px; }
 .job-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 12px; }
 .dates { color: var(--muted); font-size: .875rem; }
@@ -90,6 +92,7 @@ footer > a { display: inline-block; margin-top: 8px; }
   .identity { margin-bottom: 28px; }
   .stage-body { grid-template-columns: 2ch minmax(0, 1fr); }
   .arrow { width: 2ch; }
+  .stage-body { --rail: 2ch; }
   .next { margin-left: 3ch; }
   .dates { font-size: .8125rem; }
 }
@@ -125,5 +128,6 @@ footer > a { display: inline-block; margin-top: 8px; }
   .job + .job { margin-top: 14pt; }
   .dates, .aside { font-size: 9pt; }
   .arrow::before { border-left-width: .75pt; }
+  .job::before { width: 6pt; height: 6pt; border-width: .75pt; }
   a { text-decoration: none; }
 }
