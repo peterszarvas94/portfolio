@@ -39,21 +39,36 @@ h3 { font-weight: 400; }
 select { font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--muted); border-radius: 0; padding: 3px; }
 :root:has(> head > meta[name="color-scheme"][content="light"]) { color-scheme: light; }
 :root:has(> head > meta[name="color-scheme"][content="dark"]) { color-scheme: dark; --ink: #e8e7e3; --muted: #b5b5b5; --paper: #1c1c1c; --canvas: #111; }
-button { font: inherit; color: inherit; padding: 0; background: transparent; border: 0; border-bottom: 1px solid; cursor: pointer; }
+.resume-actions > :is(a, button) {
+  display: block;
+  font: inherit;
+  line-height: inherit;
+  color: inherit;
+  padding: 9px 0;
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-box: trim-both cap alphabetic;
+  cursor: pointer;
+}
+.resume-actions > :is(a, button):hover { color: var(--paper); background: var(--ink); }
 .paper { max-width: 46rem; margin: auto; padding: 44px 48px 48px; border: 1px solid var(--ink); background: var(--paper); }
 .identity { margin-bottom: 36px; }
 .intro { margin-top: 8px; }
 address { display: flex; flex-wrap: wrap; column-gap: 20px; margin-top: 16px; font-size: .8125rem; font-style: normal; line-height: 1.7; overflow-wrap: anywhere; }
 .career { padding: 0; list-style: none; }
 .stage + .stage { margin-top: 24px; }
+.stage > h2 { font-weight: 400; color: var(--muted); }
 .stage-body { display: grid; grid-template-columns: 3ch minmax(0, 1fr); column-gap: 1ch; margin-top: 12px; }
 .arrow { position: relative; display: block; width: 3ch; margin: 4px 0 -8px; }
 .arrow::before { content: ''; position: absolute; top: 0; bottom: 3px; left: 50%; border-left: 1.5px solid; transform: translateX(-50%); }
 .arrow svg { position: absolute; width: 24px; height: 14px; bottom: 0; left: 50%; transform: translateX(-50%); }
 .job { break-inside: avoid; }
 .job + .job { margin-top: 20px; }
-.job h3 { display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; }
-.job h3 span { color: var(--muted); font-size: .875rem; }
+.job h3 { font-size: 1.0625rem; font-weight: 700; align-items: baseline; display: flex; flex-wrap: wrap; justify-content: space-between; column-gap: 12px; }
+.job h3 span { font-weight: 400; color: var(--muted); font-size: .875rem; }
 .job ul { padding-left: 2ch; list-style: '- '; margin-top: 4px; }
 .job li + li { margin-top: 2px; }
 .aside { color: var(--muted); font-size: .8125rem; }
