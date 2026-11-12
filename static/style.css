@@ -228,7 +228,9 @@ a, .resume-actions button {
 .dates, .aside { font-size: var(--text-small); color: var(--muted); }
 
 .next {
-  margin: var(--space-5) 0 0 calc(var(--rail) + 1ch);
+  padding-block-end: var(--space-4);
+
+  &.job { margin-block-start: var(--space-5); }
 
   & a { font-weight: var(--bold); }
   & p + p { margin-top: var(--space-1); font-size: var(--text-small); color: var(--muted); }
