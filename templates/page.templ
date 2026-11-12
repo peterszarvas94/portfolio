@@ -10,15 +10,18 @@ templ Page() {
 			<title>Péter Szarvas</title>
 			<meta name="color-scheme" content="light"/>
 			<link rel="preload" href="/static/fonts/IBMPlexMono-Regular.ttf" as="font" type="font/ttf" crossorigin/>
-			<link rel="stylesheet" href="/static/style.css"/>
+			<link rel="stylesheet" href={ templ.SafeURL(Stylesheet) }/>
 		</head>
 		<body>
 			<a class="skip-link" href="#content">Skip to content</a>
 			<nav class="page-nav" aria-label="Resume">
 				<div class="resume-actions">
-					<a href="/resume.pdf" download="Peter-Szarvas-resume.pdf">Save resume</a>
-					<button type="button" onclick="document.fonts.ready.then(() => window.print())">Print resume</button>
+					<a class="btn btn-amber" href="/resume.pdf" download="Peter-Szarvas-resume.pdf">Save resume <span aria-hidden="true">↓</span></a>
+					<button type="button" class="btn" onclick="document.fonts.ready.then(() => window.print())">Print resume</button>
 				</div>
+				<button type="button" class="btn sheet-toggle" aria-controls="typesheet" aria-expanded="false" onclick="const s = document.getElementById('typesheet'); s.hidden = !s.hidden; this.setAttribute('aria-expanded', !s.hidden)">
+					<span class="lamp" aria-hidden="true"></span>Spec sheet
+				</button>
 			</nav>
 			<main id="content" class="paper">
 				<header class="identity">
@@ -58,6 +61,7 @@ templ Page() {
 					<footer><p>Have something in mind? <a href="mailto:contact@peterszarvas.hu">Let's talk.</a></p></footer>
 				</div>
 			</main>
+			@TypeSheet()
 		</body>
 	</html>
 }
@@ -108,7 +112,7 @@ templ Career() {
 						<p class="aside">Independent work, alongside my day job.</p>
 						<ul><li>Building and operating a payment splitting app for music bands.</li><li>Go, templ, Datastar, SQLite. From the first screen to deployment, with AI in the workflow.</li></ul>
 					</section>
-					<div class="job next"><p><a href="mailto:contact@peterszarvas.hu">[Your company?]</a></p><p>Something useful, built together.</p></div>
+					<div class="job next"><p><a class="btn btn-amber" href="mailto:contact@peterszarvas.hu">[Your company?] <span aria-hidden="true">→</span></a></p><p>Something useful, built together.</p></div>
 				</div>
 			</div>
 		</li>

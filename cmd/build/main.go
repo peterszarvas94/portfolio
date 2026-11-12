@@ -6,6 +6,7 @@ package main
 
 import (
 	"context"
+	"crypto/sha256"
 	"flag"
 	"fmt"
 	"io"
@@ -35,7 +36,12 @@ func main() {
 			port = "8080"
 		}
 		log.Printf("Preview: http://localhost:%s", port)
-		log.Fatal(http.ListenAndServe(":"+port, http.FileServer(http.Dir(outDir))))
+		// Revalidate every request, as Caddy does in production, so edits never show stale CSS.
+		files := http.FileServer(http.Dir(outDir))
+		log.Fatal(http.ListenAndServe(":"+port, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.Header().Set("Cache-Control", "no-cache")
+			files.ServeHTTP(w, r)
+		})))
 	}
 }
 
@@ -47,18 +53,6 @@ func build() error {
 		return err
 	}
 
-	page, err := os.Create(filepath.Join(outDir, "index.html"))
-	if err != nil {
-		return err
-	}
-	if err := templates.Page().Render(context.Background(), page); err != nil {
-		page.Close()
-		return fmt.Errorf("render page: %w", err)
-	}
-	if err := page.Close(); err != nil {
-		return err
-	}
-
 	// The résumé PDF and favicon live at the site root; everything else under /static/.
 	if err := copyFile("static/resume.pdf", filepath.Join(outDir, "resume.pdf")); err != nil {
 		return fmt.Errorf("resume.pdf missing; run `mise run resume-pdf`: %w", err)
@@ -66,11 +60,11 @@ func build() error {
 	if err := copyFile("static/favicon.ico", filepath.Join(outDir, "favicon.ico")); err != nil {
 		return err
 	}
-	return filepath.WalkDir("static", func(path string, d fs.DirEntry, err error) error {
+	err := filepath.WalkDir("static", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
-		if path == "static/resume.pdf" || path == "static/favicon.ico" {
+		if path == "static/resume.pdf" || path == "static/favicon.ico" || path == "static/style.css" {
 			return nil
 		}
 		target := filepath.Join(outDir, path)
@@ -79,6 +73,32 @@ func build() error {
 		}
 		return copyFile(path, target)
 	})
+	if err != nil {
+		return err
+	}
+
+	// Fingerprint the stylesheet: a content-hashed name lets Caddy cache it forever,
+	// and every change gets a new URL, so a deploy can never serve stale CSS.
+	css, err := os.ReadFile("static/style.css")
+	if err != nil {
+		return err
+	}
+	sum := sha256.Sum256(css)
+	name := fmt.Sprintf("style.%x.css", sum[:5])
+	if err := os.WriteFile(filepath.Join(outDir, "static", name), css, 0o644); err != nil {
+		return err
+	}
+	templates.Stylesheet = "/static/" + name
+
+	page, err := os.Create(filepath.Join(outDir, "index.html"))
+	if err != nil {
+		return err
+	}
+	if err := templates.Page().Render(context.Background(), page); err != nil {
+		page.Close()
+		return fmt.Errorf("render page: %w", err)
+	}
+	return page.Close()
 }
 
 func copyFile(src, dst string) error {

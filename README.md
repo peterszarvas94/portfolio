@@ -37,4 +37,4 @@ Routes handled by Caddy:
 | `/static/Szarvas_Peter_resume.pdf` | 301 to `/resume.pdf` (the old PDF link) |
 | `/demo/datastar-tiptap/*` | 301 to `https://tiptap.peterszarvas.hu/*` |
 
-HTML, CSS and the PDF are served with `Cache-Control: no-cache` (revalidated by ETag), so a deploy shows up immediately; fonts are cached for a year.
+The build fingerprints the stylesheet: `static/style.css` is published as `/static/style.<hash>.css` (first 10 hex characters of its SHA-256) and the page links that name. The hashed stylesheet and the fonts are cached for a year as immutable; any CSS change gets a new URL. HTML and the PDF are served with `Cache-Control: no-cache` (revalidated by ETag), so a deploy shows up immediately. The local preview server (`-serve`, used by `mise run dev`) also sends `no-cache`.

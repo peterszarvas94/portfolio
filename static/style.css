@@ -29,6 +29,12 @@
   --muted: #5c5c5c;
   --paper: #fff;
   --canvas: #e8e7e3;
+  --shadow: #b8b7b2;
+
+  /* Signal colours: actions and state only, never body text. */
+  --amber: #ffb700;
+  --green: #00794c;
+  --red: #e0242b;
 
   --font: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
   --text-title: 1.5rem;
@@ -75,7 +81,7 @@ h1 { font-size: var(--text-title); line-height: var(--leading-tight); font-weigh
 h2 { font-size: var(--text-heading); font-weight: var(--bold); letter-spacing: -.01em; }
 h3 { font-size: var(--text-body); font-weight: var(--bold); }
 
-a, .resume-actions button {
+a {
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -99,24 +105,55 @@ a, .resume-actions button {
   max-width: var(--measure);
   margin: 0 auto var(--space-3);
   font-size: var(--text-small);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-5);
 }
 
 .resume-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-5);
-
-  /* :where keeps this reset below the shared hover rule in specificity. */
-  & > :where(a, button) {
-    display: block;
-    padding: var(--space-2) 0;
-    font: inherit;
-    border: 0;
-    background: transparent;
-    text-box: trim-both cap alphabetic;
-    cursor: pointer;
-  }
+  gap: var(--space-3);
 }
+
+/* Buttons: square, inked border, hard offset shadow; pressing sinks into the shadow. */
+.btn {
+  /* A 1em line box centres Plex Mono caps in every browser; height = 1em + 2 × (pad + 1px border). */
+  --btn-pad: 7px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: .75ch;
+  padding: var(--btn-pad) 1.25ch;
+  font: inherit;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--shadow);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover { color: var(--paper); background: var(--ink); }
+  &:active { translate: 2px 2px; box-shadow: none; }
+  &:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+}
+
+.btn-amber { background: var(--amber); }
+.btn-green { color: var(--paper); background: var(--green); }
+
+/* Status lamp: hollow when off, lit red when on. */
+.lamp {
+  box-sizing: border-box;
+  width: 9px;
+  height: 9px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+[aria-expanded="true"] .lamp { border-color: var(--ink); background: var(--red); }
 
 /* The sheet */
 .paper {
@@ -126,6 +163,7 @@ a, .resume-actions button {
   padding: var(--space-7);
   border: 1px solid var(--ink);
   background: var(--paper);
+  box-shadow: 4px 4px 0 var(--shadow);
 }
 
 .identity {
@@ -232,8 +270,12 @@ a, .resume-actions button {
 
   &.job { margin-block-start: var(--space-5); }
 
-  & a { font-weight: var(--bold); }
-  & p + p { margin-top: var(--space-1); font-size: var(--text-small); color: var(--muted); }
+  /* The step marker sits on the button's centre line: padding + border + half the 1em line. */
+  &.job::before { top: calc(7px + 1px + .5em); }
+
+  & p:first-child { display: flex; }
+  & .btn { font-weight: var(--bold); }
+  & p + p { margin-top: var(--space-2); font-size: var(--text-small); color: var(--muted); }
 }
 
 /* Homepage extras, screen only */
@@ -263,6 +305,197 @@ a, .resume-actions button {
     list-style: '- ';
 
     & li + li { margin-block-start: var(--space-1); }
+  }
+}
+
+/* Experiment: type sheet of the page's building blocks, screen only */
+.typesheet {
+  box-sizing: border-box;
+  max-width: var(--measure);
+  margin: var(--space-6) auto 0;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 4px 4px 0 var(--shadow);
+  font-size: .75rem;
+  line-height: 1.4;
+
+  & h2, & h3 { font-size: inherit; letter-spacing: .06em; text-transform: uppercase; }
+  & code { font: inherit; }
+}
+
+.ts-head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-3);
+  padding: var(--space-3);
+  color: var(--paper);
+  background: var(--ink);
+
+  & .ts-part { grid-row: span 2; align-self: center; padding-inline-end: var(--space-3); border-inline-end: 1px solid; font-size: var(--text-heading); font-weight: var(--bold); }
+  & .ts-sub { opacity: .75; }
+}
+
+.ts-block {
+  padding: var(--space-3);
+  border-top: 1px solid var(--ink);
+
+  & h3 { display: flex; align-items: center; gap: 1ch; margin-bottom: var(--space-3); }
+  & > * + :not(h3) { margin-top: var(--space-3); }
+}
+
+/* A fixed line box centres Plex Mono digits in every browser; no reliance on text-box trimming. */
+.ts-num {
+  display: inline-block;
+  padding: 0 .5ch;
+  border: 1px solid;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+.ts-specimen {
+  font-size: var(--text-title);
+  font-weight: var(--bold);
+  line-height: var(--leading-tight);
+}
+
+/*
+ * Ruled rows: every list and table in the sheet bleeds to the sheet's edges, with one fixed row
+ * height and a rule under each row. When rows end a block, the block's own border closes them.
+ */
+.ts-spec, .ts-table, .ts-swatches, .ts-scale {
+  --row: 26px;
+  --rule: #d6d5d0;
+
+  margin-inline: calc(-1 * var(--space-3));
+  margin-bottom: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.ts-block:has(> :is(.ts-spec, .ts-table, .ts-swatches, .ts-scale):last-child) {
+  padding-bottom: 0;
+
+  & > :last-child :is(dt:nth-last-child(2), dd:last-child, li:last-child, tr:last-child > *) { border-bottom: 0; }
+}
+
+.ts-spec {
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  & dt, & dd {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: var(--row);
+    margin: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  & dt { padding-inline: var(--space-3) 1ch; color: var(--muted); }
+  & dd { justify-content: flex-end; padding-inline: 1ch var(--space-3); }
+}
+
+.ts-table {
+  width: calc(100% + 2 * var(--space-3));
+  border-collapse: collapse;
+
+  & tr { height: var(--row); }
+  & th, & td { padding: 0 0 0 1ch; border-bottom: 1px solid var(--rule); text-align: end; font-weight: var(--regular); }
+  & :is(th, td):first-child { padding-inline-start: var(--space-3); text-align: start; }
+  & :is(th, td):last-child { padding-inline-end: var(--space-3); }
+  & thead th { color: var(--muted); border-bottom-color: var(--ink); }
+  & tbody th { line-height: 1; }
+}
+
+.ts-role-title { font-size: var(--text-title); font-weight: var(--bold) !important; }
+.ts-role-heading { font-size: var(--text-heading); font-weight: var(--bold) !important; }
+.ts-role-body { font-size: var(--text-body); }
+.ts-role-small { font-size: var(--text-small); color: var(--muted); }
+
+.ts-note, .ts-caption, .ts-foot { color: var(--muted); }
+.ts-caption { font-style: italic; }
+
+.ts-swatches, .ts-scale {
+  padding: 0;
+  list-style: none;
+
+  & li {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    min-height: var(--row);
+    padding-inline: var(--space-3);
+    border-bottom: 1px solid var(--rule);
+  }
+  & code { min-width: 9ch; }
+}
+
+.ts-colorbar {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-top: 1px solid var(--ink);
+
+  & span { flex: 1; height: 8px; background: var(--swatch); }
+}
+
+/* Sub-heading row inside a ruled list, closed by an ink rule. */
+.ts-swatches .ts-group {
+  font-weight: var(--bold);
+  border-bottom-color: var(--ink);
+}
+
+.ts-swatch {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--ink);
+  background: var(--swatch);
+}
+
+.ts-bar {
+  width: var(--w);
+  height: 8px;
+  background: var(--ink);
+
+  & + span { color: var(--muted); }
+}
+
+.ts-figure {
+  padding: var(--space-3);
+  border: 1px dashed var(--muted);
+  font-size: var(--text-small);
+
+  & .stage-body { margin-top: 0; }
+  & .arrow { margin-block-end: 0; }
+  & .job + .job { margin-top: var(--space-3); }
+  & .aside { font-size: inherit; }
+}
+
+.ts-foot {
+  padding: var(--space-2) var(--space-3);
+  border-top: 1px solid var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-size: .625rem;
+}
+
+/* Wide screens: while open, the sheet sits right of the page, level with the buttons, and scrolls with it. */
+@media screen and (min-width: 72rem) {
+  body:has(.typesheet:not([hidden])) {
+    display: grid;
+    grid-template-columns: minmax(0, var(--measure)) 20rem;
+    justify-content: center;
+    align-items: start;
+    column-gap: var(--space-6);
+
+    & .page-nav { grid-column: 1; grid-row: 1; width: 100%; margin: 0 0 var(--space-3); }
+    & .paper { grid-column: 1; grid-row: 2; width: 100%; margin: 0; }
+  }
+
+  .typesheet {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin: 0;
   }
 }
 
@@ -302,9 +535,10 @@ a, .resume-actions button {
     print-color-adjust: exact;
   }
 
-  .page-nav, .skip-link, .home-extra, .next { display: none; }
+  .page-nav, .skip-link, .home-extra, .next, .typesheet { display: none; }
 
   .paper {
+    box-shadow: none;
     max-width: none;
     margin: 0;
     padding: 16mm 18mm;
